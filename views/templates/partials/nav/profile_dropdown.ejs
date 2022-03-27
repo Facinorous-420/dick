@@ -1,0 +1,36 @@
+<!-- Dropdown Navbar Profile -->
+<div class="dropdownProfile duration-250 bg-tertiary invisible absolute -top-2 right-3 h-auto w-52 translate-y-6 rounded-lg opacity-0 shadow-lg transition ease-linear md:-top-24 md:right-7 lg:-top-24 lg:right-7">
+    <div class="flex flex-col flex-wrap border-b border-gray-300/25 p-3">
+        <span class="w-44 flex-none truncate font-semibold text-color-primary">
+            <%= user.username %>
+        </span>
+        <div class="w-44 flex-none truncate text-xs text-gray-400">
+            <% if(hasRole){ %> admin <% } else { %> user <% } %>
+        </div>
+    </div>
+    <div class="grid grid-cols-1">
+        <!-- This is if we ever decide to add more dropdown options here
+                <a href="#" class="hover:bg-tertiary-hover inline-flex items-center space-x-2 py-2 px-3">
+                    <svg class="flex-none text-gray-400" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <div class="truncate text-sm text-color-primary">Profile</div>
+                </a>
+            -->
+    </div>
+    <div class="border-t border-gray-300/25">
+        <a href="/auth/logout"
+            class="hover:bg-tertiary-hover inline-flex w-full items-center space-x-2 rounded-b-lg px-3 pt-3 pb-1">
+            <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
+                <circle cx="16" cy="12" r="3"></circle>
+            </svg>
+            <div class="text-sm text-color-primary">Logout</div>
+        </a>
+    </div>
+</div>
+<!-- End Dropdown Navbar Profile -->

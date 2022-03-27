@@ -1,0 +1,10 @@
+<%- include("./partials/head") %>
+  <section class="bg-primary"> 
+    <div class="flex flex-col items-center justify-center min-h-screen p-6">
+      <!-- Page Content -->
+      <% if(path == '/login'){ %> <%- include("../pages/public/login") %> <% } %>
+      <%//We will enable this when we add the server logic to toggle registration if(path == '/register'){ %> <%-// include("../pages/public/register") %> <%// } %> 
+      <!-- /Page Content -->
+     </div>
+  </section>
+<%- include("./partials/footer") %>

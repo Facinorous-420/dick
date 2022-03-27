@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Custom Background Colors */
+  .bg-primary {
+    @apply bg-lighttheme-primary dark:bg-darktheme-primary;
+  }
+  .bg-secondary {
+    @apply bg-lighttheme-secondary dark:bg-darktheme-secondary;
+  }
+  .bg-secondary-hover {
+    @apply bg-lighttheme-secondaryHover dark:bg-darktheme-secondaryHover;
+  }
+  .bg-tertiary {
+    @apply bg-lighttheme-tertiary dark:bg-darktheme-tertiary;
+  }
+  .bg-tertiary-hover {
+    @apply bg-lighttheme-tertiaryHover dark:bg-darktheme-tertiaryHover;
+  }
+  .text-color-primary {
+    @apply text-lightthemeText-primary dark:text-darkthemeText-primary;
+  }
+  .text-color-secondary {
+    @apply text-lightthemeText-secondary dark:text-darkthemeText-secondary;
+  }
+  .text-color-accent {
+    @apply text-lightthemeText-accentPrimary dark:text-darkthemeText-accentPrimary;
+  }
+  .text-color-accentsecondary {
+    @apply text-lightthemeText-accentSecondary dark:text-darkthemeText-accentSecondary;
+  }
+}
+
+@layer components {
+  /* Component Sizing */
+  .custom-size-profile {
+    height: 200px;
+    width: 200px;
+  }
+  .custom-w-preview {
+    height: 800px;
+    width: 800px;
+  }
+}

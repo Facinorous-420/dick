@@ -1,0 +1,33 @@
+import { templatePathBuilder } from "./utils/utils"
+
+/* 
+------------------- USER CONSTANTS ------------------------
+*/
+// Variable to set DICK to run as a submodule to ASS or seperately: true = submodule | false = seperate
+export const DICK_SUBMODULE = false
+
+// * ------------------- ASS HOST INFORMATION ----------------------------
+// Boolean variable if your ASS is secured with HTTPS: true = https | false = http
+export const ASSSECURE = false
+// This is the domain your ASS is hosted at: "127.0.0.1" | "cdn.domain.com"
+export const ASSDOMAIN = "127.0.0.1:40115" 
+// If running DICK in seperate mode, it will need to know where your ASS is installed
+export const ASSLOCATION = "../ass"
+
+// * ------------------- STAFF ID CONSTANTS ---------------------------- <--- this will eventually be moved away from constants
+// Array of all USERNAMES in your ASS auth.json file that will have admin access: ["ass", "dick", "frank"]
+export const STAFF_IDS = ["ass"] 
+
+
+/* 
+------------------- SYSTEM CONSTANTS ------------------------
+*/
+// * ------------------- TEMPLATE PATH CONSTANTS ------------------------
+export const TEMPLATE = {
+  USER: templatePathBuilder("/user.ejs"),
+  PUBLIC: templatePathBuilder("/public.ejs"),
+  ERRORS: {
+    403: templatePathBuilder("/errors/403.ejs"),
+    404: templatePathBuilder("/errors/404.ejs")
+  }
+}

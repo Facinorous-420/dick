@@ -1,0 +1,176 @@
+<br />
+<p align="center">
+  <a href="dick_example_2.png">
+    <img src="dick_example_2.png" alt="Login">
+  </a>
+  <details align="center">
+  <summary>Profile Preview</summary>
+    <a href="dick_example_1.png">
+    <img src="dick_example_1.png" alt="Profile">
+  </a>
+  </details>
+
+  <h3 align="center">DICK (Directly Integrated Client for Keisters)</h3>
+
+  <p align="center">
+    The main repository for DICK, an <a href="https://github.com/tycrek/ass">ASS</a> front end
+    <br />
+    <br />
+    <a href="https://github.com/facinorous-420/dick/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/facinorous-420/dick/issues">Request Feature</a>
+  </p>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#running-the-dashboard">Running The Dashboard</a>
+      <ul>
+        <li><a href="#config">Config</a></li>
+          <ul>
+            <li><a href="#development">Starting Development</a></li>
+            <li><a href="#production">Starting Production</a></li>
+          </ul>
+        </ul>
+    </li>
+    <li>
+      <a href="#contributing">Contributing</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+    <li>
+      <a href="#acknowledgements">Acknowledgements</a>
+    </li>
+  </ol>
+</details>
+
+
+
+## About The Project
+
+Dick was created to be an easy to use front end for <a href="https://github.com/tycrek/ass">Ass</a> as there was no public option to allow users to view their saved images on their server. I decided to learn tailwind and also at the same time build this. I did this all in my spare time, and will keep updating as best as I can while I use it. I'm still learning all this so if anyone has suggestions on how to do things better, I am all ears! I love learning! :)
+
+**Current Feautres:**
+1. General statistics on your file uploads
+2. File browser, allows you to see all your uploads on one webpage (plans to make it more powerful)
+3. Deletion of items (currently one at a time, plans for multiple at once)
+4. Copy link of items (currently one at a time, plans for multiple with spaces in between in pastebin)
+
+**Planned Feautres:**
+1. There are a lot of good ideas out there, to keep track of what is currently planned see <a href="https://github.com/Facinorous-420/dick/projects/2">the v1.1 project board</a>
+
+The front end is built using <a href="https://tailwindcss.com">Tailwind CSS</a>, <a href="https://lucide.dev/">Lucide Icons,</a> as well as hand crafted components all templated using <a href="https://ejs.co/">EJS</a>. I plan to eventually rewrite this in React.
+
+The back end is written in <a href="https://www.typescriptlang.org/">Typescript</a>, utilizing <a href="https://expressjs.com/">expressJS</a>.
+
+
+## Running The Dashboard
+
+Running DICK is very simple, though there is no docker container.<br/>
+You must have `Node >=v16.14.0`, which you should if you're running ASS.
+
+
+### Config
+
+Inside of your dick root folder, you will see `src/CONSTANTS.ts.example`. Copy this to `CONSTANTS.ts`<br/>
+Inside this file, is some basic configuration you can change for your set up. There are only 5 variables you need to worry about in this file:
+
+| Variable                                     |           Description           |
+| --------------------------------------------- | :---------------------: |
+| `DICK_SUBMODULE = false` | Put this to true if you wish to run DICK as an ASS submoduke, false if seperate                 |
+| `ASSLOCATION = "../ass"` | If running DICK seperately, DICK will use this to find your ASS install folder |
+| `ASSSECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
+| `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
+| `STAFF_IDS = ["ass"]` | Change this to whatever your username is in your ASS `auth.json` file. Default user in ASS, is `ass` |
+
+### Running
+#### Development
+
+<details>
+    <summary><sub>Open to view the development set up steps</sub></summary>
+
+  1. Create a folder, call it whatever you wish
+  2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
+  3. Go back into the folder you created and clone this repo `git clone https://github.com/Facinorous-420/dick`
+  4. Go into the newly created `dick` folder `cd dick`
+  5. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
+  6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
+  7. Run `npm run build:dev` to compile the code base in watch mode
+  8. In a new terminal, run `npm run serve:dev` to run DICK using nodemon
+  
+:warning:```ASS will be running under it's port of 40115 whereas the dashboard will be under the port 3000.```<br/>
+</details>
+  
+#### Production
+<details>
+    <summary><sub>Open to view the production set up steps</sub></summary><br/>
+  
+  1. Create a folder, call it whatever you wish
+  2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
+  3. Go back into the folder you created and clone this repo `git clone https://github.com/Facinorous-420/dick`
+  4. Go into the newly created `dick` folder `cd dick`
+  5. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
+  6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
+  7. Run `npm start` to compile the code base and run DICK
+   
+</details>
+
+When you approach the login screen, your secret key is the key generated for your account. You should not share this with anyone.
+
+:warning:```ASS and the dashboard will be under their own ports.```<br/>
+<sub> They will have entirely different routing. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
+
+<details>
+    <summary><sub>Open to view the set up steps to run this as a submodule to ass</sub></summary><br/>
+
+**Preface:** You need to edit `/src/CONSTANTS.ts`'s variable of `DICK_SUBMODULE` to `true`
+  
+1. Setup ASS https://github.com/tycrek/ass#installation
+   For when it asks for name of front end, leave as `ass-x` (default) for now.
+
+2. Add this repo as a submodule into ASS `git submodule add https://github.com/Facinorous-420/dick`
+3. Go into the frontend's directory, `cd dick`, and run `git submodule update --init --recursive` to initiaze it
+4. Install the dependancies for the frontend, `npm i`
+5. Run `npm run build` to compile the frontend and get it ready to run
+6. Then move to the ASS directory and run the ASS setup again `npm run setup`
+7. Leave everything as you did prior, but this time under `frontend name`, type `dick` and continue
+8. Go into the `.gitmodules` file, and youll notice two submodules. Remove the
+   ```
+   [submodule "ass-x"]
+     path = ass-x
+     url = git@github.com:tycrek/ass-x.git
+   ```
+   submodule so only the
+   ```
+   [submodule "dick"]
+     path = dick
+     url = https://github.com/Facinorous-420/dick
+   ```
+   one is left
+9. Run `npm run build` to recompile this change
+10. You can run ASS, `npm start` or however you normally run your ass instance
+   
+</details>
+
+## Contributing
+
+<sub> If using VSCode, I'd recommend using this extension: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</sub>
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+## Contact
+
+| Developer                                     |           Job           |
+| --------------------------------------------- | :---------------------: |
+| [Facinorous](https://github.com/facinorous-420) | Lead                  |
+| [Sublime](https://github.com/senpaiSubby)#4233 | Helping hand, my sensei, created the back end |

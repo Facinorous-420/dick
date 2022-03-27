@@ -1,0 +1,29 @@
+<nav class="bg-primary w-full flex-1 justify-center overflow-hidden">
+  <div class="mx-auto flex w-full flex-row flex-wrap items-center justify-center">
+
+      <div
+          class="bg-primary border-l-none border-r-none z-20 order-1 grow-0 basis-full shadow-2xl border-b border-gray-300/25 md:border-t lg:border-t py-4 md:order-1 md:basis-1/6 md:border-l md:border-r lg:order-1 lg:basis-1/6 lg:border-l lg:border-r">
+          <div class="flex flex-row justify-between">
+
+            <%- include("./nav/logo") %>
+
+              <!-- Navbar Hamburger Button -->
+              <button id="dropdownNavBtn" class="block pr-3 md:hidden md:pr-7 lg:hidden lg:pr-7">
+                  <svg class="text-color-primary" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="21" y1="6" x2="3" y2="6"></line>
+                      <line x1="21" y1="12" x2="9" y2="12"></line>
+                      <line x1="21" y1="18" x2="7" y2="18"></line>
+                  </svg>
+              </button>
+              <!-- End Navbar Hamburger Button -->
+              
+          </div>
+      </div>
+
+      <%- include("./nav/breadcrumb") %>
+      <%- include("./nav/profile") %>
+      <%- include("./nav/menu") %>
+  </div>
+</nav>

@@ -1,0 +1,83 @@
+<div id="dropdownNav"
+    class="order-2 mt-0 w-full basis-full -translate-y-full border-b border-gray-300/25 transition duration-300 md:order-4 md:mt-12 md:max-w-2xl md:basis-full md:-translate-y-0 md:border-none lg:order-4 lg:mt-12 lg:max-w-6xl lg:basis-full lg:-translate-y-0 lg:border-none xl:max-w-full 2xl:max-w-full">
+    <div
+        class="mx-3 flex h-auto flex-col justify-start py-3 md:mx-3 md:flex-row md:py-0 lg:mx-10 lg:flex-row lg:py-0 xl:px-10 2xl:px-10">
+
+        <div class="group flex-none">
+            <a href="/"
+                class="<% if(path == '/') { %>bg-secondary <% } else { %> z-20 lg:group-hover:bg-secondary-hover <% } %>
+                relative inline-flex w-full items-center justify-start space-x-2 rounded-none px-6 pt-3 pb-3 text-color-primary md:w-auto md:justify-center md:rounded-t-2xl lg:w-auto lg:justify-center lg:rounded-t-2xl">
+                <!-- Navbar List Menu Icon -->
+                <i data-lucide="home" class="<% if(path == '/') { %> text-color-accent <% } else { %> text-color-secondary <% } %>"></i>
+                <!-- EndNavbar List Menu Icon -->
+                <div class="<% if(path == '/') { %> text-color-primary font-semibold <% } else { %> text-color-secondary <% } %>
+                        relative truncate ">Dashboard</div>
+                
+                <!-- Rounding To Tab Corner -->
+                <% if(path == '/') { %> 
+                <div
+                    class="bg-primary relative -bottom-0 -left-6 z-10 hidden h-4 w-4 rounded-br-full md:absolute md:block lg:absolute lg:block">
+                </div>
+                <div
+                    class="bg-secondary relative bottom-0 -left-6 hidden h-4 w-4 md:absolute md:block lg:absolute lg:block">
+                </div>
+
+                <% if(!hasRole) { %>
+                <div 
+                class="bg-secondary lg:block md:block hidden lg:absolute md:absolute relative z-10 custom-bg-main -bottom-0 -right-4 w-4 h-4">
+            </div>
+            <div 
+               class="bg-primary lg:block md:block hidden lg:absolute md:absolute relative z-10 custom-bg-body -bottom-0 -right-4 w-4 h-4 rounded-bl-full">
+            </div>
+            <% } %>
+
+                <% } %>
+                <!-- EndRounding To Tab Corner -->
+            </a>
+        </div>
+
+        <% if(hasRole){ %>
+            <!-- Use 'group' and 'group-hover:' for hovering the weird rounded too-->
+            <div class="group flex-none">
+                <a href="admin"
+                    class="<% if(path == '/admin') { %> bg-secondary <% } else { %> lg:group-hover:bg-secondary-hover <% } %>
+                    relative inline-flex w-full items-center justify-start space-x-2 rounded-none px-6 pt-3 pb-3 text-color-primary md:w-auto md:justify-center md:rounded-tr-2xl md:rounded-tl-2xl lg:w-auto lg:justify-center lg:rounded-tr-2xl lg:rounded-tl-2xl">
+                    <!-- Navbar List Menu Icon -->
+                    <i data-lucide="settings" class="<% if(path == '/admin') { %> text-color-accent <% } else { %> text-color-secondary <% } %>"></i>
+                    <!-- End Navbar List Menu Icon -->
+                    <div class="<% if(path == '/admin') { %> text-color-primary font-semibold <% } else { %> text-color-secondary <% } %> 
+                            relative truncate">
+                            Admin
+                            <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-yellow-600 text-black rounded-full">
+                                TBA
+                            </span>
+                        </div>
+
+                    <!-- Rounding To Tab Corner -->
+                    <% if(path == '/admin') { %>  
+                    <div
+                        class="bg-primary relative -bottom-0 -left-6 z-10 hidden h-4 w-4 rounded-br-full md:absolute md:block lg:absolute lg:block">
+                    </div>
+                    <div
+                        class="bg-secondary relative bottom-0 -left-6 hidden h-4 w-4 md:absolute md:block lg:absolute lg:block">
+                    </div>
+                    <div 
+                        class="bg-secondary lg:block md:block hidden lg:absolute md:absolute relative z-10 custom-bg-main -bottom-0 -right-4 w-4 h-4">
+                    </div>
+                    <div 
+                       class="bg-primary lg:block md:block hidden lg:absolute md:absolute relative z-10 custom-bg-body -bottom-0 -right-4 w-4 h-4 rounded-bl-full">
+                    </div>
+                    <% } else { %> 
+                    <div
+                        class="lg:group-hover:bg-secondary-hover md:group-hover:bg-secondary-hover bg-primary relative -bottom-0 -left-2 z-10 hidden h-4 w-4 rounded-bl-full md:absolute md:block lg:absolute lg:block">
+                    </div>
+                    <div
+                        class="bg-secondary relative bottom-0 -left-2 hidden h-4 w-4 md:absolute md:block lg:absolute lg:block">
+                    </div>    
+                    <% } %>
+                    <!-- EndRounding To Tab Corner -->
+                </a>
+            </div>
+            <% } %>
+    </div>
+</div>

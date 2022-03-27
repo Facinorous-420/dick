@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html class="scrollbar">
+<%- include("./partials/head") %>
+    <body class="bg-primary relative mx-auto flex h-full w-full flex-col flex-wrap justify-center">
+        <%- include("./partials/nav") %>
+        <main class="traMove bg-primary relative h-full flex-1 -translate-y-32 transition duration-300 md:-translate-y-0 lg:-translate-y-0">
+            <%- include("./partials/nav/profile_dropdown") %>
+            <section class="mb-0 flex h-auto flex-wrap justify-center md:mb-10 lg:mb-10">
+                <div class="bg-secondary my-10 mx-2 max-w-3xl flex-1 rounded-2xl py-6 px-3 md:my-0 md:mx-3 md:max-w-3xl md:px-5 lg:my-0 lg:mx-3 lg:max-w-7xl lg:px-5 xl:mx-3 xl:max-w-full 2xl:mx-3 2xl:max-w-full">
+                    <!-- Page Content -->
+                    <% if(path=='/' ){ %>
+                    <%- include("../pages/user/main") %>
+                    <% } %>
+                    <% if(path=='/admin' ){ %>
+                    <%- include("../pages/admin/main") %>
+                    <% } %>
+                    <!-- /Page Content -->
+                </div>
+            </section>
+        </main>
+        <%- include("./partials/footer") %>
+    </body>
+</html>
