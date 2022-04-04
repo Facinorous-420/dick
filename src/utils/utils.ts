@@ -1,5 +1,5 @@
 import { Log } from "@callmekory/logger"
-import { STAFF_IDS } from "../CONSTANTS"
+import { STAFF_IDS } from "../constants"
 import { Response, NextFunction } from "express"
 import { join, normalize } from "path"
 import { IExtendedRequest } from "../typings/express-ext"

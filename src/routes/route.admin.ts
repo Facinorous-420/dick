@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express"
 import { authCheck, adminCheck, wrap } from "../utils/utils"
-import { TEMPLATE } from "../CONSTANTS"
+import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 
 export const adminRoutes = (app: Router) => {

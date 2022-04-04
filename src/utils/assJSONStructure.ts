@@ -1,10 +1,10 @@
-import { DICK_SUBMODULE, ASSLOCATION } from "../CONSTANTS"
+import { DICK_SUBMODULE, ASS_LOCATION } from "../constants"
 import fs from "fs"
 import path from "path"
 import { ASSItem } from "typings/ASSTypes"
     
-    let DATA_FILE_PATH = path.resolve(`${ASSLOCATION}/data.json`)
-    let AUTH_FILE_PATH = path.resolve(`${ASSLOCATION}/auth.json`)
+    let DATA_FILE_PATH = path.resolve(`${ASS_LOCATION}/data.json`)
+    let AUTH_FILE_PATH = path.resolve(`${ASS_LOCATION}/auth.json`)
     if (DICK_SUBMODULE !== false) {
       DATA_FILE_PATH = path.resolve(`data.json`)
       AUTH_FILE_PATH = path.resolve(`auth.json`)

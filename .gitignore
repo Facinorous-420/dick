@@ -7,6 +7,7 @@ lib-cov
 *.pid
 *.gz
 *.swp
+assets/
 
 pids
 logs
@@ -14,7 +15,7 @@ results
 tmp
 
 # Constants
-src/CONSTANTS.ts
+src/constants.ts
 
 # Dependency directory
 node_modules
@@ -27,3 +28,4 @@ Thumbs.db
 dist/**/*
 
 package-lock.json
+yarn.lock
