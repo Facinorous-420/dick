@@ -8,11 +8,12 @@ import flash from 'connect-flash'
 import errorHandler from "errorhandler"
 
 import { Pager } from "./Pager"
-import { TEMPLATE } from "./CONSTANTS"
+import { TEMPLATE } from "./constants"
 import { authRoutes } from "./routes/route.auth"
 import { publicRoutes } from "./routes/route.public"
 import { userRoutes } from "./routes/route.user"
 import { adminRoutes } from "./routes/route.admin"
+import { PORT } from "./constants"
 
 // Add async into express cause async is megachad
 const app = express()
