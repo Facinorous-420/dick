@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express"
 import { adminCheck, authCheck, wrap } from "../utils/utils"
-import { TEMPLATE } from "../CONSTANTS"
+import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 import { parseAuthFile } from "../utils/assJSONStructure"
 

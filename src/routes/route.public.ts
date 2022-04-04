@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express"
-import { TEMPLATE } from "../CONSTANTS"
+import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 
 export const publicRoutes = (app: Router) => {

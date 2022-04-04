@@ -1,7 +1,7 @@
 import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
-import { ASSDOMAIN, ASSSECURE, STAFF_IDS } from "./CONSTANTS"
+import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
 import { convertTimestamp, formatSize } from "./utils/utils"
 import { ASSUser, ASSItem } from "./typings/ASSTypes"
 import { IExtendedRequest } from "./typings/express-ext"
@@ -120,8 +120,8 @@ export class Pager {
     */
 
     const baseData = {
-      assDomain: ASSDOMAIN,
-      assSecure: ASSSECURE,
+      assDomain: ASS_DOMAIN,
+      assSecure: ASS_SECURE,
       user: req.user,
       totalSize,
       totalUsers,
