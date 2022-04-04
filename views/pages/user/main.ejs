@@ -85,14 +85,14 @@
                     <div class="flex">
                         <i data-lucide="file" class="text-orange-400 mr-2"></i>
                         <p class="ml-auto text-slate-500 text-sm">
-                            <%= usersDataObj.totalFilesSize %>
+                            <%= usersDataObj.totalAudioSize %>
                         </p>
                     </div>
                     <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
-                        <%= usersDataObj.allFiles.length %>
+                        <%= usersDataObj.allAudio.length %>
                     </div>
                     <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
-                        <% if(usersDataObj.allFiles.length==1){ %> File <% } else { %> Files <% } %>
+                        <% if(usersDataObj.allAudio.length==1){ %> Audio File <% } else { %> Audio Files <% } %>
                      </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                         <%= usersDataObj.allOthers.length %>
                     </div>
                     <div class="sm:text-sm md:text-base text-slate-500 mt-1">
-                        <% if(usersDataObj.allOthers.length==1){ %> Other <% } else { %> Others <% } %>
+                        <% if(usersDataObj.allOthers.length==1){ %> Other File <% } else { %> Other Files <% } %>
                     </div>
                 </div>
             </div>

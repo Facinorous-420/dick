@@ -90,12 +90,12 @@ export class Pager {
       data: usersData,
       allImages: usersData.filter(item=> item.type.includes('image')),
       allVideos: usersData.filter(item=> item.type.includes('video')),
-      allFiles: usersData.filter(item=> item.type.includes('file')),
+      allAudio: usersData.filter(item=> item.type.includes('audio')),
       allOthers: usersData.filter(item=> item.type.includes('other')),
       totalSize:formatSize(usersData.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
       totalImageSize: formatSize(usersData.filter(item=> item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
       totalVideosSize: formatSize(usersData.filter(item=> item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalFilesSize: formatSize(usersData.filter(item=> item.type.includes('file')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalAudioSize: formatSize(usersData.filter(item=> item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
       totalOthersSize: formatSize(usersData.filter(item=> item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
     }
     
@@ -108,12 +108,12 @@ export class Pager {
         data: targetData,
         allImages: targetData.filter(item=> item.type.includes('image')),
         allVideos: targetData.filter(item=> item.type.includes('video')),
-        allFiles: targetData.filter(item=> item.type.includes('file')),
+        allAudio: targetData.filter(item=> item.type.includes('audio')),
         allOthers: targetData.filter(item=> item.type.includes('other')),
         totalSize:formatSize(targetData.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
         totalImageSize: formatSize(targetData.filter(item=> item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
         totalVideosSize: formatSize(targetData.filter(item=> item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-        totalFilesSize: formatSize(targetData.filter(item=> item.type.includes('file')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+        totalAudioSize: formatSize(targetData.filter(item=> item.type.includes('file')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
         totalOthersSize: formatSize(targetData.filter(item=> item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
       }
     }
