@@ -1,12 +1,12 @@
 <br />
 <p align="center">
-  <a href="dick_example_2.png">
-    <img src="dick_example_2.png" alt="Login">
+  <a href="assets/dick_example_2.png">
+    <img src="assets/dick_example_2.png" alt="Login">
   </a>
   <details align="center">
   <summary>Profile Preview</summary>
-    <a href="dick_example_1.png">
-    <img src="dick_example_1.png" alt="Profile">
+    <a href="assets/dick_example_1.png">
+    <img src="assets/dick_example_1.png" alt="Profile">
   </a>
   </details>
 
@@ -82,16 +82,19 @@ Inside this file, is some basic configuration you can change for your set up. Th
 | Variable                                     |           Description           |
 | --------------------------------------------- | :---------------------: |
 | `DICK_SUBMODULE = false` | Put this to true if you wish to run DICK as an ASS submoduke, false if seperate                 |
-| `ASSLOCATION = "../ass"` | If running DICK seperately, DICK will use this to find your ASS install folder |
-| `ASSSECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
+| `ASS_LOCATION = "../ass"` | If running DICK seperately, DICK will use this to find your ASS install folder |
+| `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
 | `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
 | `STAFF_IDS = ["ass"]` | Change this to whatever your username is in your ASS `auth.json` file. Default user in ASS, is `ass` |
 
 ### Running
+
 #### Development
 
 <details>
-    <summary><sub>Open to view the development set up steps</sub></summary>
+    <summary>
+      <sub>Open to view the development set up steps</sub>
+    </summary>
 
   1. Create a folder, call it whatever you wish
   2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
@@ -107,16 +110,18 @@ Inside this file, is some basic configuration you can change for your set up. Th
   
 #### Production
 <details>
-    <summary><sub>Open to view the production set up steps</sub></summary><br/>
-  
+    <summary>
+      <sub>Open to view the production set up steps</sub>
+    </summary><br/>
+
   1. Create a folder, call it whatever you wish
   2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
-  3. Go back into the folder you created and clone this repo `git clone https://github.com/Facinorous-420/dick`
+  3. Go back into the folder you created and clone this repo `git clone https://github.com/Facinorous-420/dick.git`
   4. Go into the newly created `dick` folder `cd dick`
   5. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
   6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
   7. Run `npm start` to compile the code base and run DICK
-   
+
 </details>
 
 When you approach the login screen, your secret key is the key generated for your account. You should not share this with anyone.
