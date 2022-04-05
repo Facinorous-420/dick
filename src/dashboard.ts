@@ -3,7 +3,6 @@ import compression from "compression" // compresses requests
 import path from "path"
 import passport from "passport"
 import cookieSession from "cookie-session"
-import bodyParser from 'body-parser'
 import flash from 'connect-flash'
 import errorHandler from "errorhandler"
 
@@ -23,7 +22,6 @@ app.set("port", process.env.PORT || 3000)
 app.set("trust proxy", true)
 app.set("views", path.join(__dirname, "../views"))
 app.set("view engine", "ejs")
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(compression())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

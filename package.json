@@ -20,7 +20,6 @@
     "@callmekory/logger": "^1.1.1",
     "async": "^3.2.3",
     "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.2",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
