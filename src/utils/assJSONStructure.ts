@@ -12,7 +12,6 @@ import { ASSItem } from "typings/ASSTypes"
 
     export const parseDataFile = () => {
       const rawDataJson = JSON.parse(fs.readFileSync(DATA_FILE_PATH).toString())
-      console.log(DATA_FILE_PATH)
       // Parsed users, raw file stores the password as the key in the json file
       const allDataIDs = Object.keys(rawDataJson)
       
