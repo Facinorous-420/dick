@@ -73,8 +73,6 @@ The back end is written in <a href="https://www.typescriptlang.org/">Typescript<
 Running DICK is very simple, though there is no docker container.<br/>
 You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
 
-:warning:```Currently there is no pagination on the file manager- this means if your library has a lot of images to load, it may take a long time to load the profile dashboard.```<br/>
-
 ### Config
 
 Inside of your dick root folder, you will see `src/CONSTANTS.ts.example`. Copy this to `CONSTANTS.ts`<br/>
