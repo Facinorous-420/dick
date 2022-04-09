@@ -85,6 +85,7 @@ Inside this file, is some basic configuration you can change for your set up. Th
 | `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
 | `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
 | `STAFF_IDS = ["ass"]` | Change this to whatever your username is in your ASS `auth.json` file. Default user in ASS, is `ass` |
+| `PORT = "3000"` | Change this number to the port you wish DICK to run on |
 
 ### Running
 
