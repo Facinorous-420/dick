@@ -2,7 +2,7 @@ import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
 import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
-import { convertTimestamp, formatSize } from "./utils/utils"
+import { convertTimestamp, convertToPaginatedArray, formatSize } from "./utils/utils"
 import { ASSUser, ASSItem } from "./typings/ASSTypes"
 import { IExtendedRequest } from "./typings/express-ext"
 
@@ -87,7 +87,8 @@ export class Pager {
 
     // I feel like this could be done better, but I created an object filled with useful variables for the user data to be rendered on the pages
     const usersDataObj = {
-      data: usersData,
+      data: convertToPaginatedArray(usersData,50),
+      totalFiles: usersData.length,
       allImages: usersData.filter(item=> item.type.includes('image')),
       allVideos: usersData.filter(item=> item.type.includes('video')),
       allAudio: usersData.filter(item=> item.type.includes('audio')),
@@ -105,7 +106,7 @@ export class Pager {
     if (options.params.userID) {
     const targetData = data.filter((item: ASSItem ) => (item: { owner: string }) => item.owner == options.params.userID)
       targetDataObj = {
-        data: targetData,
+        data: convertToPaginatedArray(targetData,50),
         allImages: targetData.filter(item=> item.type.includes('image')),
         allVideos: targetData.filter(item=> item.type.includes('video')),
         allAudio: targetData.filter(item=> item.type.includes('audio')),
@@ -118,7 +119,7 @@ export class Pager {
       }
     }
     */
-
+   
     const baseData = {
       assDomain: ASS_DOMAIN,
       assSecure: ASS_SECURE,

@@ -1,0 +1,184 @@
+<script>
+function ready(fn) {
+    if (document.readyState != 'loading') {
+        fn()
+    } else {
+        document.addEventListener('DOMContentLoaded', fn)
+    }
+}
+
+ready(function () {
+
+    // Set the default number of current pagination
+    let defaultNumber = 0
+
+    // Transfer ASS system variables from EJS to front end
+    const assSecure = <%- assSecure %>;
+    const assDomain = '<%- assDomain %>'
+    // Variables used in converting size
+    const k = 1024
+    const dm = 2
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+    // Data (I dont like this being here ngl)
+    const userData = <%- JSON.stringify(usersDataObj.data) %>;
+
+    // When pagination reach the end, its still add more items with undefined array, remove it
+    const currentPaginationRaw = []
+    const currentPagination = currentPaginationRaw.filter(Boolean)
+
+    function appendHtml(items, card, type) {
+        items.insertAdjacentHTML(type, card)
+    }
+
+    function showData() {
+        // Check if the current pahe has no data
+        if (currentPagination.length == 0) {
+            // Push the first userData page to currentPagination
+            currentPagination.push(userData[0])
+        }
+        // Loops the first userData page when page loaded
+        userData[0].forEach(item => {
+            const items = document.getElementById('appendItems')
+            const i = Math.floor(Math.log(item.size) / Math.log(k))
+            let card = ``
+            // Variables used in card items
+            const { originalName, fileExtension, id, deleteId } = item
+            const size = parseFloat((item.size / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
+            const timeStamp = new Date(item.timestamp).toISOString().split('T')[0]
+            const itemURL = assSecure ? `https://${assDomain}/${item.id}` : `http://${assDomain}/${item.id}`
+            // The card items
+            if (item.type == 'image') {
+                card = `<%- include("./image-item") %>`
+            } else {
+                card = `<%- include("./other-item") %>`
+            }
+            appendHtml(items, card, 'beforeend')
+        })
+    }
+    showData()
+
+    // Once the user reaches the end of the currentPagination content (bottom of page)
+    document.addEventListener('scroll', () => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+        // Refresh icon with spin animation
+        const spinLoading = `<%- include("./loading") %>`
+        // No more items to load text
+        const endLoop = `<%- include("./no-more-data") %>`
+        // Loading items animation
+        const loading = document.getElementById('loading')
+        // Add class invisible to hide loading animation at first load
+        loading.classList.add('invisible')
+        // Check if the users scroll distance has reached the bottom of page 
+        if (clientHeight + scrollTop >= scrollHeight - 2) {
+            // Show the hidden loading animation
+            if (loading.classList.contains('invisible')) {
+                loading.classList.remove('invisible')
+            }
+            // Check if the userData length is greater than current pagination data, if so still need to load more pages
+            if (userData.length > currentPagination.length) {
+                // Show spin lodaing
+                loading.innerHTML = spinLoading
+                // Set timer to load more data
+                setTimeout(appendData, 2000)
+                // else its end of the pagination
+            } else {
+                // Show no items icon
+                loading.innerHTML = endLoop
+            }
+        }
+    })
+
+    // This will append more cards to the page when we reach the bottom if there is more to load
+    function appendData() {
+        // Check if currentPagination is greater than the default number.
+        if (defaultNumber < currentPagination.length) {
+            defaultNumber++
+            const morePage = defaultNumber
+
+            if (morePage != userData.length) {
+            // Push the next page from userData into current paginationData
+            currentPagination.push(userData[morePage])
+            // Loops through the new pagination data
+            userData[morePage].forEach(item => {
+                const items = document.getElementById('appendItems')
+                const i = Math.floor(Math.log(item.size) / Math.log(k))
+                let card = ``
+                // Variables used in card items
+                const { originalName, fileExtension, id, deleteId } = item
+                const size = parseFloat((item.size / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
+                const timeStamp = new Date(item.timestamp).toISOString().split('T')[0]
+                const itemURL = assSecure ? `https://${assDomain}/${item.id}` : `http://${assDomain}/${item.id}`
+                // The card items
+                if (item.type == 'image') {
+                    card = `<%- include("./image-item") %>`
+                } else {
+                    card = `<%- include("./other-item") %>`
+                }
+                appendHtml(items, card, 'beforeend')
+            })
+            // We trigger the onClick events for the drop down buttons on the appended cards
+            triggerAppearedHtml()
+            }
+        }
+    }
+
+    // Store the current items
+    let currentItems = []
+    function triggerAppearedHtml() {
+        // Grab the dropdown buttons in all the page for the item cards
+        const trigger = document.querySelectorAll('.dropdownFileBtn')
+        let totalLengthCurrentPagination = 0
+        for (let index = 0; index < currentPagination.length; index++) {
+            // Get the length of every current pagination
+            const lengthEveryItems = currentPagination[index].length
+            // Store it into totalLengthCurrentPagination
+            totalLengthCurrentPagination += lengthEveryItems
+        }
+        // Get the last items from currentItems
+        const lastItemAppeared = currentItems.slice(-1)[0]
+        // If there is no lastItemAppeared the pagination has not fired yet, so set it with the first [0] current pagination length,
+        // Which is the first page in the first reload, else the pagination has fired then it will choose lastItemAppeared
+        const firstLoop = !lastItemAppeared ? currentPagination[0].length : lastItemAppeared
+        // Setting this into a smaller variable name to reduce line size & be more readable in the loop below
+        const lastLoop = totalLengthCurrentPagination
+        let Items = []
+        // Finally loop through the newest items
+        for (let index = firstLoop; index < lastLoop; index++) {
+            Items.push(index)
+            // Add the click event listener to the buttons
+            trigger[index].addEventListener('click', () => {
+                let timer
+                const findSibling = trigger[index].nextElementSibling
+                if (findSibling.classList.contains('opacity-0')) {
+                    window.clearTimeout(timer)
+                    findSibling.classList.remove('opacity-0', 'translate-y-6', 'invisible')
+                    findSibling.classList.add('translate-y-0', 'opacity-100')
+                } else {
+                    findSibling.classList.add('opacity-0', 'translate-y-6')
+                    findSibling.classList.remove('translate-y-0', 'opacity-100')
+
+                    //Set timer to hide the dropdown
+                    //the value of timer '250' must be same as the tailwind class 'duration-250' in the class dropdownFile attribute
+                    timer = window.setTimeout(() => {
+                        findSibling.classList.add('invisible')
+                    }, 250)
+                }
+                //  Click outside event
+                window.addEventListener('click', (eve) => {
+                    if (!trigger[index].contains(eve.target) && !findSibling.contains(eve.target)) {
+                        findSibling.classList.add('opacity-0', 'translate-y-6')
+                        findSibling.classList.remove('translate-y-0', 'opacity-100')
+                        // Same as above
+                        timer = window.setTimeout(() => {
+                            findSibling.classList.add('invisible')
+                        }, 250)
+                    }
+                })
+            })
+        }
+        // Slice Items to get the current items, and push it to currentItems
+        currentItems.push(Items.slice(-1)[0] + 1)
+    }
+})
+</script>

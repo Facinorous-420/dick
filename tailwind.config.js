@@ -11,30 +11,30 @@ module.exports = {
     extend: {
       colors: {
         darktheme: {
-          primary: '#1b253b',
-          secondary: '#232d45',
-          secondaryHover: '#222f4d',
-          tertiary: '#28334e',
-          tertiaryHover: '#2d3c5d'
+          primary: '#1b253b', //bg-primary
+          secondary: '#232d45', //bg-secondary
+          secondaryHover: '#222f4d', //bg-secondary-hover
+          tertiary: '#28334e', //bg-tertiary
+          tertiaryHover: '#2d3c5d' //bg-tertiary-hover
         },
         darkthemeText: {
-          primary: colors.white,
-          secondary: colors.slate[400],
-          accentPrimary: colors.purple[400],
-          accentSecondary: colors.purple[800]
+          primary: colors.white, //text-color-primary
+          secondary: colors.slate[400], //text-color-secondary
+          accentPrimary: colors.purple[400], //text-color-accent
+          accentSecondary: colors.purple[800] //text-color-accentsecondary
         },
         lighttheme: {
-          primary: '#2b910e',
-          secondary: '#f1f5f9',
-          secondaryHover: '#294ab3',
-          tertiary: colors.white,
-          tertiaryHover: '#eef1f6'
+          primary: '#2b910e', //bg-primary
+          secondary: '#f1f5f9', //bg-secondary
+          secondaryHover: '#294ab3', //bg-secondary-hover
+          tertiary: colors.white, //bg-tertiary
+          tertiaryHover: '#eef1f6' //bg-tertiary-hover
         },
         lightthemeText: {
-          primary: colors.slate[800],
-          secondary: colors.slate[400],
-          accentPrimary: colors.purple[600],
-          accentSecondary: colors.purple[800]
+          primary: colors.slate[800], //text-color-primary
+          secondary: colors.slate[400], //text-color-secondary
+          accentPrimary: colors.purple[600], //text-color-accent
+          accentSecondary: colors.purple[800] //text-color-accentsecondary
         }
       },
       maxHeight: {

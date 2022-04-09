@@ -16,6 +16,7 @@ export const userRoutes = (app: Router) => {
   )
 
   // External Viewing Of Other User Profiles (Admin Only)
+  /* Currently fucks up the admin route :)
   app.get(
     "/:userID",
     authCheck,
@@ -33,4 +34,5 @@ export const userRoutes = (app: Router) => {
       })
     }
   )
+  */
 }

@@ -43,4 +43,10 @@
     height: 800px;
     width: 800px;
   }
+  .name-tooltip {
+    @apply invisible;
+  }
+  .has-name-tooltip:hover .name-tooltip {
+    @apply visible z-50;
+  }
 }

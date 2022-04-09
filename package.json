@@ -1,6 +1,6 @@
 {
   "name": "dick",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A frontend for ASS",
   "main": "./dist/dashboard.js",
   "repository": {

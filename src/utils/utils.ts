@@ -63,15 +63,12 @@ export const isObjectEmpty = (obj: object) => {
  * @param decimals The amount of decimals you wish to add to the converted value
  */
 export const formatSize = (kb: number, decimals = 2) => {
-  if (kb === 0) return '0 Bytes';
-
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-  const i = Math.floor(Math.log(kb) / Math.log(k));
-
-  return parseFloat((kb / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  if (kb === 0) return '0 Bytes'
+  const k = 1024
+  const dm = decimals < 0 ? 0 : decimals
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  const i = Math.floor(Math.log(kb) / Math.log(k))
+  return parseFloat((kb / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
 
 /**
@@ -80,4 +77,17 @@ export const formatSize = (kb: number, decimals = 2) => {
  */
  export const convertTimestamp = (unixTimestamp: number) => { 
   return new Date(unixTimestamp)
+}
+
+/**
+ *
+ * @param data Original array of many objects
+ * @param itemsPerPage The amount of objects you wish you wish to have in each array in the new array
+ */
+ export const convertToPaginatedArray = (data: Array<any>, itemsPerPage: number) => {
+  let paginatedArray: Array<any> = []
+  for (let i=0; i < data.length; i += itemsPerPage) {
+    paginatedArray.push(data.slice(i,i + itemsPerPage))
+  }
+  return paginatedArray
 }

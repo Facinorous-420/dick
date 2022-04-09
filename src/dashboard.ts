@@ -18,7 +18,7 @@ import { PORT } from "./constants"
 const app = express()
 
 // Setting up express
-app.set("port", process.env.PORT || 3000)
+app.set("port", PORT || 3000)
 app.set("trust proxy", true)
 app.set("views", path.join(__dirname, "../views"))
 app.set("view engine", "ejs")

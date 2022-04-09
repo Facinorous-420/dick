@@ -1,0 +1,81 @@
+<div class="bg-tertiary h-auto w-36 cursor-pointer rounded-md p-3 transition duration-300 ease-in-out hover:scale-105 hover:shadow-xl sm:w-44 md:w-[139px] lg:w-40">
+    <!-- File Header -->
+    <div class="flex flex-row flex-nowrap items-center justify-between">
+        <!--We will add this and style it when we add multi-delete, for now eggplant
+        <input class="accent-blue-700 rounded-md h-3 w-4 md:h-4 md:w-5 lg:h-4 lg:w-4" type="checkbox" />
+        -->
+        <span>🍆</span>
+
+        <div class="relative">
+            <!-- File Dropdown Button -->
+            <button class="dropdownFileBtn relative text-gray-400">
+                <svg class="relative h-3 w-3 md:h-4 md:w-4 lg:h-4 lg:w-4" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle class="relative" cx="12" cy="12" r="1"></circle>
+                    <circle class="relative" cx="12" cy="5" r="1"></circle>
+                    <circle class="relative" cx="12" cy="19" r="1"></circle>
+                </svg>
+            </button>
+            <!-- End File Dropdown Button -->
+
+            <!-- File Dropdown -->
+            <div class="dropdownFile duration-250 bg-tertiary invisible absolute top-6 right-0 z-10 h-auto w-36 translate-y-6 rounded-lg opacity-0 shadow-lg transition ease-linear">
+                <!-- File Dropdown Menu-->
+                <div class="grid grid-cols-1 px-3 py-2 space-y-2 shadow-xl">
+                    <button onClick="copyLink('${id}')" data-tooltip-target="${id}-copy" data-tooltip-trigger="click" class="tooltip dropdown-item w-full rounded-md p-2 text-color-primary hover:bg-tertiary-hover"> 
+                        <i data-lucide="link" class="w-4 h-4 mr-2 inline"></i> 
+                        Copy Link 
+                    </button>
+                    <div id="${id}-copy" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        Link copied to clipboard!
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    
+                    <button onClick="deleteItem('${id}', '${deleteId}')" data-tooltip-target="${id}-delete" data-tooltip-trigger="click" 
+                        class="tooltip dropdown-item w-full rounded-md p-2 text-color-primary hover:bg-tertiary-hover"> 
+                        <i data-lucide="trash" class="w-4 h-4 mr-2 inline"></i>
+                        Delete 
+                    </button>
+                    <div id="${id}-delete" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        Item is being deleted, page will refresh when finished.
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </div>
+            <!-- End File Dropdown Menu-->
+            </div>
+        <!-- File Dropdown -->
+        </div>
+    </div>
+    <!-- End File Header -->
+
+    <div class="space-y-3">
+
+        <a target="_blank" href='${itemURL}'>
+            <div class="relatiive mt-2 flex flex-wrap items-center justify-center">
+                <svg class="relative h-20 w-auto fill-gray-400 md:h-24 lg:h-24"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"> </path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <div class="absolute text-sm font-medium text-color-primary">
+                    ${fileExtension}
+                </div>
+            </div>
+        </a>
+
+        <div class="has-name-tooltip text-center">
+            <a target="_blank" href='${itemURL}' class="text-base font-medium text-color-primary hover:text-color-accent hober:bg-secondary md:text-lg lg:text-lg">
+                <span class='name-tooltip rounded shadow-lg p-2 bg-primary text-color-primary -mt-8'>${originalName}</span>
+                <p class="truncate">${originalName}</p>
+            </a>
+            <div class="text-xs text-gray-400 md:text-sm lg:text-sm">
+                ${timeStamp}
+            </div>
+            <div class="text-xs text-gray-400">
+                ${size}
+            </div>
+        </div>
+    </div>
+</div>
