@@ -7,21 +7,11 @@
 
 
         <% if(success_alert_message != ''){ %>
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <%= success_alert_message %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <p class="text-color-primary pb-2"><%= success_alert_message %></p>
       <% } %>
       
       <% if(error_message != ''){ %>
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <%= error_message %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+        <p class="text-color-primary pb-2"><%= error_message %></p>
       <% } %>
 
         <form class="flex flex-col" method="post" action="/auth/login">
