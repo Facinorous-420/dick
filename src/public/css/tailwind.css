@@ -47,6 +47,6 @@
     @apply invisible;
   }
   .has-name-tooltip:hover .name-tooltip {
-    @apply visible z-50;
+    @apply hover:visible hover:z-50;
   }
 }
