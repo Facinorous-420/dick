@@ -139,11 +139,12 @@ When you approach the login screen, your secret key is the key generated for you
 
 2. Add this repo as a submodule into ASS `git submodule add https://github.com/Facinorous-420/dick`
 3. Go into the frontend's directory, `cd dick`, and run `git submodule update --init --recursive` to initiaze it
-4. Install the dependancies for the frontend, `npm i`
-5. Run `npm run build` to compile the frontend and get it ready to run
-6. Then move to the ASS directory and run the ASS setup again `npm run setup`
-7. Leave everything as you did prior, but this time under `frontend name`, type `dick` and continue
-8. Go into the `.gitmodules` file, and youll notice two submodules. Remove the
+4. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
+5. Install the dependancies for the frontend, `npm i`
+6. Run `npm run build` to compile the frontend and get it ready to run
+7. Then move to the ASS directory and run the ASS setup again `npm run setup`
+8. Leave everything as you did prior, but this time under `frontend name`, type `dick` and continue
+9. Go into the `.gitmodules` file, and youll notice two submodules. Remove the
    ```
    [submodule "ass-x"]
      path = ass-x
@@ -156,8 +157,8 @@ When you approach the login screen, your secret key is the key generated for you
      url = https://github.com/Facinorous-420/dick
    ```
    one is left
-9. Run `npm run build` to recompile this change
-10. You can run ASS, `npm start` or however you normally run your ass instance
+10. Run `npm run build` to recompile this change
+11. You can run ASS, `npm start` or however you normally run your ass instance
    
 </details>
 
