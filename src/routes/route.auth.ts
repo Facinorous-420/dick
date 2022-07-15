@@ -39,10 +39,12 @@ export const authRoutes = (app: Router) => {
   // When logout, redirect to client
   app.get("/auth/logout", (req: Request, res: Response) => {
     const user = req.user
-    req.logout()
+    req.logout({ keepSessionInfo: false }, null)
     req.flash('success_alert_message', 'You have been succesfully logged out')
     return res.redirect("/login")
   })
+
+  
 
   // Auth with local passport, send them to ricky boy to prevent brute forcing 'cause Im too lazy to add proper captcha rn
   app.post(
