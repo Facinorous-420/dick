@@ -1,6 +1,6 @@
 {
   "name": "dick",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A frontend for ASS",
   "main": "./dist/dashboard.js",
   "repository": {
@@ -27,7 +27,7 @@
     "ejs": "^3.1.6",
     "errorhandler": "^1.5.1",
     "express": "^4.17.3",
-    "lucide": "^0.17.13",
+    "lucide": "^0.95.0",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0"
   },

@@ -39,7 +39,7 @@ export const authRoutes = (app: Router) => {
   // When logout, redirect to client
   app.get("/auth/logout", (req: Request, res: Response) => {
     const user = req.user
-    req.logout({ keepSessionInfo: false }, null)
+    req.logout()
     req.flash('success_alert_message', 'You have been succesfully logged out')
     return res.redirect("/login")
   })

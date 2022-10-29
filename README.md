@@ -49,7 +49,6 @@
 </details>
 
 
-
 ## About The Project
 
 Dick was created to be an easy to use front end for <a href="https://github.com/tycrek/ass">Ass</a> as there was no public option to allow users to view their saved images on their server. I decided to learn tailwind and also at the same time build this. I did this all in my spare time, and will keep updating as best as I can while I use it. I'm still learning all this so if anyone has suggestions on how to do things better, I am all ears! I love learning! :)
@@ -128,39 +127,6 @@ When you approach the login screen, your secret key is the key generated for you
 
 :warning:```ASS and the dashboard will be under their own ports.```<br/>
 <sub> They will have entirely different routing. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
-
-<details>
-    <summary><sub>Open to view the set up steps to run this as a submodule to ass</sub></summary><br/>
-
-**Preface:** You need to edit `/src/CONSTANTS.ts`'s variable of `DICK_SUBMODULE` to `true`
-  
-1. Setup ASS https://github.com/tycrek/ass#installation
-   For when it asks for name of front end, leave as `ass-x` (default) for now.
-
-2. Add this repo as a submodule into ASS `git submodule add https://github.com/Facinorous-420/dick`
-3. Go into the frontend's directory, `cd dick`, and run `git submodule update --init --recursive` to initiaze it
-4. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
-5. Install the dependancies for the frontend, `npm i`
-6. Run `npm run build` to compile the frontend and get it ready to run
-7. Then move to the ASS directory and run the ASS setup again `npm run setup`
-8. Leave everything as you did prior, but this time under `frontend name`, type `dick` and continue
-9. Go into the `.gitmodules` file, and youll notice two submodules. Remove the
-   ```
-   [submodule "ass-x"]
-     path = ass-x
-     url = git@github.com:tycrek/ass-x.git
-   ```
-   submodule so only the
-   ```
-   [submodule "dick"]
-     path = dick
-     url = https://github.com/Facinorous-420/dick
-   ```
-   one is left
-10. Run `npm run build` to recompile this change
-11. You can run ASS, `npm start` or however you normally run your ass instance
-   
-</details>
 
 ## Contributing
 
