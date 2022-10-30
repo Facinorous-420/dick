@@ -5,7 +5,7 @@
           class="bg-primary border-l-none border-r-none z-20 order-1 grow-0 basis-full shadow-2xl border-b border-gray-300/25 md:border-t lg:border-t py-4 md:order-1 md:basis-1/6 md:border-l md:border-r lg:order-1 lg:basis-1/6 lg:border-l lg:border-r">
           <div class="flex flex-row justify-between">
 
-            <%- include("./nav/logo") %>
+            <%- include("./nav/logo", { params: params }) %>
 
               <!-- Navbar Hamburger Button -->
               <button id="dropdownNavBtn" class="block pr-3 md:hidden md:pr-7 lg:hidden lg:pr-7">
@@ -22,8 +22,8 @@
           </div>
       </div>
 
-      <%- include("./nav/breadcrumb") %>
-      <%- include("./nav/profile") %>
-      <%- include("./nav/menu") %>
+      <%- include("./nav/breadcrumb", { params: params }) %>
+      <%- include("./nav/profile", { params: params }) %>
+      <%- include("./nav/menu", { params: params }) %>
   </div>
 </nav>

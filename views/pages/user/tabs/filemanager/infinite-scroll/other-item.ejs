@@ -4,7 +4,7 @@
         <!--We will add this and style it when we add multi-delete, for now eggplant
         <input class="accent-blue-700 rounded-md h-3 w-4 md:h-4 md:w-5 lg:h-4 lg:w-4" type="checkbox" />
         -->
-        <span>🍆</span>
+        <span><%= params.database.settings.systemEmoji ? params.database.settings.systemEmoji : '🍆' %></span>
 
         <div class="relative">
             <!-- File Dropdown Button -->

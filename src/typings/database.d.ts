@@ -5,9 +5,12 @@ export interface IDatabase {
 
 export interface ISettings {
     name: string
-    logo: string | null
+    logo: string
+    siteTitle: string
+    siteDescription: string
+    loginText: string
     systemEmoji: string
-    defaultProfilePicture: string | null
+    defaultProfilePicture: string
     adminUsers: Array<string>
 }
 
@@ -18,12 +21,12 @@ export interface IUserSettings {
 }
 
 export interface IEmbedConfig {
-    header: string | null
-    headerUrl: string | null
-    author: string | null
-    authorLink: string | null
-    title: string | null
-    titleLink: string  | null
-    description: string | null
-    hex: string | null
+    header?: string
+    headerUrl?: string
+    author?: string
+    authorLink?: string
+    title?: string
+    titleLink?: string
+    description?: string
+    hex?: string
 }

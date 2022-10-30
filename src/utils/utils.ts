@@ -10,7 +10,7 @@ import { IDatabase, IUserSettings } from "typings/database"
 const databaseLocation = path.resolve(`./src/database.json`)
 
 // Get database, creating a default one if it doesnt exist
-const getDatabase = (): IDatabase => {
+export const getDatabase = (): IDatabase => {
   try {
     const databaseFile = fs.readFileSync(databaseLocation).toString()
     const database: IDatabase = JSON.parse(databaseFile)
@@ -19,9 +19,12 @@ const getDatabase = (): IDatabase => {
     const defaultDatabase: IDatabase = {
         settings: {
         name: "dick",
-        logo: null,
+        siteTitle: "DICK (Directly Integrated Client for Keisters)",
+        siteDescription: "The frontend for your backend",
+        loginText: "Sign in to easily manage your nudes.",
+        logo: "./images/dick-logo.png",
         systemEmoji: "🍆", 
-        defaultProfilePicture: null,
+        defaultProfilePicture: "./images/profile.png",
         adminUsers: []
       },
       users: []

@@ -1,4 +1,5 @@
 import { Request, Response, Router } from "express"
+import { getDatabase } from "../utils/utils"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 
@@ -8,6 +9,7 @@ export const publicRoutes = (app: Router) => {
     if (req.user) {
       return res.redirect('/')
     }
-    await Pager.render(res, req, TEMPLATE.PUBLIC)
+    const database = getDatabase()
+    await Pager.render(res, req, TEMPLATE.PUBLIC, {params: {database}})
   })
 }
