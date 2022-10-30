@@ -1,8 +1,36 @@
 import { Log } from "@callmekory/logger"
-import { STAFF_IDS } from "../constants"
+import fs from "fs"
 import { Response, NextFunction } from "express"
-import { join, normalize } from "path"
+import path, { join, normalize } from "path"
+
 import { IExtendedRequest } from "../typings/express-ext"
+import { STAFF_IDS } from "../constants"
+import { IDatabase, IUserSettings } from "typings/database"
+
+const databaseLocation = path.resolve(`./src/database.json`)
+
+// Get database, creating a default one if it doesnt exist
+const getDatabase = (): IDatabase => {
+  try {
+    const databaseFile = fs.readFileSync(databaseLocation).toString()
+    const database: IDatabase = JSON.parse(databaseFile)
+    return database
+  } catch (error) {
+    const defaultDatabase: IDatabase = {
+        settings: {
+        name: "dick",
+        logo: null,
+        systemEmoji: "🍆", 
+        defaultProfilePicture: null,
+        adminUsers: []
+      },
+      users: []
+    }
+    fs.writeFileSync('./src/database.json', JSON.stringify(defaultDatabase), "utf-8")
+    return defaultDatabase
+  }
+}
+
 /**
  * Generate the appropriate pathing for the a template to be rendered
  */
@@ -19,6 +47,9 @@ export const templatePathBuilder = (templatePath: string) => {
  * exception.
  */
 export const wrap = (req: IExtendedRequest, res: Response, next: NextFunction) => {
+
+  checkIfUserExist(req.user.username)
+
   if (req.user) {
     Log.info(`${req.user.username} navigated to page ${req.path}`)
   }
@@ -75,7 +106,7 @@ export const formatSize = (kb: number, decimals = 2) => {
  *
  * @param unixTimestamp Unix timestamp you wish to convert to a Date object
  */
- export const convertTimestamp = (unixTimestamp: number) => { 
+export const convertTimestamp = (unixTimestamp: number) => {
   return new Date(unixTimestamp)
 }
 
@@ -84,10 +115,36 @@ export const formatSize = (kb: number, decimals = 2) => {
  * @param data Original array of many objects
  * @param itemsPerPage The amount of objects you wish you wish to have in each array in the new array
  */
- export const convertToPaginatedArray = (data: Array<any>, itemsPerPage: number) => {
+export const convertToPaginatedArray = (data: Array<any>, itemsPerPage: number) => {
   let paginatedArray: Array<any> = []
-  for (let i=0; i < data.length; i += itemsPerPage) {
-    paginatedArray.push(data.slice(i,i + itemsPerPage))
+  for (let i = 0; i < data.length; i += itemsPerPage) {
+    paginatedArray.push(data.slice(i, i + itemsPerPage))
   }
   return paginatedArray
+}
+
+/**
+ * Checks if the user is in our local JSON database, if they arent we add them
+ * @param username Username we are checking exists
+ */
+export const checkIfUserExist = async (username: string) => {
+  const database = getDatabase()
+
+  // If user does not exist in our database, we create it
+  if (!database.users.find((e: IUserSettings) => e.username === username)) {
+    const newUser: IUserSettings = {
+      username: username,
+      profilePicture: null,
+      config: null
+    }
+    database.users.push(newUser)
+    fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
+  }
+
+  // If there are no admin users in the database, we will make this user the admin (first user to login will always be admin)
+  if (database.settings.adminUsers.length == 0) {
+    database.settings.adminUsers.push(username)
+    fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
+  }
+
 }
