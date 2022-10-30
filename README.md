@@ -58,6 +58,7 @@ Dick was created to be an easy to use front end for <a href="https://github.com/
 2. File browser, allows you to see all your uploads on one webpage (plans to make it more powerful)
 3. Deletion of items (currently one at a time, plans for multiple at once)
 4. Copy link of items (currently one at a time, plans for multiple with spaces in between in pastebin)
+5. Customize DICK
 
 **Planned Feautres:**
 1. There are a lot of good ideas out there, to keep track of what is currently planned see <a href="https://github.com/Facinorous-420/dick/projects/2">the v1.1 project board</a>
@@ -71,6 +72,7 @@ The back end is written in <a href="https://www.typescriptlang.org/">Typescript<
 
 Running DICK is very simple, though there is no docker container.<br/>
 You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
+**NOTE:** DICK requires you to use JSON for ASS' database.
 
 ### Config
 

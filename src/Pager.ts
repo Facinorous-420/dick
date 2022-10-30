@@ -2,9 +2,10 @@ import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
 import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
-import { convertTimestamp, convertToPaginatedArray, formatSize } from "./utils/utils"
+import { convertTimestamp, convertToPaginatedArray, formatSize, getDatabase } from "./utils/utils"
 import { ASSUser, ASSItem } from "./typings/ASSTypes"
 import { IExtendedRequest } from "./typings/express-ext"
+import { IDatabase } from "./typings/database"
 
 export class Pager {
   /**
@@ -21,14 +22,15 @@ export class Pager {
 
     const data: Array<ASSItem> = parseDataFile()
     const users: Array<ASSUser> = parseAuthFile()
-
+    const database: IDatabase = getDatabase()
+    
     // If user is already authenticated load the authenticated data
     if (req.isAuthenticated()) {
-      return this.renderAuthenticatedData(res, req, template, options, data, users)
+      return this.renderAuthenticatedData(res, req, template, options, data, users, database)
     }
     
     // If user is not authenticated only load guest data
-    return this.renderUnauthenticatedData(res, req, template, options, data, users)
+    return this.renderUnauthenticatedData(res, req, template, options, data, users, database)
   }
 
   /**
@@ -40,7 +42,8 @@ export class Pager {
     template: string,
     options: RenderOptions,
     data: Array<ASSItem>,
-    users: Array<ASSUser>
+    users: Array<ASSUser>,
+    database: IDatabase
   ) {
     const totalUsers = users.length
     const totalData = data.length
@@ -49,6 +52,7 @@ export class Pager {
     const baseData = {
       params: options.params,
       path: req.path,
+      database,
       totalUsers,
       totalData,
       totalSize
@@ -68,7 +72,8 @@ export class Pager {
     template: string,
     options: RenderOptions,
     data: Array<ASSItem>,
-    users: Array<ASSUser>
+    users: Array<ASSUser>,
+    database: IDatabase
   ) {
     // * -------------------- BUILD DATA OBJECT FOR FRONTEND EJS VARIABLES ------------
     const totalUsers = users.length
@@ -85,7 +90,6 @@ export class Pager {
           return db.getTime() - da.getTime()
     })
 
-    // I feel like this could be done better, but I created an object filled with useful variables for the user data to be rendered on the pages
     const usersDataObj = {
       data: convertToPaginatedArray(usersData,50),
       totalFiles: usersData.length,
@@ -124,6 +128,7 @@ export class Pager {
       assDomain: ASS_DOMAIN,
       assSecure: ASS_SECURE,
       user: req.user,
+      database,
       totalSize,
       totalUsers,
       totalData,

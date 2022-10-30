@@ -12,7 +12,7 @@
         <div class="flex flex-1 px-5 items-center justify-center lg:justify-start pb-5 xl:pb-0">
             <div class="flex-none lg:custom-size-profile md:h-40 md:w-40 sm:h-32 sm:w-32 h-20 w-20 relative">
                 <img class="rounded-full object-cover object-center"
-                src=<%= params.database.settings.defaultProfilePicture ? params.database.settings.defaultProfilePicture : "./images/profile.png" %> alt="Profile" />
+                src=<%= database.settings.defaultProfilePicture ? database.settings.defaultProfilePicture : "./images/profile.png" %> alt="Profile" />
             </div>
             <div class="ml-5">
                 <div class="truncate text-base text-color-primary sm:text-xl md:text-2xl lg:text-2xl">

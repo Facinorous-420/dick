@@ -10,32 +10,20 @@ function ready(fn) {
   // DOM Ready Called
   ready(function () {
   
-    const openFile = document.getElementById('openFile')
-    const showFile = document.getElementById('showFile')
-  
-    const traMove = document.getElementsByClassName('traMove')
     const tabsProfile = document.getElementsByClassName('tabsProfile')
     const tabsProfileContent = document.getElementsByClassName('tabsProfileContent')
-    const dropdownNavBtn = document.getElementById('dropdownNavBtn')
-    const dropdownNav = document.getElementById('dropdownNav')
-  
-    const dropdownProfileBtn = document.getElementsByClassName('dropdownProfileBtn')
-    const dropdownProfile = document.getElementsByClassName('dropdownProfile')
   
     const dropdownSearchBtn = document.getElementsByClassName('dropdownSearchBtn')
     const dropdownSearch = document.getElementsByClassName('dropdownSearch')
     const dropdownFileBtn = document.getElementsByClassName('dropdownFileBtn')
   
-    // Open File Manager Event
-    /*
-    function fireFileManager(){
-        openFile.addEventListener('click', () => {
-            showFile.click();
-        });
-    }
-    fireFileManager();
-  */
+    const traMove = document.getElementsByClassName('traMove')
+    const dropdownNavBtn = document.getElementById('dropdownNavBtn')
+    const dropdownNav = document.getElementById('dropdownNav')
   
+    const dropdownProfileBtn = document.getElementsByClassName('dropdownProfileBtn')
+    const dropdownProfile = document.getElementsByClassName('dropdownProfile')
+
     // Dropdown Navbar Event
     function fireDropdownNav(){
         dropdownNavBtn.addEventListener('click', () => {
@@ -93,7 +81,16 @@ function ready(fn) {
         })
     }
     fireDropdownProfile()
-  
+
+    // Open File Manager Event
+    /*
+    function fireFileManager(){
+        openFile.addEventListener('click', () => {
+            showFile.click();
+        });
+    }
+    fireFileManager();
+  */
   
     // Dropdown Search Event
     function fireDropdownSearch() {
@@ -182,7 +179,7 @@ function ready(fn) {
                 tabsProfileContent[0].classList.remove('hidden')
             }
         });
-        //Config Gen Tab = 1
+        //Embed Gen Tab = 1
         tabsProfile[1].addEventListener('click', () => {
             if (tabsProfile[0].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
                 tabsProfile[0].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')

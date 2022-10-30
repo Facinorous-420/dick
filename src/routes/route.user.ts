@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express"
-import { adminCheck, authCheck, getDatabase, wrap } from "../utils/utils"
+import { adminCheck, authCheck, wrap } from "../utils/utils"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 import { parseAuthFile } from "../utils/assJSONStructure"
@@ -11,8 +11,7 @@ export const userRoutes = (app: Router) => {
     authCheck,
     wrap,
     async (req: Request, res: Response) => {
-      const database = getDatabase()
-      await Pager.render(res, req, TEMPLATE.USER, {params: {database}})
+      await Pager.render(res, req, TEMPLATE.USER, {})
     }
   )
 
