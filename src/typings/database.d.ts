@@ -9,8 +9,9 @@ export interface ISettings {
     siteTitle: string
     siteDescription: string
     loginText: string
-    systemEmoji: string
+    appEmoji: string
     defaultProfilePicture: string
+    registrationEnabled: boolean
     adminUsers: Array<string>
 }
 

@@ -1,23 +1,71 @@
-<div class="bg-tertiary mt-6 h-auto w-full rounded-lg">
-    <div
-        class="flex w-full flex-row flex-wrap justify-center space-x-3 border-b border-purple-400/25 py-3 px-6 md:space-x-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
-        <!-- System Stat Cards -->
-        <div class="flex flex-wrap lg:flex-row gap-6 pb-5">
+<div class="bg-secondary m-6 h-auto justify-center rounded-lg">
+    
+    <form method="post" action="/admin">
 
-            <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
-                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
-                    <div class="flex">
-                        <i data-lucide="users" class="text-purple-400 mr-2"></i>
-                    </div>
-                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
-                        <%= totalUsers %>
-                    </div>
-                    <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
-                        Total Users
-                    </div>
-                </div>
-            </div>
+        <div class="flex flex-row flex-wrap justify-center py-3 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">App Name</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.name ? database.settings.name : "DICK" %>" name="name" type="text" />
+            </label>
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">App Logo URL</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.logo ? database.settings.logo : "./images/dick-logo.png" %>" name="logo" type="url" />
+            </label>
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Site Title</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.siteTitle ? database.settings.siteTitle : "DICK (Directly Integrated Client for Keisters)" %>" name="siteTitle" type="text" />
+            </label>
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Site Description</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.siteDescription ? database.settings.siteDescription : "The frontend for your backend" %>" name="siteDescription" type="text" />
+            </label>
 
         </div>
-        <!-- End System Stat Cards -->
-    </div>
+
+        <div class="flex w-full flex-row flex-wrap justify-center py-3 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Login Text</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.loginText ? database.settings.loginText : "Sign in to easily manage your nudes." %>" name="loginText" type="text" />
+            </label>
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">App Emoji</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.appEmoji ? database.settings.appEmoji : "🍆" %>" name="appEmoji" type="text" />
+            </label>
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Default Profile Picture URL</span>
+                <input
+                    class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    placeholder="<%= database.settings.defaultProfilePicture ? database.settings.defaultProfilePicture : "./images/profile.png" %>" name="defaultProfilePicture" type="url" />
+            </label>
+
+        </div>
+
+        <div class="flex w-full flex-row flex-wrap justify-center py-3 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
+            <button
+            class="block basis-1/2 px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            type="submit">
+            Save Settings
+        </button>
+        </div>
+    </form>
+
+</div>

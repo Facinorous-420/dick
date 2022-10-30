@@ -120,31 +120,18 @@
     <!-- Admin Tabs -->
     <div
         class="flex flex-col flex-wrap items-center space-y-4 px-5 pt-5 md:flex-row md:space-y-0 lg:flex-row lg:space-y-0">
-        <button data-id="app-settings"
+        <div
             class="tabsAdmin inline-flex w-full items-center space-x-2 border-b-2 border-purple-400 px-6 pb-5 text-sm font-semibold text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
             <i data-lucide="Settings" class="text-color-secondary"></i>
             <span class="truncate"> App Settings </span>
-        </button>
-
-        <button data-id="user-settings"
-            class="tabsAdmin inline-flex w-full items-center space-x-2 px-6 pb-5 text-sm text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
-            <i data-lucide="User-Cog" class="text-color-secondary"></i>
-            <span> User Settings </span>
-            <span
-                class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-yellow-600 text-black rounded-full">
-                TBA
-            </span>
-        </button>
+        </div>
     </div>
     <!-- End Admin Tabs -->
 </div>
 
 <div
     class="mt-10 flex flex-col flex-wrap space-x-0 space-y-6 md:flex-row md:flex-nowrap md:space-x-6 md:space-y-0 lg:flex-row lg:flex-nowrap lg:space-x-6 lg:space-y-0">
-    <div class="tabsAdminContent">
+    <div class="tabsAdminContent bg-tertiary w-full">
         <%- include("./tabs/appsettings") %>
-    </div>
-    <div class="tabsAdminContent hidden">
-        <%- include("./tabs/usersettings") %>
     </div>
 </div>

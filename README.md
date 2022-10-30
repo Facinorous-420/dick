@@ -131,6 +131,20 @@ The first user to login will be added to the instance admin list.
 :warning:```ASS and the dashboard will be under their own ports.```<br/>
 <sub> They will have entirely different routing. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
 
+### Customizing
+
+In DICK v1.1.0, app settings were added in the admin page. This is where a user can whitelabel their DICK instance.
+
+| Variable                                     |           Description           |
+| --------------------------------------------- | :---------------------: |
+| `App Name` | This will replace all the **DICK** occurrences around the app                 |
+| `App Logo URL` | Change the app logo, including the bookmark image. This can be either a URL to an external picture, or you can use a local image by saving a file in `/src/public/images/` and reference it by entering `'./images/imagename.png'` for this setting.|
+| `Site Title` | This is the text that shows up in browser tabs, as well as the title for the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds.        |
+| `Site Description` | This text is the description text on the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds.  |
+| `Login Text` | This text is the text on the login screen, above the form. |
+| `App Emoji` | This will allow you to change the emoji you see around the instance, by default its an eggplant. 🍆 |
+| `Default Profile Picture URL` | This will be the default picture users have as their profile picture. This can be either a URL to an external picture, or you can use a local image by saving a file in `/src/public/images/` and reference it by entering `'./images/imagename.png'` for this setting.|
+
 ## Contributing
 
 <sub> If using VSCode, I'd recommend using this extension: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</sub>

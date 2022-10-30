@@ -168,26 +168,30 @@ function ready(fn) {
     }
     fireDropdownFile()
   
-    // Tabs Profile Event
-    function fireTabsProfile(){
-        //File Manager Tab = 0
-        tabsProfile[0].addEventListener('click', () => {
-            if (tabsProfile[1].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
-                tabsProfile[1].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
-                tabsProfile[0].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
-                tabsProfileContent[1].classList.add('hidden')
-                tabsProfileContent[0].classList.remove('hidden')
-            }
-        });
-        //Embed Gen Tab = 1
-        tabsProfile[1].addEventListener('click', () => {
-            if (tabsProfile[0].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
-                tabsProfile[0].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
-                tabsProfile[1].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
-                tabsProfileContent[0].classList.add('hidden')
-                tabsProfileContent[1].classList.remove('hidden')
-            }
-        })
+
+    if(location.pathname=="/"){
+        // Tabs Profile Event
+        function fireTabsProfile(){
+            //File Manager Tab = 0
+            tabsProfile[0].addEventListener('click', () => {
+                if (tabsProfile[1].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
+                    tabsProfile[1].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabsProfile[0].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabsProfileContent[1].classList.add('hidden')
+                    tabsProfileContent[0].classList.remove('hidden')
+                }
+            });
+            //Embed Gen Tab = 1
+            tabsProfile[1].addEventListener('click', () => {
+                if (tabsProfile[0].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
+                    tabsProfile[0].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabsProfile[1].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabsProfileContent[0].classList.add('hidden')
+                    tabsProfileContent[1].classList.remove('hidden')
+                }
+            })
+        }
+        fireTabsProfile()
     }
-    fireTabsProfile()
+    
   })

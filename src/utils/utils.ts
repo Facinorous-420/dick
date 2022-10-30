@@ -23,8 +23,9 @@ export const getDatabase = (): IDatabase => {
         siteDescription: "The frontend for your backend",
         loginText: "Sign in to easily manage your nudes.",
         logo: "./images/dick-logo.png",
-        systemEmoji: "🍆", 
+        appEmoji: "🍆", 
         defaultProfilePicture: "./images/profile.png",
+        registrationEnabled: false,
         adminUsers: []
       },
       users: []
@@ -149,5 +150,4 @@ export const checkIfUserExist = async (username: string) => {
     database.settings.adminUsers.push(username)
     fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
   }
-
 }
