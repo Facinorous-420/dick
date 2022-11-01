@@ -1,8 +1,8 @@
 <div class="bg-secondary m-6 h-auto justify-center rounded-lg">
-    
+
     <form method="post" action="/admin">
 
-        <div class="flex flex-row flex-wrap justify-center py-3 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
+        <div class="flex flex-row flex-wrap justify-center py-3 space-x-2 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">App Name</span>
@@ -15,7 +15,7 @@
                 <span class="text-gray-700 dark:text-gray-400">App Logo URL</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.logo ? database.settings.logo : "./images/dick-logo.png" %>" name="logo" type="url" />
+                    placeholder="<%= database.settings.logo ? database.settings.logo : "./images/dick-logo.png" %>" name="logo" type="text" />
             </label>
 
             <label class="block text-sm">
@@ -34,7 +34,7 @@
 
         </div>
 
-        <div class="flex w-full flex-row flex-wrap justify-center py-3 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
+        <div class="flex w-full flex-row flex-wrap justify-center py-3 space-x-2 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Login Text</span>
@@ -58,6 +58,20 @@
             </label>
 
         </div>
+
+
+            <% if(success_alert_message != ''){ %>
+                <div class="flex flex-row flex-wrap justify-center">
+                <p class="text-color-accent"><%= success_alert_message %></p>
+        </div>
+            <% } %>
+            
+            <% if(error_message != ''){ %>
+                <div class="flex flex-row flex-wrap justify-center ">
+              <p class="text-orange-700 dark:text-orange-400"><%= error_message %></p>
+        </div>
+            <% } %>
+
 
         <div class="flex w-full flex-row flex-wrap justify-center py-3 px-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
             <button

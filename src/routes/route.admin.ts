@@ -27,6 +27,14 @@ export const adminRoutes = (app: Router) => {
       const database = getDatabase()
       const { name, logo, siteTitle, siteDescription, loginText, appEmoji, defaultProfilePicture } = req.body
 
+      if (logo) {
+       if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(logo)) {
+
+       }
+       req.flash('error_message', 'Logo URL is not a valid picture.')
+       return res.redirect('/admin')
+      }
+
       name ? database.settings.name = name : null
       logo ? database.settings.logo = logo : null
       siteTitle ? database.settings.siteTitle = siteTitle : null
@@ -37,7 +45,8 @@ export const adminRoutes = (app: Router) => {
 
       fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
 
-      return Pager.render(res, req, TEMPLATE.USER, {})
+      req.flash('success_alert_message', 'Settings successfully saved')
+      return res.redirect('/admin')
     }
   )
 

@@ -90,6 +90,18 @@ export class Pager {
           return db.getTime() - da.getTime()
     })
 
+    const appDataObj = {
+      allImages: data.filter(item=> item.type.includes('image')),
+      allVideos: data.filter(item=> item.type.includes('video')),
+      allAudio: data.filter(item=> item.type.includes('audio')),
+      allOthers: data.filter(item=> item.type.includes('other')),
+      totalSize:formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalImageSize: formatSize(data.filter(item=> item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalVideosSize: formatSize(data.filter(item=> item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalAudioSize: formatSize(data.filter(item=> item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalOthersSize: formatSize(data.filter(item=> item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
+    }
+
     const usersDataObj = {
       data: convertToPaginatedArray(usersData,50),
       totalFiles: usersData.length,
@@ -133,6 +145,7 @@ export class Pager {
       totalUsers,
       totalData,
       usersDataObj,
+      appDataObj,
       //targetDataObj: options.params.userID ? targetDataObj : null,
       params: options.params,
       path: req.path,

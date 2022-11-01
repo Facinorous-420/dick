@@ -27,7 +27,7 @@ export interface IEmbedConfig {
     author?: string
     authorLink?: string
     title?: string
-    titleLink?: string
     description?: string
     hex?: string
+    urlType?: string
 }

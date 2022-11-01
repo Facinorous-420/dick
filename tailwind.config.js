@@ -1,6 +1,14 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
+// If you are adding a colour scheme to the themes below, be sure to add the combo to ./src/public/css/tailwind.css as a css element
+// EG:
+/*
+*  .bg-primary {
+*    @apply bg-lighttheme-primary dark:bg-darktheme-primary;
+*  }
+*/
+
 module.exports = {
   darkMode: 'class',
   content: [
@@ -21,7 +29,7 @@ module.exports = {
           primary: colors.white, //text-color-primary
           secondary: colors.slate[400], //text-color-secondary
           accentPrimary: colors.purple[400], //text-color-accent
-          accentSecondary: colors.purple[800] //text-color-accentsecondary
+          accentSecondary: colors.purple[800], //text-color-accentsecondary
         },
         lighttheme: {
           primary: '#2b910e', //bg-primary
@@ -34,7 +42,7 @@ module.exports = {
           primary: colors.slate[800], //text-color-primary
           secondary: colors.slate[400], //text-color-secondary
           accentPrimary: colors.purple[600], //text-color-accent
-          accentSecondary: colors.purple[800] //text-color-accentsecondary
+          accentSecondary: colors.purple[800], //text-color-accentsecondary
         }
       },
       maxHeight: {
