@@ -2,24 +2,24 @@
 <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="description" content=<%= database.settings.description ? database.settings.description : "DICK, the frontend for your ASS" %> />
+      <meta name="description" content=<%= settingsDatabase.description ? settingsDatabase.description : "DICK, the frontend for your ASS" %> />
       <meta name="author" content="Facinorous-420" />
   
-      <meta property="og:description" content=<%= database.settings.description ? database.settings.description : "DICK, the frontend for your ASS" %> />
+      <meta property="og:description" content=<%= settingsDatabase.description ? settingsDatabase.description : "DICK, the frontend for your ASS" %> />
       <meta property="og:url" content="https://github.com/facinorous-420/dick" />
-      <meta property="og:site_name" content=<%= database.settings.siteTitle ? database.settings.siteTitle : "DICK (Directly Integrated Client for Keisters)" %> />
-      <meta property="og:image" content=<%= database.settings.logo ? database.settings.logo : "/images/dick-logo.png" %> />
+      <meta property="og:site_name" content=<%= settingsDatabase.siteTitle ? settingsDatabase.siteTitle : "DICK (Directly Integrated Client for Keisters)" %> />
+      <meta property="og:image" content=<%= settingsDatabase.logo ? settingsDatabase.logo : "/images/logo.png" %> />
   
       <!--meta twitter-->
       <meta name="twitter:card" content="summary" />
-      <meta property="twitter:image" content=<%= database.settings.logo ? database.settings.logo : "/images/dick-logo.png" %> />
-      <meta property="twitter:title" content=<%= database.settings.siteTitle ? database.settings.siteTitle : "DICK (Directly Integrated Client for Keisters)" %> />
-      <meta property="twitter:description" content=<%= database.settings.description ? database.settings.description : "DICK, the frontend for your ASS" %> />
+      <meta property="twitter:image" content=<%= settingsDatabase.logo ? settingsDatabase.logo : "/images/logo.png" %> />
+      <meta property="twitter:title" content=<%= settingsDatabase.siteTitle ? settingsDatabase.siteTitle : "DICK (Directly Integrated Client for Keisters)" %> />
+      <meta property="twitter:description" content=<%= settingsDatabase.description ? settingsDatabase.description : "DICK, the frontend for your ASS" %> />
       <!-- end meta twitter-->
   
-      <title><%= database.settings.siteTitle ? database.settings.siteTitle : "DICK (Directly Integrated Client for Keisters)" %></title>
+      <title><%= settingsDatabase.siteTitle ? settingsDatabase.siteTitle : "DICK (Directly Integrated Client for Keisters)" %></title>
   
       <link rel="stylesheet" href="/css/app.css">
       <script src="/js/theme/theme-set.js"></script>
-      <link rel="icon" type="image/png" href=<%= database.settings.logo ? database.settings.logo : "/images/dick-logo.png" %>>
+      <link rel="icon" type="image/png" href=<%= settingsDatabase.logo ? settingsDatabase.logo : "/images/logo.png" %>>
 </head>

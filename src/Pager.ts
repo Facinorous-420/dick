@@ -2,10 +2,10 @@ import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
 import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
-import { convertTimestamp, convertToPaginatedArray, formatSize, getDatabase } from "./utils/utils"
+import { convertTimestamp, convertToPaginatedArray, formatSize, getSettingsDatabase } from "./utils/utils"
 import { ASSUser, ASSItem } from "./typings/ASSTypes"
 import { IExtendedRequest } from "./typings/express-ext"
-import { IDatabase } from "./typings/database"
+import { ISettingsDatabase } from "./typings/database"
 
 export class Pager {
   /**
@@ -22,7 +22,7 @@ export class Pager {
 
     const data: Array<ASSItem> = parseDataFile()
     const users: Array<ASSUser> = parseAuthFile()
-    const database: IDatabase = getDatabase()
+    const database: ISettingsDatabase = getSettingsDatabase()
     
     // If user is already authenticated load the authenticated data
     if (req.isAuthenticated()) {
@@ -43,7 +43,7 @@ export class Pager {
     options: RenderOptions,
     data: Array<ASSItem>,
     users: Array<ASSUser>,
-    database: IDatabase
+    settingsDatabase: ISettingsDatabase
   ) {
     const totalUsers = users.length
     const totalData = data.length
@@ -52,7 +52,7 @@ export class Pager {
     const baseData = {
       params: options.params,
       path: req.path,
-      database,
+      settingsDatabase,
       totalUsers,
       totalData,
       totalSize
@@ -73,7 +73,7 @@ export class Pager {
     options: RenderOptions,
     data: Array<ASSItem>,
     users: Array<ASSUser>,
-    database: IDatabase
+    settingsDatabase: ISettingsDatabase
   ) {
     // * -------------------- BUILD DATA OBJECT FOR FRONTEND EJS VARIABLES ------------
     const totalUsers = users.length
@@ -140,7 +140,7 @@ export class Pager {
       assDomain: ASS_DOMAIN,
       assSecure: ASS_SECURE,
       user: req.user,
-      database,
+      settingsDatabase,
       totalSize,
       totalUsers,
       totalData,

@@ -8,28 +8,28 @@
                 <span class="text-gray-700 dark:text-gray-400">App Name</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.name ? database.settings.name : "DICK" %>" name="name" type="text" />
+                    placeholder="<%= settingsDatabase.name ? settingsDatabase.name : "DICK" %>" name="name" type="text" />
             </label>
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">App Logo URL</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.logo ? database.settings.logo : "./images/dick-logo.png" %>" name="logo" type="text" />
+                    placeholder="<%= settingsDatabase.logo ? settingsDatabase.logo : "./images/logo.png" %>" name="logo" type="text" />
             </label>
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Site Title</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.siteTitle ? database.settings.siteTitle : "DICK (Directly Integrated Client for Keisters)" %>" name="siteTitle" type="text" />
+                    placeholder="<%= settingsDatabase.siteTitle ? settingsDatabase.siteTitle : "DICK (Directly Integrated Client for Keisters)" %>" name="siteTitle" type="text" />
             </label>
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Site Description</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.siteDescription ? database.settings.siteDescription : "The frontend for your backend" %>" name="siteDescription" type="text" />
+                    placeholder="<%= settingsDatabase.siteDescription ? settingsDatabase.siteDescription : "The frontend for your backend" %>" name="siteDescription" type="text" />
             </label>
 
         </div>
@@ -40,21 +40,21 @@
                 <span class="text-gray-700 dark:text-gray-400">Login Text</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.loginText ? database.settings.loginText : "Sign in to easily manage your nudes." %>" name="loginText" type="text" />
+                    placeholder="<%= settingsDatabase.loginText ? settingsDatabase.loginText : "Sign in to easily manage your nudes." %>" name="loginText" type="text" />
             </label>
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">App Emoji</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.appEmoji ? database.settings.appEmoji : "🍆" %>" name="appEmoji" type="text" />
+                    placeholder="<%= settingsDatabase.appEmoji ? settingsDatabase.appEmoji : "🍆" %>" name="appEmoji" type="text" />
             </label>
 
             <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Default Profile Picture URL</span>
                 <input
                     class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-                    placeholder="<%= database.settings.defaultProfilePicture ? database.settings.defaultProfilePicture : "./images/profile.png" %>" name="defaultProfilePicture" type="url" />
+                    placeholder="<%= settingsDatabase.defaultProfilePicture ? settingsDatabase.defaultProfilePicture : "./images/profile.png" %>" name="defaultProfilePicture" type="url" />
             </label>
 
         </div>

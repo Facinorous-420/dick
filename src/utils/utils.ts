@@ -5,33 +5,44 @@ import path, { join, normalize } from "path"
 
 import { IExtendedRequest } from "../typings/express-ext"
 import { STAFF_IDS } from "../constants"
-import { IDatabase, IUserSettings } from "typings/database"
+import { ISettingsDatabase, IUsersDatabase, IUserSettings } from "typings/database"
 
-const databaseLocation = path.resolve(`./src/database/settings.json`)
+const settingsDatabaseLocation = path.resolve(`./src/database/settings.json`)
+const userDatabaseLocation = path.resolve(`./src/database/users.json`)
 
-// Get database, creating a default one if it doesnt exist
-export const getDatabase = (): IDatabase => {
+// Get settings database, creating a default one if it doesnt exist
+export const getSettingsDatabase = (): ISettingsDatabase => {
   try {
-    const databaseFile = fs.readFileSync(databaseLocation).toString()
-    const database: IDatabase = JSON.parse(databaseFile)
+    const databaseFile = fs.readFileSync(settingsDatabaseLocation).toString()
+    const database: ISettingsDatabase = JSON.parse(databaseFile)
     return database
   } catch (error) {
-    const defaultDatabase: IDatabase = {
-        settings: {
+    const defaultDatabase: ISettingsDatabase = {
         name: "dick",
+        appEmoji: "🍆",
         siteTitle: "DICK (Directly Integrated Client for Keisters)",
         siteDescription: "The frontend for your backend",
         loginText: "Sign in to easily manage your nudes.",
-        logo: "./images/dick-logo.png",
-        appEmoji: "🍆", 
-        defaultProfilePicture: "./images/profile.png",
         registrationEnabled: false,
         privateModeEnabled: false,
-        adminUsers: []
-      },
-      users: []
+        logo: "./images/logo.png",
+        defaultProfilePicture: "./images/profile.png"
     }
     fs.writeFileSync('./src/database/settings.json', JSON.stringify(defaultDatabase), "utf-8")
+    return defaultDatabase
+  }
+}
+
+
+// Get settings database, creating a default one if it doesnt exist
+export const getUserDatabase = (): IUsersDatabase => {
+  try {
+    const databaseFile = fs.readFileSync(userDatabaseLocation).toString()
+    const database: IUsersDatabase = JSON.parse(databaseFile)
+    return database
+  } catch (error) {
+    const defaultDatabase: IUsersDatabase = []
+    fs.writeFileSync('./src/database/users.json', JSON.stringify(defaultDatabase), "utf-8")
     return defaultDatabase
   }
 }
@@ -133,22 +144,35 @@ export const convertToPaginatedArray = (data: Array<any>, itemsPerPage: number) 
  * @param username Username we are checking exists
  */
 export const checkIfUserExist = async (username: string) => {
-  const database = getDatabase()
+  const userDatabase = getUserDatabase()
 
   // If user does not exist in our database, we create it
-  if (!database.users.find((e: IUserSettings) => e.username === username)) {
-    const newUser: IUserSettings = {
-      username: username,
-      profilePicture: null,
-      config: null
+  if (!userDatabase.find((e: IUserSettings) => e.username === username)) {
+
+    // If there are no users in the database yet, we will make this user the admin (first user to login will always be admin)
+    if (userDatabase.length == 0) {
+
+      const newUser: IUserSettings = {
+        username: username,
+        role: "admin",
+        profilePicture: null
+      }
+
+      userDatabase.push(newUser)
+      fs.writeFileSync(userDatabaseLocation, JSON.stringify(userDatabase), "utf-8")
+    } else {
+      // Else we add the user to the datanase as a regular user
+      const newUser: IUserSettings = {
+        username: username,
+        role: "user",
+        profilePicture: null
+      }
+
+      userDatabase.push(newUser)
+      fs.writeFileSync(userDatabaseLocation, JSON.stringify(userDatabase), "utf-8")
     }
-    database.users.push(newUser)
-    fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
+
   }
 
-  // If there are no admin users in the database, we will make this user the admin (first user to login will always be admin)
-  if (database.settings.adminUsers.length == 0) {
-    database.settings.adminUsers.push(username)
-    fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
-  }
+
 }

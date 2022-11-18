@@ -1,11 +1,14 @@
 import { Request, Response, Router } from "express"
 import path from "path"
 import fs from "fs"
-import { authCheck, adminCheck, wrap, getDatabase } from "../utils/utils"
+import multer from "multer"
+import { authCheck, adminCheck, wrap, getSettingsDatabase } from "../utils/utils"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 
-const databaseLocation = path.resolve(`./src/database/settings.json`)
+const uploadImage = multer({ dest: './' })
+
+const settingsDatabaseLocation = path.resolve(`./src/database/settings.json`)
 
 export const adminRoutes = (app: Router) => {
   app.get(
@@ -24,15 +27,18 @@ export const adminRoutes = (app: Router) => {
     authCheck,
     adminCheck,
     (req: Request, res: Response) => {
-      const database = getDatabase()
-      const { name, logo, siteTitle, siteDescription, loginText, appEmoji, defaultProfilePicture } = req.body
+      const settingsDatabase = getSettingsDatabase()
+      const { name, siteTitle, siteDescription, loginText, appEmoji, privateMode, registrationEnabled } = req.body
 
+      /* 
+      *  This code is for if I ever decide to add changing the location of the image urls (such as calling an external URL from local files) 
+      \
       if (logo) {
        if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(logo)) {
         req.flash('error_message', 'Logo URL is not a valid picture.')
         return res.redirect('/admin')
        }
-       database.settings.logo = logo
+       settingsDatabase.logo = logo
       }
 
       if (defaultProfilePicture) {
@@ -40,16 +46,19 @@ export const adminRoutes = (app: Router) => {
          req.flash('error_message', 'Default profile picture is not a valid picture.')
          return res.redirect('/admin')
         }
-        database.settings.defaultProfilePicture = defaultProfilePicture
+        settingsDatabase.defaultProfilePicture = defaultProfilePicture
        }
+       */
 
-      name ? database.settings.name = name : null
-      siteTitle ? database.settings.siteTitle = siteTitle : null
-      siteDescription ? database.settings.siteDescription = siteDescription : null
-      loginText ? database.settings.loginText = loginText : null
-      appEmoji ? database.settings.appEmoji = appEmoji : null
+      name ? settingsDatabase.name = name : null
+      siteTitle ? settingsDatabase.siteTitle = siteTitle : null
+      siteDescription ? settingsDatabase.siteDescription = siteDescription : null
+      loginText ? settingsDatabase.loginText = loginText : null
+      appEmoji ? settingsDatabase.appEmoji = appEmoji : null
+      privateMode ? settingsDatabase.privateModeEnabled = privateMode : null
+      registrationEnabled ? settingsDatabase.registrationEnabled = registrationEnabled : null
 
-      fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
+      fs.writeFileSync(settingsDatabaseLocation, JSON.stringify(settingsDatabase), "utf-8")
 
       req.flash('success_alert_message', 'Settings successfully saved')
       return res.redirect('/admin')

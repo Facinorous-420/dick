@@ -28,6 +28,7 @@
     "errorhandler": "^1.5.1",
     "express": "^4.17.3",
     "lucide": "^0.95.0",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0"
   },
@@ -43,6 +44,7 @@
     "@types/express-busboy": "^8.0.0",
     "@types/express-session": "^1.17.4",
     "@types/fs-extra": "^9.0.13",
+    "@types/multer": "^1.4.7",
     "@types/node": "^17.0.22",
     "@types/passport": "^1.0.7",
     "@types/passport-local": "^1.0.34",

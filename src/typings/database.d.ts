@@ -1,9 +1,4 @@
-export interface IDatabase {
-    settings: ISettings
-    users: Array<IUserSettings>
-}
-
-export interface ISettings {
+export interface ISettingsDatabase {
     name: string
     logo: string
     siteTitle: string
@@ -13,22 +8,12 @@ export interface ISettings {
     defaultProfilePicture: string
     registrationEnabled: boolean
     privateModeEnabled: boolean
-    adminUsers: Array<string>
 }
+
+export interface IUsersDatabase extends Array<IUserSettings>{}
 
 export interface IUserSettings {
     username: string
+    role: "admin" | "user"
     profilePicture: string | null
-    config: IEmbedConfig | null
-}
-
-export interface IEmbedConfig {
-    header?: string
-    headerUrl?: string
-    author?: string
-    authorLink?: string
-    title?: string
-    description?: string
-    hex?: string
-    urlType?: string
 }
