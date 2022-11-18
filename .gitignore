@@ -17,7 +17,7 @@ tmp
 # Constants & Database
 src/constants
 src/database
-src/database.json
+src/database/settings.json
 src/constants.ts
 
 # Dependency directory

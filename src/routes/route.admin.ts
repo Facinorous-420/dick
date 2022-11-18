@@ -5,7 +5,7 @@ import { authCheck, adminCheck, wrap, getDatabase } from "../utils/utils"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 
-const databaseLocation = path.resolve(`./src/database.json`)
+const databaseLocation = path.resolve(`./src/database/settings.json`)
 
 export const adminRoutes = (app: Router) => {
   app.get(

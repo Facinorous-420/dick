@@ -7,7 +7,7 @@ import { IExtendedRequest } from "../typings/express-ext"
 import { STAFF_IDS } from "../constants"
 import { IDatabase, IUserSettings } from "typings/database"
 
-const databaseLocation = path.resolve(`./src/database.json`)
+const databaseLocation = path.resolve(`./src/database/settings.json`)
 
 // Get database, creating a default one if it doesnt exist
 export const getDatabase = (): IDatabase => {
@@ -26,11 +26,12 @@ export const getDatabase = (): IDatabase => {
         appEmoji: "🍆", 
         defaultProfilePicture: "./images/profile.png",
         registrationEnabled: false,
+        privateModeEnabled: false,
         adminUsers: []
       },
       users: []
     }
-    fs.writeFileSync('./src/database.json', JSON.stringify(defaultDatabase), "utf-8")
+    fs.writeFileSync('./src/database/settings.json', JSON.stringify(defaultDatabase), "utf-8")
     return defaultDatabase
   }
 }

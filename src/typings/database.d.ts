@@ -12,6 +12,7 @@ export interface ISettings {
     appEmoji: string
     defaultProfilePicture: string
     registrationEnabled: boolean
+    privateModeEnabled: boolean
     adminUsers: Array<string>
 }
 
