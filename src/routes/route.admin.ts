@@ -29,19 +29,25 @@ export const adminRoutes = (app: Router) => {
 
       if (logo) {
        if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(logo)) {
-
+        req.flash('error_message', 'Logo URL is not a valid picture.')
+        return res.redirect('/admin')
        }
-       req.flash('error_message', 'Logo URL is not a valid picture.')
-       return res.redirect('/admin')
+       database.settings.logo = logo
       }
 
+      if (defaultProfilePicture) {
+        if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(logo)) {
+         req.flash('error_message', 'Default profile picture is not a valid picture.')
+         return res.redirect('/admin')
+        }
+        database.settings.defaultProfilePicture = defaultProfilePicture
+       }
+
       name ? database.settings.name = name : null
-      logo ? database.settings.logo = logo : null
       siteTitle ? database.settings.siteTitle = siteTitle : null
       siteDescription ? database.settings.siteDescription = siteDescription : null
       loginText ? database.settings.loginText = loginText : null
       appEmoji ? database.settings.appEmoji = appEmoji : null
-      defaultProfilePicture ? database.settings.defaultProfilePicture = defaultProfilePicture : null
 
       fs.writeFileSync(databaseLocation, JSON.stringify(database), "utf-8")
 
