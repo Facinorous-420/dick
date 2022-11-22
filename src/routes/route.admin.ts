@@ -1,12 +1,12 @@
 import { Request, Response, Router } from "express"
 import path from "path"
-import fs from "fs"
+import fs from "fs-extra"
 import multer from "multer"
-import { authCheck, adminCheck, wrap, getSettingsDatabase } from "../utils/utils"
+import { authCheck, adminCheck, wrap } from "../utils/utils"
+import { getSettingsDatabase } from "../utils/database"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
-
-const uploadImage = multer({ dest: './' })
+import { defaultPPStorage, imageFileFilter, logoStorage } from "../utils/uploads"
 
 const settingsDatabaseLocation = path.resolve(`./src/database/settings.json`)
 
@@ -23,12 +23,12 @@ export const adminRoutes = (app: Router) => {
 
   // Save button on app settings page
   app.post(
-    "/admin",
+    "/admin/save/settings",
     authCheck,
     adminCheck,
     (req: Request, res: Response) => {
       const settingsDatabase = getSettingsDatabase()
-      const { name, siteTitle, siteDescription, loginText, appEmoji, privateMode, registrationEnabled } = req.body
+      const { name, siteTitle, siteDescription, loginText, appEmoji, privateModeEnabled, registrationEnabled } = req.body
 
       /* 
       *  This code is for if I ever decide to add changing the location of the image urls (such as calling an external URL from local files) 
@@ -55,14 +55,52 @@ export const adminRoutes = (app: Router) => {
       siteDescription ? settingsDatabase.siteDescription = siteDescription : null
       loginText ? settingsDatabase.loginText = loginText : null
       appEmoji ? settingsDatabase.appEmoji = appEmoji : null
-      privateMode ? settingsDatabase.privateModeEnabled = privateMode : null
-      registrationEnabled ? settingsDatabase.registrationEnabled = registrationEnabled : null
+      privateModeEnabled ? settingsDatabase.privateModeEnabled = true : settingsDatabase.privateModeEnabled = false
+      registrationEnabled ? settingsDatabase.registrationEnabled = true : settingsDatabase.registrationEnabled = false
 
-      fs.writeFileSync(settingsDatabaseLocation, JSON.stringify(settingsDatabase), "utf-8")
+      fs.writeJsonSync(settingsDatabaseLocation, settingsDatabase, { spaces: 4 })
 
       req.flash('success_alert_message', 'Settings successfully saved')
       return res.redirect('/admin')
     }
   )
 
+  // App logo upload on app settings page
+  app.post(
+    "/admin/upload/logo",
+    authCheck,
+    adminCheck,
+    (req: Request, res: Response) => {
+      const uploadLogo = multer({ storage: logoStorage, fileFilter: imageFileFilter }).fields([{ name: 'app-logo', maxCount: 1 }])
+      uploadLogo(req, res, (err) => {
+        if (err) {
+          console.log(err)
+          req.flash('error_message', 'Logo failed to upload')
+          return res.redirect('/admin')
+        }
+      })
+
+      req.flash('success_alert_message', 'Logo successfully uploaded and saved')
+      return res.redirect('/admin')
+    }
+  )
+
+  // Default profile picture upload on app settings page
+  app.post(
+    "/admin/upload/default-pp",
+    authCheck,
+    adminCheck,
+    (req: Request, res: Response) => {
+      const uploadDefaultPP = multer({ storage: defaultPPStorage, fileFilter: imageFileFilter }).fields([{ name: 'default-pp', maxCount: 1 }])
+      uploadDefaultPP(req, res, (err) => {
+        if (err) {
+          console.log(err)
+          req.flash('error_message', 'Logo failed to upload')
+          return res.redirect('/admin')
+        }
+      })
+      req.flash('success_alert_message', 'Logo successfully uploaded and saved')
+      return res.redirect('/admin')
+    }
+  )
 }

@@ -23,7 +23,8 @@ module.exports = {
           secondary: '#232d45', //bg-secondary
           secondaryHover: '#222f4d', //bg-secondary-hover
           tertiary: '#28334e', //bg-tertiary
-          tertiaryHover: '#2d3c5d' //bg-tertiary-hover
+          tertiaryHover: '#2d3c5d', //bg-tertiary-hover
+          tooltip: '#354567' //bg-toolip
         },
         darkthemeText: {
           primary: colors.white, //text-color-primary
@@ -36,7 +37,8 @@ module.exports = {
           secondary: '#f1f5f9', //bg-secondary
           secondaryHover: '#294ab3', //bg-secondary-hover
           tertiary: colors.white, //bg-tertiary
-          tertiaryHover: '#eef1f6' //bg-tertiary-hover
+          tertiaryHover: '#eef1f6', //bg-tertiary-hover
+          tooltip: '#7393B3' //bg-tooltip
         },
         lightthemeText: {
           primary: colors.slate[800], //text-color-primary

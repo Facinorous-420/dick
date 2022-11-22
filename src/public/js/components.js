@@ -10,8 +10,8 @@ function ready(fn) {
   // DOM Ready Called
   ready(function () {
   
-    const tabsProfile = document.getElementsByClassName('tabsProfile')
-    const tabsProfileContent = document.getElementsByClassName('tabsProfileContent')
+    const tabs = document.getElementsByClassName('tabs')
+    const tabsContent = document.getElementsByClassName('tabsContent')
   
     const dropdownSearchBtn = document.getElementsByClassName('dropdownSearchBtn')
     const dropdownSearch = document.getElementsByClassName('dropdownSearch')
@@ -24,6 +24,15 @@ function ready(fn) {
     const dropdownProfileBtn = document.getElementsByClassName('dropdownProfileBtn')
     const dropdownProfile = document.getElementsByClassName('dropdownProfile')
 
+    if(!location.pathname=="/admin"){
+        const colorPicker = document.querySelector('.custom-color-picker-border');
+
+
+        colorPicker.addEventListener('input',()=>{
+            colorPicker.style.setProperty('--color', colorPicker.value)
+        })
+    }
+    
     // Dropdown Navbar Event
     function fireDropdownNav(){
         dropdownNavBtn.addEventListener('click', () => {
@@ -168,30 +177,28 @@ function ready(fn) {
     }
     fireDropdownFile()
   
-
-    if(location.pathname=="/"){
         // Tabs Profile Event
-        function fireTabsProfile(){
-            //File Manager Tab = 0
-            tabsProfile[0].addEventListener('click', () => {
-                if (tabsProfile[1].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
-                    tabsProfile[1].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
-                    tabsProfile[0].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
-                    tabsProfileContent[1].classList.add('hidden')
-                    tabsProfileContent[0].classList.remove('hidden')
+        function fireTabs(){
+            //File Manager / Settings Tabs = 0
+            tabs[0].addEventListener('click', () => {
+                if (tabs[1].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
+                    tabs[1].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabs[0].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabsContent[1].classList.add('hidden')
+                    tabsContent[0].classList.remove('hidden')
                 }
             });
-            //Embed Gen Tab = 1
-            tabsProfile[1].addEventListener('click', () => {
-                if (tabsProfile[0].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
-                    tabsProfile[0].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
-                    tabsProfile[1].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
-                    tabsProfileContent[0].classList.add('hidden')
-                    tabsProfileContent[1].classList.remove('hidden')
+            //Embed Gen / Users Tabs = 1 
+            tabs[1].addEventListener('click', () => {
+                if (tabs[0].classList.contains('border-b-2', 'border-purple-400', 'font-semibold')) {
+                    tabs[0].classList.remove('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabs[1].classList.add('border-b-2', 'border-purple-400', 'font-semibold')
+                    tabsContent[0].classList.add('hidden')
+                    tabsContent[1].classList.remove('hidden')
                 }
             })
         }
-        fireTabsProfile()
-    }
+        fireTabs()
+
     
   })

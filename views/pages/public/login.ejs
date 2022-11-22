@@ -1,76 +1,81 @@
 <div class="bg-secondary max-h-1/2 max-w-md mx-auto overflow-hidden rounded-lg shadow-xl">
-  <div class="flex flex-col items-center justify-center overflow-y-auto md:flex-row">
-    <div class="flex items-center justify-center p-6 sm:p-12">
-      <div class="w-full">
-        <h3 class="text-gray-700 dark:text-gray-400 font-bold text-2xl text-center"><%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %></h3>
-        <p class="text-purple-400 text-xs pt-2 pb-5 text-center"><%= settingsDatabase.loginText ? settingsDatabase.loginText : "Sign in to easily manage your nudes." %></p>
+	<div class="flex flex-col items-center justify-center overflow-y-auto md:flex-row">
+    	<div class="flex items-center justify-center p-6 sm:p-12">
+      		<div class="w-full">
+        		<h3 class="text-gray-700 dark:text-gray-400 font-bold text-2xl text-center">
+          			<%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %>
+        		</h3>
+        		<p class="text-purple-400 text-xs pt-2 pb-5 text-center">
+          			<%= settingsDatabase.loginText ? settingsDatabase.loginText : "Sign in to easily manage your nudes." %>
+        		</p>
 
+        		<% if(success_alert_message !='' ){ %>
+          			<p class="text-green-600 pb-2 text-center">
+           				<%= success_alert_message %>
+          			</p>
+        		<% } %>
 
-        <% if(success_alert_message != ''){ %>
-          <p class="text-color-primary pb-2"><%= success_alert_message %></p>
-      <% } %>
-      
-      <% if(error_message != ''){ %>
-        <p class="text-color-primary pb-2"><%= error_message %></p>
-      <% } %>
+        		<% if(error_message !='' ){ %>
+          			<p class="text-red-600 pb-2 text-center">
+            			<%= error_message %>
+          			</p>
+        		<% } %>
 
-        <form class="flex flex-col" method="post" action="/auth/login">
-          <label class="block text-sm">
-            <span class="text-gray-700 dark:text-gray-400">Username</span>
-            <input
-              class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-              placeholder="Imposter" name="username" type="text" />
-          </label>
-          <label class="block mt-4 text-sm">
-            <span class="text-gray-700 dark:text-gray-400">Secret Key</span>
-            <input
-              class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
-              placeholder="***************" name="password" type="password" />
-          </label>
+        		<form class="flex flex-col" method="post" action="/auth/login">
+                	<label class="block text-sm">
+                    	<span class="text-gray-700 dark:text-gray-400">Username</span>
+                    	<input class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                    		placeholder="Imposter" name="username" type="text" />
+                  	</label>
+                	<label class="block mt-4 text-sm">
+                    	<span class="text-gray-700 dark:text-gray-400">Secret Key</span>
+                    	<input class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                      		placeholder="***************" name="password" type="password" />
+                  	</label>
 
-          <button
-            class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            type="submit">
-            Sign In
-          </button>
-        </form>
-        <!-- Add this in when we get system settings that can enable/disable registration
-          <p class="mt-4 text-center">
-            <a
-              class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-              href="3"
-            >
-              Create account
-            </a>
-          </p>
-         -->
-      </div>
-    </div>
-  </div>
+                	<button
+                    	class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                    	type="submit">
+                    	Sign In
+                  	</button>
+        		</form>
+
+                <% if(settingsDatabase.registrationEnabled) { %>
+                	<p class="mt-4 text-center">
+                    	<a class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline" href="/register">
+                      		Create account
+                    	</a>
+                  	</p>
+                <% } %>
+      		</div>
+    	</div>
+   </div>
 </div>
 
-<div class="bg-secondary h-1/2 max-w-md mt-5 mx-auto rounded-lg shadow-xl">
-  <div class="flex justify-around p-3">
-    <div class="text-center">
-      <i data-lucide="files" class="text-purple-400 mx-auto"></i>
-      <p class="text-gray-700 dark:text-gray-400">Total Files Saved </p>
-      <p class="text-gray-700 dark:text-gray-400">
-        <%= totalData %>
-      </p>
-    </div>
-    <div class="text-center px-5">
-      <i data-lucide="hard-drive" class="text-purple-400 mx-auto"></i>
-      <p class="text-gray-700 dark:text-gray-400">Total Space Used </p>
-      <p class="text-gray-700 dark:text-gray-400">
-        <%= totalSize %>
-      </p>
-    </div>
-    <div class="text-center">
-      <i data-lucide="users" class="text-purple-400 mx-auto"></i>
-      <p class="text-gray-700 dark:text-gray-400">Total Users </p>
-      <p class="text-gray-700 dark:text-gray-400">
-        <%= totalUsers %>
-      </p>
-    </div>
-  </div>
-</div>
+<% if(settingsDatabase.privateModeEnabled == false) { %>
+	<div class="bg-secondary h-1/2 max-w-md mt-5 mx-auto rounded-lg shadow-xl">
+    	<div class="flex justify-around p-3">
+      		<div class="text-center">
+        		<i data-lucide="files" class="text-purple-400 mx-auto"></i>
+        		<p class="text-gray-700 dark:text-gray-400">Total Files Saved </p>
+        		<p class="text-gray-700 dark:text-gray-400">
+          			<%= totalData %>
+        		</p>
+      		</div>
+      		<div class="text-center px-5">
+        		<i data-lucide="hard-drive" class="text-purple-400 mx-auto"></i>
+        		<p class="text-gray-700 dark:text-gray-400">Total Space Used </p>
+        		<p class="text-gray-700 dark:text-gray-400">
+          			<%= totalSize %>
+        		</p>
+      		</div>
+      		<div class="text-center">
+        		<i data-lucide="users" class="text-purple-400 mx-auto"></i>
+        		<p class="text-gray-700 dark:text-gray-400">Total Users </p>
+        		<p class="text-gray-700 dark:text-gray-400">
+          			<%= totalUsers %>
+        		</p>
+      		</div>
+    	</div>
+	</div>
+<% } %>

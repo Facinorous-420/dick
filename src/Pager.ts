@@ -2,7 +2,8 @@ import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
 import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
-import { convertTimestamp, convertToPaginatedArray, formatSize, getSettingsDatabase } from "./utils/utils"
+import { convertTimestamp, convertToPaginatedArray, formatSize, } from "./utils/utils"
+import { getSettingsDatabase } from "./utils/database"
 import { ASSUser, ASSItem } from "./typings/ASSTypes"
 import { IExtendedRequest } from "./typings/express-ext"
 import { ISettingsDatabase } from "./typings/database"
@@ -23,12 +24,12 @@ export class Pager {
     const data: Array<ASSItem> = parseDataFile()
     const users: Array<ASSUser> = parseAuthFile()
     const database: ISettingsDatabase = getSettingsDatabase()
-    
+
     // If user is already authenticated load the authenticated data
     if (req.isAuthenticated()) {
       return this.renderAuthenticatedData(res, req, template, options, data, users, database)
     }
-    
+
     // If user is not authenticated only load guest data
     return this.renderUnauthenticatedData(res, req, template, options, data, users, database)
   }
@@ -36,7 +37,7 @@ export class Pager {
   /**
    * Renders templates for unauthenticated templates
    */
-   static async renderUnauthenticatedData(
+  static async renderUnauthenticatedData(
     res: Response,
     req: IExtendedRequest,
     template: string,
@@ -77,45 +78,49 @@ export class Pager {
   ) {
     // * -------------------- BUILD DATA OBJECT FOR FRONTEND EJS VARIABLES ------------
     const totalUsers = users.length
+    const allUsers = []
+    for (const user of users) {
+      allUsers.push(`${user.username}`)
+    }
     const totalData = data.length
     const totalSize = formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0))
     const hasRole = STAFF_IDS.indexOf(req.user.username) > -1
     // Get all the specific users file information, using secret key to match
     const usersData = data.filter(item => item.owner == req.user.password).map((item) => ({
-      ...item, 
+      ...item,
       timestamp: convertTimestamp(item.timestamp)
     })).sort((a, b) => {
       let da = new Date(a.timestamp),
-          db = new Date(b.timestamp)
-          return db.getTime() - da.getTime()
+        db = new Date(b.timestamp)
+      return db.getTime() - da.getTime()
     })
 
     const appDataObj = {
-      allImages: data.filter(item=> item.type.includes('image')),
-      allVideos: data.filter(item=> item.type.includes('video')),
-      allAudio: data.filter(item=> item.type.includes('audio')),
-      allOthers: data.filter(item=> item.type.includes('other')),
-      totalSize:formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalImageSize: formatSize(data.filter(item=> item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalVideosSize: formatSize(data.filter(item=> item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalAudioSize: formatSize(data.filter(item=> item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalOthersSize: formatSize(data.filter(item=> item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
+      allImages: data.filter(item => item.type.includes('image')),
+      allVideos: data.filter(item => item.type.includes('video')),
+      allAudio: data.filter(item => item.type.includes('audio')),
+      allOthers: data.filter(item => item.type.includes('other')),
+      totalSize: formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalImageSize: formatSize(data.filter(item => item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalVideosSize: formatSize(data.filter(item => item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalAudioSize: formatSize(data.filter(item => item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalOthersSize: formatSize(data.filter(item => item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
     }
 
     const usersDataObj = {
-      data: convertToPaginatedArray(usersData,50),
+      data: convertToPaginatedArray(usersData, 50),
       totalFiles: usersData.length,
-      allImages: usersData.filter(item=> item.type.includes('image')),
-      allVideos: usersData.filter(item=> item.type.includes('video')),
-      allAudio: usersData.filter(item=> item.type.includes('audio')),
-      allOthers: usersData.filter(item=> item.type.includes('other')),
-      totalSize:formatSize(usersData.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalImageSize: formatSize(usersData.filter(item=> item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalVideosSize: formatSize(usersData.filter(item=> item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalAudioSize: formatSize(usersData.filter(item=> item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalOthersSize: formatSize(usersData.filter(item=> item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
+      allImages: usersData.filter(item => item.type.includes('image')),
+      allVideos: usersData.filter(item => item.type.includes('video')),
+      allAudio: usersData.filter(item => item.type.includes('audio')),
+      allOthers: usersData.filter(item => item.type.includes('other')),
+      totalSize: formatSize(usersData.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalImageSize: formatSize(usersData.filter(item => item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalVideosSize: formatSize(usersData.filter(item => item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalAudioSize: formatSize(usersData.filter(item => item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalOthersSize: formatSize(usersData.filter(item => item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
     }
-    
+
     let targetDataObj = {}
     // If the user is staff and is trying to view another users information, we will grab it here to render that as well..
     /*
@@ -135,7 +140,7 @@ export class Pager {
       }
     }
     */
-   
+
     const baseData = {
       assDomain: ASS_DOMAIN,
       assSecure: ASS_SECURE,
@@ -143,6 +148,7 @@ export class Pager {
       settingsDatabase,
       totalSize,
       totalUsers,
+      allUsers,
       totalData,
       usersDataObj,
       appDataObj,

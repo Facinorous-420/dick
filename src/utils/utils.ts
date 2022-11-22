@@ -1,77 +1,10 @@
 import { Log } from "@callmekory/logger"
-import fs from "fs"
 import { Response, NextFunction } from "express"
-import path, { join, normalize } from "path"
+import { join, normalize } from "path"
 
 import { IExtendedRequest } from "../typings/express-ext"
 import { STAFF_IDS } from "../constants"
-import { ISettingsDatabase, IUsersDatabase, IUserSettings } from "typings/database"
-
-const settingsDatabaseLocation = path.resolve(`./src/database/settings.json`)
-const userDatabaseLocation = path.resolve(`./src/database/users.json`)
-
-// Get settings database, creating a default one if it doesnt exist
-export const getSettingsDatabase = (): ISettingsDatabase => {
-  try {
-    const databaseFile = fs.readFileSync(settingsDatabaseLocation).toString()
-    const database: ISettingsDatabase = JSON.parse(databaseFile)
-    return database
-  } catch (error) {
-    const defaultDatabase: ISettingsDatabase = {
-        name: "dick",
-        appEmoji: "🍆",
-        siteTitle: "DICK (Directly Integrated Client for Keisters)",
-        siteDescription: "The frontend for your backend",
-        loginText: "Sign in to easily manage your nudes.",
-        registrationEnabled: false,
-        privateModeEnabled: false,
-        logo: "./images/logo.png",
-        defaultProfilePicture: "./images/profile.png"
-    }
-    fs.writeFileSync('./src/database/settings.json', JSON.stringify(defaultDatabase), "utf-8")
-    return defaultDatabase
-  }
-}
-
-
-// Get settings database, creating a default one if it doesnt exist
-export const getUserDatabase = (): IUsersDatabase => {
-  try {
-    const databaseFile = fs.readFileSync(userDatabaseLocation).toString()
-    const database: IUsersDatabase = JSON.parse(databaseFile)
-    return database
-  } catch (error) {
-    const defaultDatabase: IUsersDatabase = []
-    fs.writeFileSync('./src/database/users.json', JSON.stringify(defaultDatabase), "utf-8")
-    return defaultDatabase
-  }
-}
-
-/**
- * Generate the appropriate pathing for the a template to be rendered
- */
-export const templatePathBuilder = (templatePath: string) => {
-  const templateDir = normalize(join(__dirname, "..", "..", "views"))
-
-  return normalize(join(templateDir, "templates", templatePath))
-}
-
-/**
- * Wraps the express route in a function that passes the
- * `next` method from the route to the promise's catch
- * statement which allows the middleware to catch the
- * exception.
- */
-export const wrap = (req: IExtendedRequest, res: Response, next: NextFunction) => {
-
-  checkIfUserExist(req.user.username)
-
-  if (req.user) {
-    Log.info(`${req.user.username} navigated to page ${req.path}`)
-  }
-
-  return next()
-}
+import { checkIfUserExistInDICK, createUserInDICK } from "./database"
 
 // Express middleware to check if username/password match one of the users
 // in auth.json
@@ -90,6 +23,34 @@ export const adminCheck = (req: IExtendedRequest, res: Response, next: NextFunct
     Log.info(`${req.user.username} navigated to page ${req.path} and is not an admin, redirecting to users dashboard`)
     res.redirect('/')
   } else next()
+}
+
+/**
+ * Generate the appropriate pathing for the a template to be rendered
+ */
+export const templatePathBuilder = (templatePath: string) => {
+  const templateDir = normalize(join(__dirname, "..", "..", "views"))
+
+  return normalize(join(templateDir, "templates", templatePath))
+}
+
+/**
+ * Wraps the express route in a function that passes the
+ * `next` method from the route to the promise's catch
+ * statement which allows the middleware to catch the
+ * exception.
+ */
+export const wrap = async (req: IExtendedRequest, res: Response, next: NextFunction) => {
+  if (req.user) {
+    // If the user does not exist in DICKs database yet, we add them
+    if (await checkIfUserExistInDICK(req.user.username) == false) {
+      createUserInDICK(req.user.username)
+    }
+    // Log the page the user navigated to
+    Log.info(`${req.user.username} navigated to page ${req.path}`)
+  }
+
+  return next()
 }
 
 /**
@@ -139,40 +100,4 @@ export const convertToPaginatedArray = (data: Array<any>, itemsPerPage: number) 
   return paginatedArray
 }
 
-/**
- * Checks if the user is in our local JSON database, if they arent we add them
- * @param username Username we are checking exists
- */
-export const checkIfUserExist = async (username: string) => {
-  const userDatabase = getUserDatabase()
 
-  // If user does not exist in our database, we create it
-  if (!userDatabase.find((e: IUserSettings) => e.username === username)) {
-
-    // If there are no users in the database yet, we will make this user the admin (first user to login will always be admin)
-    if (userDatabase.length == 0) {
-
-      const newUser: IUserSettings = {
-        username: username,
-        role: "admin",
-        profilePicture: null
-      }
-
-      userDatabase.push(newUser)
-      fs.writeFileSync(userDatabaseLocation, JSON.stringify(userDatabase), "utf-8")
-    } else {
-      // Else we add the user to the datanase as a regular user
-      const newUser: IUserSettings = {
-        username: username,
-        role: "user",
-        profilePicture: null
-      }
-
-      userDatabase.push(newUser)
-      fs.writeFileSync(userDatabaseLocation, JSON.stringify(userDatabase), "utf-8")
-    }
-
-  }
-
-
-}

@@ -19,6 +19,13 @@
   .bg-tertiary-hover {
     @apply bg-lighttheme-tertiaryHover dark:bg-darktheme-tertiaryHover;
   }
+  .bg-tooltip {
+    @apply bg-lighttheme-tooltip dark:bg-darktheme-tooltip;
+  }
+  /* Custom Border Colors */
+  .border-tooltip {
+    @apply border-lighttheme-tooltip dark:border-darktheme-tooltip;
+  }
   /* Custom Text Colors */
   .text-color-primary {
     @apply text-lightthemeText-primary dark:text-darkthemeText-primary;
@@ -49,5 +56,80 @@
   }
   .has-name-tooltip:hover .name-tooltip {
     @apply hover:visible hover:z-50;
+  }
+
+  .switch {
+    @apply inline-flex items-center cursor-pointer relative;
+  }
+
+  .switch input[type="checkbox"] {
+    @apply absolute left-0 opacity-0 -z-10;
+  }
+
+  .switch input[type="checkbox"] + .check {
+    @apply border-gray-700 border transition-colors duration-200;
+  }
+
+  .switch input[type="checkbox"]:focus + .check {
+    @apply ring ring-purple-700;
+  }
+
+  .checkbox input[type="checkbox"] + .check {
+    @apply rounded;
+  }
+
+  .switch input[type="checkbox"] + .check {
+    @apply flex items-center shrink-0 w-12 h-6 p-0.5 bg-[#19253B];
+  }
+
+  .switch input[type="checkbox"] + .check,
+  .switch input[type="checkbox"] + .check:before {
+    @apply rounded-full;
+  }
+
+  .switch input[type="checkbox"]:checked + .check {
+    @apply bg-purple-600 border-purple-600;
+  }
+
+  .switch input[type="checkbox"] + .check:before {
+    content: "";
+    @apply block w-5 h-5 bg-white border border-gray-700;
+  }
+
+  .switch input[type="checkbox"]:checked + .check:before {
+    transform: translate3d(110%, 0, 0);
+    @apply border-purple-600;
+  }
+}
+
+@layer utilities {
+  .custom-color-picker-border {
+    --color: linear-gradient(
+      90deg,
+      Red,
+      Orange,
+      Yellow,
+      Green,
+      purple,
+      Indigo,
+      violet
+    );
+    width: 99%;
+    height: 1.57rem;
+    position: relative;
+  }
+
+  /* Create the pseudo class and add styling */
+  .custom-color-picker-border::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    width: 100%;
+    height: 150%;
+    background: var(--color);
+    border-radius: 5px;
   }
 }
