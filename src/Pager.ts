@@ -25,11 +25,10 @@ export class Pager {
     const users: Array<ASSUser> = parseAuthFile()
     const dickUsers: IUsersDatabase = getUserDatabase()
     const database: ISettingsDatabase = getSettingsDatabase()
-    const user: IUserSettings = getUserDatabaseObj(req.user.username)
 
     // If user is already authenticated load the authenticated data
     if (req.isAuthenticated()) {
-      return this.renderAuthenticatedData(res, req, template, options, data, users, database, user, dickUsers)
+      return this.renderAuthenticatedData(res, req, template, options, data, users, database, dickUsers)
     }
 
     // If user is not authenticated only load guest data
@@ -77,7 +76,6 @@ export class Pager {
     data: Array<ASSItem>,
     users: Array<ASSUser>,
     settingsDatabase: ISettingsDatabase,
-    user: IUserSettings,
     dickUsers: IUsersDatabase
   ) {
     // * -------------------- BUILD DATA OBJECT FOR FRONTEND EJS VARIABLES ------------
@@ -86,6 +84,7 @@ export class Pager {
     for (const user of users) {
       allUsers.push(`${user.username}`)
     }
+    const user: IUserSettings = getUserDatabaseObj(req.user.username)
     const totalData = data.length
     const totalSize = formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0))
     const hasRole = user.role == "admin" ? true : false
