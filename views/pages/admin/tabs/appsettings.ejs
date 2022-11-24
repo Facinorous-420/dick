@@ -32,15 +32,15 @@
                         <div class="grid grid-cols-2 gap-5 text-sm md:text-base">
                             <div class="xl:col-span-1 lg:col-span-2 col-span-1">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         App Name
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This is the title shown in the top left of the app, as well as other various places.
                                                     </div>
@@ -54,21 +54,21 @@
                                 </label>
                                 <!-- End Label with tooltip -->
                                 <input
-                                class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
                                 placeholder="<%= settingsDatabase.name ? settingsDatabase.name : "DICK" %>" name="name" type="text" />
                             </div>
 
                             <div class="xl:col-span-1 lg:col-span-2  col-span-1">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         App Emoji
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This is the emoji shown in the breadcrumps at the top of the screen, as well as on each file.
                                                     </div>
@@ -83,22 +83,22 @@
                                 </label>
                                 <!-- End Label with tooltip -->
                                 <input                     
-                                class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
                                 placeholder="<%= settingsDatabase.appEmoji ? settingsDatabase.appEmoji : "🍆" %>" name="appEmoji" type="text" />
                             </div>
 
                             <div class="xl:col-span-1 lg:col-span-2  col-span-1">
                                 <!-- Label with tooltip -->
-                                    <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                    <label class="mb-2 block text-color-tertiary text-sm">
                                         <div class="relative w-max">
                                             Site Name
                                             <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                                 <div>
                                                     <i data-lucide="help-circle" class="text-color-secondary"></i>
                                                 </div>
-                                                <div class="flex bg-blue-500 justify-center items-center">
+                                                <div class="flex justify-center items-center">
 
-                                                    <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                         <div class="break-words">
                                                             This is the text shown on the browser tab, and title in the embed when directly linking the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> dashboard.
                                                         </div>
@@ -112,21 +112,21 @@
                                     </label>
                                 <!-- End Label with tooltip -->
                                 <input
-                                class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
                                 placeholder="<%= settingsDatabase.siteTitle ? settingsDatabase.siteTitle : "DICK (Directly Integrated Client for Keisters)" %>" name="siteTitle" type="text" />
                             </div>
 
                             <div class="xl:col-span-1 lg:col-span-2  col-span-1">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         Site Description
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This is the description text shown in the embed when directly linking the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> dashboard.
                                                     </div>
@@ -140,21 +140,21 @@
                                 </label>
                                 <!-- End Label with tooltip -->
                                 <input                     
-                                class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
                                 placeholder="<%= settingsDatabase.siteDescription ? settingsDatabase.siteDescription : "The frontend for your backend" %>" name="siteDescription" type="text" />
                             </div>
 
-                            <div class="col-span-2">
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         Login Text
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This is the text shown directly under the app title in the login and register pages!
                                                     </div>
@@ -168,21 +168,84 @@
                                 </label>
                                 <!-- End Label with tooltip -->
                                 <input  
-                                class="form-input block w-full mt-1 rounded text-sm  dark:text-gray-400 border-gray-600 dark:bg-gray-700 transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-purple-600 focus:text-purple-400"
+                                class="form-input block w-full mt-1 rounded text-sm text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
                                 placeholder="<%= settingsDatabase.loginText ? settingsDatabase.loginText : "Sign in to easily manage your nudes." %>" name="loginText" type="text" />
+                            </div>
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Captcha Site ID
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        If set, this will enable hCaptcha. If configured wrong, your users wont be able to log in. Proceed with caution. <a href="https://www.hcaptcha.com/">learn more here.</a>
+                                                    </div>
+
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+
+                                <!-- Input -->
+                                <div class="relative">
+                                    <input  
+                                        class="form-input block w-full mt-1 rounded text-sm text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                        placeholder="<%= settingsDatabase.captchaSiteID ? settingsDatabase.captchaSiteID : "No site ID entered. Defaulting to vanilla captcha." %>" name="captchaSiteID" type="text" />
+                                
+                                    <div class="absolute top-0 right-3 h-full">
+                                        <div class="flex items-center justify-center space-x-2 h-full">
+                                            <!-- Rounded Checkbox -->
+                                            <div class="relative">
+                                                <input id="captchaCheckbox" name="captchaCheckbox" class="hidden peer"
+                                                    <%= settingsDatabase.captchaEnabled ? 'checked' : null %> type="checkbox" />
+                                                <button type="button"
+                                                    class="peer border-2 focus:border-accent text-transparent peer-checked:text-color-primary border-[#354567] flex items-center justify-center peer-checked:bg-accent relative h-5 w-5 md:h-6 md:w-6 rounded-full">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="14" height="14" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <polyline points="20 6 9 17 4 12">
+                                                        </polyline>
+                                                    </svg>
+                                                    <label class="absolute inset-0 cursor-pointer"
+                                                        for="captchaCheckbox">
+                                                    </label>
+                                                </button>
+                                            </div>
+                                            <!-- End Rounded Checkbox -->
+
+                                            <small class="text-color-tertiary text-xs">
+                                                Enable
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Input -->
                             </div>
 
                             <div class="col-span-1">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         Private Mode
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This will remove the app statisics from the login page.
                                                     </div>
@@ -197,12 +260,12 @@
                                 <!-- End Label with tooltip -->
                                 <!-- Switch  -->
                                 <label class="switch">
-                                    <!-- <span class="pr-2 text-gray-300">
+                                    <!-- <span class="pr-2 text-color-secondary">
                                         Off
                                     </span> -->
                                     <input type="checkbox" name="privateModeEnabled" value="privateModeEnabled" <%= settingsDatabase.privateModeEnabled ? 'checked' : null %>>
                                     <span class="check"></span>
-                                    <!-- <span class="pl-2 text-gray-300">
+                                    <!-- <span class="pl-2 text-color-secondary">
                                         On
                                     </span> -->
                                 </label>
@@ -211,15 +274,15 @@
 
                             <div class="col-span-1">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         Registration Enabled
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This allows people to create accounts in your ASS instance.
                                                     </div>
@@ -233,12 +296,12 @@
                                 </label>
                                 <!-- End Label with tooltip -->
                                 <label class="switch">
-                                    <!-- <span class="pr-2 text-white">
+                                    <!-- <span class="pr-2 text-color-primary">
                                         Off
                                     </span> -->
                                     <input type="checkbox" name="registrationEnabled" value="registrationEnabled" <%= settingsDatabase.registrationEnabled ? 'checked' : null %>>
                                     <span class="check"></span>
-                                    <!-- <span class="pl-2 text-white">
+                                    <!-- <span class="pl-2 text-color-primary">
                                         On
                                     </span> -->
                                 </label>
@@ -246,7 +309,7 @@
 
                             <div class="col-span-2">
                                 <div class="flex w-full justify-center items-center bg-tertiary p-6 rounded-md">
-                                    <button type="submit" class="bg-purple-600 w-full hover:bg-purple-700 rounded-md px-8 py-3 text-white">
+                                    <button type="submit" class="bg-accentsecondary w-full hover:bg-accent rounded-md px-8 py-3 text-color-primary">
                                         Save Settings
                                     </button>
                                 </div>
@@ -270,15 +333,15 @@
                         <div class="col-span-2">
                             <form method="post" enctype="multipart/form-data" action="/admin/upload/logo">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         App Logo
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This is the logo shown in various areas of the app!
                                                     </div>
@@ -293,12 +356,12 @@
                                 <!-- End Label with tooltip -->
 
                                 <!-- Drag Drop File -->
-                                <label for="app-logo" class="cursor-pointer flex w-full h-40 border-2 border-gray-600 border-dashed rounded-md p-5">
+                                <label for="app-logo" class="cursor-pointer flex w-full h-40 border-2 border-form border-dashed rounded-md p-5">
                                     <div class="w-full flex flex-col justify-center items-center h-ful">
-                                        <span class="font-semibold text-gray-300 text-lg">
+                                        <span class="font-semibold text-color-primary text-lg">
                                             Drop files here or click to upload.
                                         </span>
-                                        <p class="text-sm text-gray-400 text-center">
+                                        <p class="text-sm text-color-secondary text-center">
                                             All files uploaded are stored directly in the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> app folder.
                                         </p>
                                     </div>
@@ -311,16 +374,16 @@
                         <div class="col-span-2">
                             <form method="post" enctype="multipart/form-data" action="/admin/upload/default-pp">
                                 <!-- Label with tooltip -->
-                                <label class="mb-2 block text-gray-700 dark:text-gray-400 text-sm">
+                                <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
                                         Default Profile Picture
                                         <div class="group z-20 absolute -right-8 top-0 cursor-help">
                                             <div>
                                                 <i data-lucide="help-circle" class="text-color-secondary"></i>
                                             </div>
-                                            <div class="flex bg-blue-500 justify-center items-center">
+                                            <div class="flex justify-center items-center">
 
-                                                <div class="lg:w-52 w-48 group-hover:block text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
                                                     <div class="break-words">
                                                         This is the default profile picture all new users have.
                                                     </div>
@@ -336,12 +399,12 @@
                                 <!-- End Label with tooltip -->
 
                                 <!-- Drag Drop File -->
-                                <label for="default-pp" class="cursor-pointer flex w-full h-40 border-2 border-gray-600 border-dashed rounded-md p-5">
+                                <label for="default-pp" class="cursor-pointer flex w-full h-40 border-2 border-form border-dashed rounded-md p-5">
                                     <div class="w-full flex flex-col justify-center items-center h-ful">
-                                        <span class="font-semibold text-gray-300 text-lg">
+                                        <span class="font-semibold text-color-primary text-lg">
                                             Drop files here or click to upload.
                                         </span>
-                                        <p class="text-sm text-gray-400 text-center">
+                                        <p class="text-sm text-color-secondary text-center">
                                             All files uploaded are stored directly in the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> app folder.
                                         </p>
                                     </div>

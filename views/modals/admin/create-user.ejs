@@ -1,0 +1,74 @@
+<div id="showModal" class="hidden z-50 items-center flex-col justify-center overflow-hidden fixed inset-0">
+    <!-- Modal Outscreen -->
+    <div class="buttonModal absolute inset-0 bg-gradient-to-tr opacity-90 from-gray-700 via-gray-900 to-gray-700">
+    </div>
+    <!-- Modal Outscreen -->
+
+    <form action="/admin/add/user" method="POST"
+        class="rounded-2xl flex-col bg-tertiary flex shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50">
+        <div class="flex-1 p-6">
+            <!--Modal Header  -->
+            <div class="flex items-center justify-between mb-3 border-b border-slate-700/50">
+
+                <!-- Modal Title -->
+                <h1 class="text-2xl text-color-primary font-semibold">
+                    Add New User
+                </h1>
+                <!-- End Modal Title -->
+
+                <!-- Modal Close Button -->
+                <button type="button" class="buttonModal inline-flex justify-center items-center text-color-secondary"
+                    type="button">
+                    <span class="inline-flex justify-center items-center w-6 h-6">
+                        <svg viewBox="0 0 24 24" width="25" height="25" class="inline-block">
+                            <path fill="currentColor"
+                                d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+                <!-- End Modal Close Button -->
+
+            </div>
+            <!-- End Modal Header -->
+
+            <!-- Modal Body -->
+            <div class="mt-6">
+                <div class="grid grid-cols-2 gap-5 text-sm md:text-base">
+                    <div class="md:col-span-1 col-span-2">
+                        <label class="mb-2 block text-color-tertiary text-sm">
+                            <div class="relative w-max">
+                                Username
+
+                            </div>
+                        </label>
+                        <input
+                            class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                            placeholder="Imposter" name="username" type="text" />
+                    </div>
+                    <div class="md:col-span-1 col-span-2">
+                        <label class="mb-2 block text-color-tertiary text-sm">
+                            <div class="relative w-max">
+                                Secret Key
+                            </div>
+                        </label>
+                        <input
+                            class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                            placeholder="***************" name="password" type="password" />
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal Body -->
+        </div>
+        <!-- Modal Footer -->
+        <div class="p-6">
+            <div class="flex items-center justify-end flex-wrap -mb-3">
+                <button type="submit"
+                    class="bg-accentsecondary w-auto hover:bg-accent rounded-md px-5 py-2 text-color-primary">
+                    Add User
+                </button>
+            </div>
+            <div>
+                <!-- End Modal Footer  -->
+    </form>
+</div>

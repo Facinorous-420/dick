@@ -13,7 +13,7 @@
             <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
                 <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
                     <div class="flex">
-                        <i data-lucide="users" class="text-purple-400 mr-2"></i>
+                        <i data-lucide="users" class="text-color-accent mr-2"></i>
                     </div>
                     <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
                         <%= totalUsers %>
@@ -27,7 +27,7 @@
             <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
                 <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
                     <div class="flex">
-                        <i data-lucide="files" class="text-purple-400 mr-2"></i>
+                        <i data-lucide="files" class="text-color-accent mr-2"></i>
                         <p class="ml-auto text-slate-500 text-sm">
                             <%= totalSize %>
                         </p>
@@ -42,7 +42,7 @@
             </div>
 
             <div
-                class="col-span-6 sm:col-span-3 xl:col-span-1 w-px h-40 border border-r border-purple-400 border-dashed mx-4 xl:mx-6 hidden md:table-cell">
+                class="col-span-6 sm:col-span-3 xl:col-span-1 w-px h-40 border border-r border-accent border-dashed mx-4 xl:mx-6 hidden md:table-cell">
             </div>
 
             <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
@@ -121,14 +121,14 @@
 
     <div
         class="flex flex-col flex-wrap items-center space-y-4 px-5 pt-5 md:flex-row md:space-y-0 lg:flex-row lg:space-y-0">
-        <button
-            class="tabs inline-flex w-full items-center space-x-2 border-b-2 border-purple-400 px-6 pb-5 text-sm font-semibold text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
+        <button data-id="1"
+            class="tabAdmin inline-flex w-full items-center space-x-2 border-b-2 border-accent px-6 pb-5 text-sm font-semibold text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
             <i data-lucide="Settings" class="text-color-secondary"></i>
             <span class="truncate"> App Settings </span>
         </button>
 
-        <button
-            class="tabs inline-flex w-full items-center space-x-2 px-6 pb-5 text-sm text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
+        <button data-id="2"
+            class="tabAdmin inline-flex w-full items-center space-x-2 px-6 pb-5 text-sm text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
             <i data-lucide="Users" class="text-color-secondary"></i>
             <span> Users </span>
         </button>
@@ -136,12 +136,11 @@
     <!-- End Admin Tabs -->
 </div>
 
-<div
-    class="mt-10 flex flex-col flex-wrap space-x-0 space-y-6 md:flex-row md:flex-nowrap md:space-x-6 md:space-y-0 lg:flex-row lg:flex-nowrap lg:space-x-6 lg:space-y-0">
-    <div class="tabsContent flex-1 basis-full space-y-3">
+<div class="mt-10 flex flex-col flex-wrap">
+    <div class="changeTabAdmin flex-1 basis-full">
         <%- include("./tabs/appsettings") %>
     </div>
-    <div class="tabsContent hidden basis-full space-y-3">
+    <div class="changeTabAdmin hidden basis-full">
         <%- include("./tabs/users") %>
     </div>
 </div>

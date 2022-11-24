@@ -13,11 +13,6 @@ export const ASS_DOMAIN = "127.0.0.1:40115"
 // For example "../ass" means ass is installed in the parent directory.
 export const ASS_LOCATION = "../ass"
 
-/* ------------------- STAFF ID CONSTANTS ------------------------ */
-// this will eventually be moved away from constants
-// Array of all USERNAMES in your ASS auth.json file that will have admin access: ["ass", "dick", "frank"]
-export const STAFF_IDS = ["ass"]
-
 /* ------------------- SYSTEM CONSTANTS ------------------------ */
 // Port to run the server on, change if you have something else running on that port
 export const PORT = "3000"

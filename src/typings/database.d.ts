@@ -5,6 +5,8 @@ export interface ISettingsDatabase {
     siteDescription: string
     loginText: string
     appEmoji: string
+    captchaEnabled: boolean
+    captchaSiteID: string | null
     defaultProfilePicture: string
     registrationEnabled: boolean
     privateModeEnabled: boolean

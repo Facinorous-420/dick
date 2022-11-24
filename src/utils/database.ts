@@ -4,6 +4,7 @@ import fs from "fs-extra"
 import { ISettingsDatabase, IUsersDatabase, IUserSettings } from "typings/database"
 import { ASS_LOCATION } from "../constants"
 import { parseAuthFile } from "./assJSONStructure"
+import { Log } from "@callmekory/logger/lib"
 
 const settingsDatabaseLocation = path.resolve(`./src/database/settings.json`)
 const userDatabaseLocation = path.resolve(`./src/database/users.json`)
@@ -27,6 +28,8 @@ export const getSettingsDatabase = (): ISettingsDatabase => {
             siteTitle: "DICK (Directly Integrated Client for Keisters)",
             siteDescription: "The frontend for your backend",
             loginText: "Sign in to easily manage your nudes.",
+            captchaEnabled: false,
+            captchaSiteID: null,
             registrationEnabled: false,
             privateModeEnabled: false,
             logo: "./images/logo.png",
@@ -36,7 +39,6 @@ export const getSettingsDatabase = (): ISettingsDatabase => {
         return defaultDatabase
     }
 }
-
 
 // Get users database, creating a default one if it doesnt exist
 export const getUserDatabase = (): IUsersDatabase => {
@@ -48,6 +50,40 @@ export const getUserDatabase = (): IUsersDatabase => {
         const defaultDatabase: IUsersDatabase = []
         fs.writeJsonSync(userDatabaseLocation, defaultDatabase, { spaces: 4 })
         return defaultDatabase
+    }
+}
+
+// Get users database object, creating a default one if it doesnt exist
+export const getUserDatabaseObj = (username: string): IUserSettings | null => {
+    try {
+        const database = getUserDatabase()
+        const user = database.find((e: IUserSettings) => e.username === username)
+        if (!user) {
+            let newUser: IUserSettings
+
+            // If there are no users in the database yet, we will make this user the admin (first user to login will always be admin)
+            if (database.length == 0) {
+                newUser = {
+                    username: username,
+                    role: "admin",
+                    profilePicture: null
+                }
+            } else {
+                // Else we add the user to the database as a regular user
+                newUser = {
+                    username: username,
+                    role: "user",
+                    profilePicture: null
+                }
+            }
+            database.push(newUser)
+            fs.writeJsonSync(userDatabaseLocation, database, { spaces: 4 })
+            return user
+        }
+        return user
+    } catch (error) {
+        Log.error(error)
+        return null
     }
 }
 
@@ -86,13 +122,12 @@ export const checkIfUserExistInASS = async (username: string, token?: string): P
  * Checks if the user is in our local JSON database, returns true if the user exists, or false if it does not
  * @param username Username we are checking exists
  */
-export const checkIfUserExistInDICK = async (username: string, token?: string): Promise<boolean> => {
+export const checkIfUserExistInDICK = async (username: string): Promise<boolean> => {
     const dickUserDatabase = getUserDatabase()
     let result = false
 
     // Check if the user exists in the DICK Database
-    const dickResult = dickUserDatabase.find((e: IUserSettings) => e.username === username) ? true : false
-    if (dickResult) {
+    if (dickUserDatabase.find((e: IUserSettings) => e.username === username)) {
         result = true
     }
 
@@ -145,4 +180,22 @@ export const createUserInDICK = async (username: string) => {
         userDatabase.push(newUser)
         fs.writeJsonSync(userDatabaseLocation, userDatabase, { spaces: 4 })
     }
+}
+
+/**
+ * Cycles through all users in the ASS auth database and adds them to the DICk user database
+ * if they are not already in it.
+*/
+export const syncAssUsersToDick = () => {
+    const assUserDatabase = parseAuthFile()
+    const dickUserDatabase = getUserDatabase()
+
+    if(dickUserDatabase.length !== 0){
+        for (const user of assUserDatabase) {
+            if (!dickUserDatabase.find((e: IUserSettings) => e.username === user.username)) {
+                createUserInDICK(user.username)
+            }
+        }
+    }
+
 }

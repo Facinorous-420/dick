@@ -3,8 +3,7 @@ import { Response, NextFunction } from "express"
 import { join, normalize } from "path"
 
 import { IExtendedRequest } from "../typings/express-ext"
-import { STAFF_IDS } from "../constants"
-import { checkIfUserExistInDICK, createUserInDICK } from "./database"
+import { checkIfUserExistInDICK, createUserInDICK, getUserDatabaseObj } from "./database"
 
 // Express middleware to check if username/password match one of the users
 // in auth.json
@@ -19,7 +18,13 @@ export const authCheck = (req: IExtendedRequest, res: Response, next: NextFuncti
 // Express middleware to check if username trying to access the page matches the users
 // in CONSTANTS
 export const adminCheck = (req: IExtendedRequest, res: Response, next: NextFunction) => {
-  if ((STAFF_IDS.indexOf(req.user.username) > -1) == false) {
+  const user = getUserDatabaseObj(req.user.username)
+  if(!user){
+    Log.info(`A user navigated to page ${req.path} and is not logged in, redirecting to login page`)
+    req.flash('error_message', 'Please log in to access the requested page')
+    res.redirect('/login')
+  }
+  if(user.role !== 'admin'){
     Log.info(`${req.user.username} navigated to page ${req.path} and is not an admin, redirecting to users dashboard`)
     res.redirect('/')
   } else next()

@@ -8,7 +8,7 @@
 
         <div class="relative">
             <!-- File Dropdown Button -->
-            <button class="dropdownFileBtn relative text-gray-400">
+            <button class="dropdownFileBtn relative text-color-secondary">
                 <svg class="relative h-3 w-3 md:h-4 md:w-4 lg:h-4 lg:w-4" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -27,7 +27,7 @@
                         <i data-lucide="link" class="w-4 h-4 mr-2 inline"></i> 
                         Copy Link 
                     </button>
-                    <div id="${id}-copy" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    <div id="${id}-copy" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-color-primary bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip bg-forminput">
                         Link copied to clipboard!
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
@@ -37,7 +37,7 @@
                         <i data-lucide="trash" class="w-4 h-4 mr-2 inline"></i>
                         Delete 
                     </button>
-                    <div id="${id}-delete" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    <div id="${id}-delete" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-color-primary bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip bg-forminput">
                         Item is being deleted, page will refresh when finished.
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
@@ -54,7 +54,7 @@
             <a target="_blank" href='${itemURL}'>
                 <div class="mt-2 flex flex-wrap items-center justify-center">
                     <img class="h-20 w-auto rounded-md object-cover object-center md:h-24 lg:h-24"
-                        src='${itemURL}/direct' alt=${originalName} />
+                        src='${itemURL}/thumbnail' alt=${originalName} />
                 </div>
             </a>
 
@@ -63,10 +63,10 @@
                 <span class='name-tooltip rounded shadow-lg p-2 bg-primary text-color-primary -mt-8'>${originalName}</span>
                 <p class="truncate">${originalName}</p>
             </a>
-            <div class="text-xs text-gray-400 md:text-sm lg:text-sm">
+            <div class="text-xs text-color-secondary md:text-sm lg:text-sm">
                 ${timeStamp}
             </div>
-            <div class="text-xs text-gray-400">
+            <div class="text-xs text-color-secondary">
                 ${size}
             </div>
         </div>

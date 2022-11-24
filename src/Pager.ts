@@ -1,12 +1,12 @@
 import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
-import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
+import { ASS_DOMAIN, ASS_SECURE } from "./constants"
 import { convertTimestamp, convertToPaginatedArray, formatSize, } from "./utils/utils"
-import { getSettingsDatabase } from "./utils/database"
-import { ASSUser, ASSItem } from "./typings/ASSTypes"
+import { getSettingsDatabase, getUserDatabase, getUserDatabaseObj } from "./utils/database"
+import { ASSUser, ASSItem } from "./typings/ASS"
 import { IExtendedRequest } from "./typings/express-ext"
-import { ISettingsDatabase } from "./typings/database"
+import { ISettingsDatabase, IUsersDatabase, IUserSettings } from "./typings/database"
 
 export class Pager {
   /**
@@ -23,11 +23,13 @@ export class Pager {
 
     const data: Array<ASSItem> = parseDataFile()
     const users: Array<ASSUser> = parseAuthFile()
+    const dickUsers: IUsersDatabase = getUserDatabase()
     const database: ISettingsDatabase = getSettingsDatabase()
+    const user: IUserSettings = getUserDatabaseObj(req.user.username)
 
     // If user is already authenticated load the authenticated data
     if (req.isAuthenticated()) {
-      return this.renderAuthenticatedData(res, req, template, options, data, users, database)
+      return this.renderAuthenticatedData(res, req, template, options, data, users, database, user, dickUsers)
     }
 
     // If user is not authenticated only load guest data
@@ -74,7 +76,9 @@ export class Pager {
     options: RenderOptions,
     data: Array<ASSItem>,
     users: Array<ASSUser>,
-    settingsDatabase: ISettingsDatabase
+    settingsDatabase: ISettingsDatabase,
+    user: IUserSettings,
+    dickUsers: IUsersDatabase
   ) {
     // * -------------------- BUILD DATA OBJECT FOR FRONTEND EJS VARIABLES ------------
     const totalUsers = users.length
@@ -84,7 +88,7 @@ export class Pager {
     }
     const totalData = data.length
     const totalSize = formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0))
-    const hasRole = STAFF_IDS.indexOf(req.user.username) > -1
+    const hasRole = user.role == "admin" ? true : false
     // Get all the specific users file information, using secret key to match
     const usersData = data.filter(item => item.owner == req.user.password).map((item) => ({
       ...item,
@@ -142,20 +146,21 @@ export class Pager {
     */
 
     const baseData = {
-      assDomain: ASS_DOMAIN,
-      assSecure: ASS_SECURE,
-      user: req.user,
-      settingsDatabase,
-      totalSize,
-      totalUsers,
-      allUsers,
-      totalData,
-      usersDataObj,
-      appDataObj,
-      //targetDataObj: options.params.userID ? targetDataObj : null,
-      params: options.params,
-      path: req.path,
-      hasRole
+        assDomain: ASS_DOMAIN,
+        assSecure: ASS_SECURE,
+        user: req.user,
+        settingsDatabase,
+        totalSize,
+        totalUsers,
+        allUsers,
+        dickUsers,
+        totalData,
+        usersDataObj,
+        appDataObj,
+        //targetDataObj: options.params.userID ? targetDataObj : null,
+        params: options.params,
+        path: req.path,
+        hasRole
     }
 
     return res.render(template, Object.assign(baseData, options))

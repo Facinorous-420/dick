@@ -1,30 +1,27 @@
 <div class="flex flex-col items-center justify-center w-full">
     <div class="flex-1 lg:w-4/5 w-full">
-        <label class="font-semibold text-gray-300">
-            DICK Users List
-        </label>
         <div class="flex flex-row flex-wrap w-full items-center mt-4 gap-5">
             <!-- Add user -->
-            <!--
             <div class="flex-none order-1">
                 <div class="inline-flex space-x-3">
 
-                    <button
-                        class="rounded-md bg-blue-700 py-2 px-2.5 font-medium text-white hover:bg-blue-600">
+                    <button type="button"
+                        class="buttonModal rounded-md bg-accentsecondary py-2 px-2.5 font-medium text-color-primary hover:bg-accent">
                         Add New user
                     </button>
+                    <!--
                     <button
-                        class="custom-bg-button hover:custom-bg-button-hover rounded-md p-3 text-gray-300">
-                        <i data-lucide="download" class="text-color-secondary"></i>
+                        class="custom-bg-button hover:custom-bg-button-hover rounded-md p-3 text-color-secondary">
+                        <i data-lucide="download" class="text-color-primary"></i>
                     </button>
+                    -->
                 </div>
             </div>
-            -->
             <!-- End Add User -->
 
             <!-- Total User -->
             <div class="flex-1  lg:order-2 order-3 lg:basis-auto basis-full">
-                <div class="text-sm text-gray-400 lg:text-center text-right">
+                <div class="text-sm text-color-secondary lg:text-center text-right">
                     Showing <%= totalUsers %> users
                 </div>
             </div>
@@ -37,7 +34,7 @@
                 <div class="sm:flex sm:justify-end">
                     <form action="#" class="relative h-auto lg:w-full w-full sm:w-3/5">
                         <input
-                            class="bg-tertiary relative z-10 w-full rounded-md pl-4 pr-10 py-3 text-white shadow-lg placeholder:text-gray-400 focus:border focus:border-gray-300/25 focus:outline-none md:w-full lg:w-full"
+                            class="bg-tertiary relative z-10 w-full rounded-md pl-4 pr-10 py-3 text-color-primary shadow-lg placeholder:text-color-secondary focus:border focus:border-gray-300/25 focus:outline-none md:w-full lg:w-full"
                             value="" placeholder="Search Users" />
                         <div
                             class="absolute inset-0 flex flex-row flex-nowrap items-center justify-end px-4">
@@ -54,7 +51,7 @@
         <div class="mt-8">
             <!-- Table User  -->
             <table class="table-fixed w-full md:text-base text-sm text-black">
-                <thead class="text-gray-300 font-bold">
+                <thead class="text-color-primary font-bold">
                     <tr>
                         <th class="p-3  text-left">
                             PROFILE PICTURE
@@ -77,28 +74,26 @@
                 </thead>
 
                 <tbody>
-                    <% for(let i=0; i<allUsers.length; i++) {%>
-                        <tr class="text-sm border-b-8 border-[#232D45]">
+                    <% for(const user of dickUsers) {%>
+                        <tr class="text-sm border-b-2 border-table">
                             <td class="p-4 bg-tertiary rounded-tl-2xl rounded-bl-2xl text-left ">
                                 <img class="relative h-10 w-10 rounded-full object-cover object-center"
                                     src=<%=settingsDatabase.defaultProfilePicture ?
                                     settingsDatabase.defaultProfilePicture : "./images/profile.png" %> alt="Profile" />
                             </td>
                             <td class="p-4 bg-tertiary">
-                                <span class="text-gray-300 font-semibold">
-                                    <%= allUsers[i] %>
+                                <span class="text-color-secondary font-semibold">
+                                    <%= user.username %>
                                 </span>
-                                <!--
-                                <div class="text-gray-400">
-                                    Role
+                                <div class="text-color-tertiary text-xs">
+                                    <%= user.role %>
                                 </div>
-                                -->
                             </td>
                             <!--
-                            <td class="p-4 bg-tertiary text-gray-300 text-center">
+                            <td class="p-4 bg-tertiary text-color-secondary text-center">
                                 66
                             </td>
-                            <td class="p-4 bg-tertiary text-gray-300 text-center ">
+                            <td class="p-4 bg-tertiary text-color-secondary text-center ">
                                 <div class="sm:border-r border-slate-700  border-r-0">
                                     65GB
                                 </div>

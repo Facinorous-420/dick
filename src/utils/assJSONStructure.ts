@@ -1,7 +1,7 @@
 import { ASS_LOCATION } from "../constants"
 import fs from "fs"
 import path from "path"
-import { ASSItem } from "typings/ASSTypes"
+import { ASSItem } from "typings/ASS"
     
     const DATA_FILE_PATH = path.resolve(`${ASS_LOCATION}/data.json`)
     const AUTH_FILE_PATH = path.resolve(`${ASS_LOCATION}/auth.json`)

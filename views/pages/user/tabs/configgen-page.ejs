@@ -1,0 +1,114 @@
+<div class=" flex-col flex-wrap mt-6">
+    <div class="flex xl:flex-row lg:flex-row flex-col lg:gap-8 gap-3 ">
+
+        <div class="flex-1 bg-tertiary p-6 rounded-md lg:order-1 md:order-2 order-2">
+            <div class="py-9">
+                <div class="border-b w-full border-gray-300/10 pb-3">
+                    <span class="text-lg text-color-primary font-semibold">
+                        Config Setting
+                    </span>
+                </div>
+
+            </div>
+            <form class="grid grid-cols-2 gap-5 text-sm md:text-base lg:text-base">
+                <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                    <label class="mb-2 block text-color-tertiary text-sm">Provider</label>
+                    <input
+                        class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        value="" placeholder="Some text" type="text" />
+                </div>
+                <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                    <label class="mb-2 block text-color-tertiary text-sm">Provider Url</label>
+                    <input
+                        class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        value="" placeholder="Some text" type="text" />
+                </div>
+                <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                    <label class="mb-2 block text-color-tertiary text-sm">Author</label>
+                    <input
+                        class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        value="" placeholder="Some text" type="text" />
+                </div>
+                <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                    <label class="mb-2 block text-color-tertiary text-sm">Author Url</label>
+                    <input                     
+                        class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        value="" placeholder="Some text" type="text" />
+                </div>
+                <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                    <label class="mb-2 block text-color-tertiary text-sm">Title</label>
+                    <input                     
+                        class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        value="" placeholder="Some text" type="text" />
+                </div>
+                <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                    <label class="mb-2 block text-color-tertiary text-sm">Description</label>
+                    <input                     
+                        class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        value="" placeholder="Some text" type="text" />
+                </div>
+                <div>
+                    <label class="mb-3 block text-color-tertiary text-sm">Colour</label>
+                    <input type="color" class="mt-1 custom-color-picker-border">
+                </div>
+                <div class="relative">
+                    <label class="relative mb-2 block text-color-tertiary text-sm">Url Type</label>
+                    <select
+                        class="default:bg-gray-30 custom-bg-darker relative block w-full rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                        placeholder="Zero Width Space">
+                        <option value="0">Zero Width Space</option>
+                        <option value="1">Mixed-Case Alphas</option>
+                        <option value="2">Gfycat</option>
+                        <option value="3">Original</option>
+                        <option value="3">Timestamp</option>
+                    </select>
+                </div>
+                <div class="col-span-2 pt-5">
+                    <div class="flex justify-end">
+                        <button
+                            class="bg-accentsecondary md:w-auto w-full hover:bg-accent rounded-md px-5 py-2 text-color-primary">
+                            Export Config
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div
+            class="place-self-center flex-none h-80 bg-slate-600/25 w-[1px] lg:order-2 md:order-3 lg:block md:hidden hidden">
+
+        </div>
+        <div
+            class="flex-none bg-tertiary xl:basis-[38rem] lg:basis-[28rem] p-6 rounded-md lg:order-3 md:order-1 order-1 lg:-mt-0 md:-mt-0 -mt-7">
+            <div class="py-9">
+                <div class="border-b w-full border-gray-300/10 pb-3">
+                    <span class="text-lg text-color-primary font-semibold">
+                        Example Embed
+                    </span>
+                </div>
+
+            </div>
+            <div class="xl:px-12 lg:px-0 md:px-0 px-0">
+                <div
+                    class="p-3 space-y-4 flex flex-col bg-slate-800 rounded-md border-l-8 border-purple-600">
+                    <a href ="/" class="text-color-secondary">
+                        Provider
+                    </a>
+                    <span class="font-semibold text-gray-300 text-lg">
+                        Author
+                    </span>
+                    <a href ="/" class="font-semibold text-cyan-500 text-lg">
+                        Title
+                    </a>
+                    <p class="text-gray-300">
+                        Description
+                    </p>
+                    <img class="w-full h-64 object-contain"
+                        src="./images/profile.png" alt="">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

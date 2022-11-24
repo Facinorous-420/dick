@@ -16,22 +16,51 @@
   .bg-tertiary {
     @apply bg-lighttheme-tertiary dark:bg-darktheme-tertiary;
   }
+  .bg-accent {
+    @apply bg-lighttheme-accent dark:bg-darktheme-accent;
+  }
+  .bg-accentsecondary {
+    @apply bg-lighttheme-accentSecondary dark:bg-darktheme-accentSecondary;
+  }
   .bg-tertiary-hover {
     @apply bg-lighttheme-tertiaryHover dark:bg-darktheme-tertiaryHover;
   }
   .bg-tooltip {
     @apply bg-lighttheme-tooltip dark:bg-darktheme-tooltip;
   }
+  /* Custom Form Colors */
+  .bg-forminput {
+    @apply bg-lightthemeForm-input dark:bg-darkthemeForm-input;
+  }
   /* Custom Border Colors */
   .border-tooltip {
-    @apply border-lighttheme-tooltip dark:border-darktheme-tooltip;
+    @apply border-lightthemeBorder-tooltip dark:border-darkthemeBorder-tooltip;
   }
+  .border-accent {
+    @apply border-lightthemeBorder-accent dark:border-darkthemeBorder-accent;
+  }
+  .border-accentsecondary {
+    @apply border-lightthemeBorder-accentSecondary dark:border-darkthemeBorder-accentSecondary;
+  }
+  .border-form {
+    @apply border-lightthemeBorder-form dark:border-darkthemeBorder-form;
+  }
+  .border-table {
+    @apply border-lightthemeBorder-table dark:border-darkthemeBorder-table;
+  }
+
   /* Custom Text Colors */
   .text-color-primary {
     @apply text-lightthemeText-primary dark:text-darkthemeText-primary;
   }
   .text-color-secondary {
     @apply text-lightthemeText-secondary dark:text-darkthemeText-secondary;
+  }
+  .text-color-tertiary {
+    @apply text-lightthemeText-tertiary dark:text-darkthemeText-tertiary;
+  }
+  .text-color-light {
+    @apply text-lightthemeText-light dark:text-darkthemeText-secondary;
   }
   .text-color-accent {
     @apply text-lightthemeText-accentPrimary dark:text-darkthemeText-accentPrimary;
@@ -71,7 +100,7 @@
   }
 
   .switch input[type="checkbox"]:focus + .check {
-    @apply ring ring-purple-700;
+    @apply ring ring-lightthemeBorder-accent dark:ring-darkthemeBorder-accent;
   }
 
   .checkbox input[type="checkbox"] + .check {
@@ -79,16 +108,16 @@
   }
 
   .switch input[type="checkbox"] + .check {
-    @apply flex items-center shrink-0 w-12 h-6 p-0.5 bg-[#19253B];
+    @apply flex items-center shrink-0 w-12 h-6 p-0.5 bg-forminput;
   }
-
+/*bg-[#19253B]*/
   .switch input[type="checkbox"] + .check,
   .switch input[type="checkbox"] + .check:before {
     @apply rounded-full;
   }
 
   .switch input[type="checkbox"]:checked + .check {
-    @apply bg-purple-600 border-purple-600;
+    @apply bg-lighttheme-accent dark:bg-darktheme-accent border-lightthemeBorder-accent dark:border-darkthemeBorder-accent;
   }
 
   .switch input[type="checkbox"] + .check:before {
@@ -98,7 +127,7 @@
 
   .switch input[type="checkbox"]:checked + .check:before {
     transform: translate3d(110%, 0, 0);
-    @apply border-purple-600;
+    @apply border-lightthemeBorder-accent dark:border-darkthemeBorder-accent;
   }
 }
 

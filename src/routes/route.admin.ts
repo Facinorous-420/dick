@@ -3,7 +3,7 @@ import path from "path"
 import fs from "fs-extra"
 import multer from "multer"
 import { authCheck, adminCheck, wrap } from "../utils/utils"
-import { getSettingsDatabase } from "../utils/database"
+import { checkIfUserExistInASS, checkIfUserExistInDICK, createUserInASS, createUserInDICK, getSettingsDatabase } from "../utils/database"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 import { defaultPPStorage, imageFileFilter, logoStorage } from "../utils/uploads"
@@ -28,7 +28,7 @@ export const adminRoutes = (app: Router) => {
     adminCheck,
     (req: Request, res: Response) => {
       const settingsDatabase = getSettingsDatabase()
-      const { name, siteTitle, siteDescription, loginText, appEmoji, privateModeEnabled, registrationEnabled } = req.body
+      const { name, appEmoji, siteTitle, siteDescription, loginText, captchaCheckbox, captchaSiteID, captchaSecretKey, privateModeEnabled, registrationEnabled } = req.body
 
       /* 
       *  This code is for if I ever decide to add changing the location of the image urls (such as calling an external URL from local files) 
@@ -50,11 +50,25 @@ export const adminRoutes = (app: Router) => {
        }
        */
 
+      if (captchaCheckbox) {
+        // If they do not have a capatcha site id set, they can not enable and save capatcha preventing it not working.
+        if (!settingsDatabase.captchaSiteID) {
+          if (!captchaSiteID) {
+            req.flash('error_message', 'You must include a captcha site ID to enable captcha.')
+            return res.redirect('/admin')
+          }
+        }
+        settingsDatabase.captchaEnabled = true
+      } else {
+        settingsDatabase.captchaEnabled = false
+      }
+
       name ? settingsDatabase.name = name : null
+      appEmoji ? settingsDatabase.appEmoji = appEmoji : null
       siteTitle ? settingsDatabase.siteTitle = siteTitle : null
       siteDescription ? settingsDatabase.siteDescription = siteDescription : null
       loginText ? settingsDatabase.loginText = loginText : null
-      appEmoji ? settingsDatabase.appEmoji = appEmoji : null
+      captchaSiteID ? settingsDatabase.captchaSiteID = captchaSiteID : null
       privateModeEnabled ? settingsDatabase.privateModeEnabled = true : settingsDatabase.privateModeEnabled = false
       registrationEnabled ? settingsDatabase.registrationEnabled = true : settingsDatabase.registrationEnabled = false
 
@@ -103,4 +117,39 @@ export const adminRoutes = (app: Router) => {
       return res.redirect('/admin')
     }
   )
+
+    // Add new user via add user modal
+    app.post('/admin/add/user', async (req, res) => {
+      // Check if the form is filled our properly
+      if (!req.body.username) {
+        req.flash('error_message', 'You did not include a username!')
+        return res.redirect("/admin")
+      }
+      if (!req.body.password) {
+        req.flash('error_message', 'You did not include a password!')
+        return res.redirect("/admin")
+      }
+      if (req.body.username > 20) {
+        req.flash('error_messge', 'Username can not be more than 20 characters!')
+        return res.redirect("/admin")
+      }
+      if (req.body.password < 5) {
+        req.flash('error_messge', 'Secret key can not be less than 5 characters!')
+        return res.redirect("/admin")
+      }
+  
+      // Check if user exists in ass or dick, if it does then we throw error
+      if (await checkIfUserExistInASS(req.body.username, req.body.password) || await checkIfUserExistInDICK(req.body.username)) {
+        req.flash('error_message', 'User already exists!')
+        return res.redirect("/admin")
+      }
+  
+      // Create the user
+      await createUserInASS(req.body.username, req.body.password)
+      await createUserInDICK(req.body.username)
+
+      // Redirect them to the login screen
+      req.flash('success_alert_message', `You have sucesfully created a user with the name ${req.body.username}. They can now log in with the token you provided.`)
+      return res.redirect("/admin")
+    })
 }

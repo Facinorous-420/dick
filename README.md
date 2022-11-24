@@ -55,10 +55,12 @@ Dick was created to be an easy to use front end for <a href="https://github.com/
 
 **Current Feautres:**
 1. General statistics on your file uploads
-2. File browser, allows you to see all your uploads on one webpage (plans to make it more powerful)
-3. Deletion of items (currently one at a time, plans for multiple at once)
-4. Copy link of items (currently one at a time, plans for multiple with spaces in between in pastebin)
-5. Customize DICK
+2. File browser, allows you to see all your uploads on one webpage
+3. Deletion of items
+4. Copy link of items
+5. Customize DICK (completely white label)
+6. Register new ASS users
+7. hCaptcha on login and register pages <a href="https://www.hcaptcha.com/">You can learn more here</a>.
 
 **Planned Feautres:**
 1. There are a lot of good ideas out there, to keep track of what is currently planned see <a href="https://github.com/Facinorous-420/dick/projects/2">the v1.1 project board</a>
@@ -72,7 +74,7 @@ The back end is written in <a href="https://www.typescriptlang.org/">Typescript<
 
 Running DICK is very simple, though there is no docker container.<br/>
 You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
-**NOTE:** DICK requires you to use JSON for ASS' database.
+**NOTE:** DICK requires you to use JSON for ASS' data storage method.
 
 ### Config
 
@@ -85,8 +87,9 @@ Inside this file, is some basic configuration you can change for your set up. Th
 | `ASS_LOCATION = "../ass"` | If running DICK seperately, DICK will use this to find your ASS install folder |
 | `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
 | `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
-| `STAFF_IDS = ["ass"]` | Change this to whatever your username is in your ASS `auth.json` file. Default user in ASS, is `ass` |
 | `PORT = "3000"` | Change this number to the port you wish DICK to run on |
+
+:warning:If you want to set a user as admin, currently you must do it via the database file generated at `/src/database/users.json` and change the users role from `user` to `admin`. By default, the first user to login to your dick instance will be admin.
 
 ### Running
 
@@ -133,17 +136,21 @@ The first user to login will be added to the instance admin list.
 
 ### Customizing
 
-In DICK v1.1.0, app settings were added in the admin page. This is where a user can whitelabel their DICK instance.
+App settings ware available through the admin page. This is where a user can whitelabel their DICK instance.
 
-| Variable                                     |           Description           |
+|                   Variable                    |       Description       |
 | --------------------------------------------- | :---------------------: |
-| `App Name` | This will replace all the **DICK** occurrences around the app                 |
-| `App Logo URL` | Change the app logo, including the bookmark image. This can be either a URL to an external picture, or you can use a local image by saving a file in `/src/public/images/` and reference it by entering `'./images/imagename.png'` for this setting.|
-| `Site Title` | This is the text that shows up in browser tabs, as well as the title for the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds.        |
-| `Site Description` | This text is the description text on the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds.  |
-| `Login Text` | This text is the text on the login screen, above the form. |
+| `App Name` | This will replace all the **DICK** occurrences around the app |
 | `App Emoji` | This will allow you to change the emoji you see around the instance, by default its an eggplant. 🍆 |
-| `Default Profile Picture URL` | This will be the default picture users have as their profile picture. This can be either a URL to an external picture, or you can use a local image by saving a file in `/src/public/images/` and reference it by entering `'./images/imagename.png'` for this setting.|
+| `Site Title` | This is the text that shows up in browser tabs, as well as the title for the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
+| `Site Description` | This text is the description text on the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
+| `Login Text` | This text is the text on the login screen, above the form. |
+| `hCaptcha Enabled` | If enabled, your instance will use hCaptcha for the login and register pages, if disabled it will only send failed logins to a Rick Roll. |
+| `hCaptcha Site ID` | This is if you plan to use hCaptcha as captcha to protect your DICK instance. |
+| `Private Mode` | If set, this will hide the global instance stats shown on the login page. |
+| `Registrations Enabled` | If set, this will allow people to use the register page to create new accounts. |
+| `App Logo` | This is the app image shown various places in DICK. |
+| `Default Profile Picture` | This is the default image set as users profile pictures. |
 
 ## Contributing
 
@@ -155,11 +162,3 @@ In DICK v1.1.0, app settings were added in the admin page. This is where a user 
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
-## Contact
-
-| Developer                                     |           Job           |
-| --------------------------------------------- | :---------------------: |
-| [Facinorous](https://github.com/facinorous-420) | Lead                  |
-| [Sublime](https://github.com/senpaiSubby)#4233 | Helping hand, my sensei, created the back end |
