@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express"
 import path from "path"
 import fs from "fs-extra"
 import multer from "multer"
-import { authCheck, adminCheck, wrap } from "../utils/utils"
+import { authCheck, adminCheck, wrap } from "../utils/middleware"
 import { checkIfUserExistInASS, checkIfUserExistInDICK, createUserInASS, createUserInDICK, getSettingsDatabase } from "../utils/database"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
@@ -58,6 +58,13 @@ export const adminRoutes = (app: Router) => {
             return res.redirect('/admin')
           }
         }
+
+        if (!settingsDatabase.captchaSecretKey) {
+          if (!captchaSecretKey) {
+            req.flash('error_message', 'You must include a captcha secret key to enable captcha.')
+            return res.redirect('/admin')
+          }
+        }
         settingsDatabase.captchaEnabled = true
       } else {
         settingsDatabase.captchaEnabled = false
@@ -69,6 +76,7 @@ export const adminRoutes = (app: Router) => {
       siteDescription ? settingsDatabase.siteDescription = siteDescription : null
       loginText ? settingsDatabase.loginText = loginText : null
       captchaSiteID ? settingsDatabase.captchaSiteID = captchaSiteID : null
+      captchaSecretKey ? settingsDatabase.captchaSecretKey = captchaSecretKey : null
       privateModeEnabled ? settingsDatabase.privateModeEnabled = true : settingsDatabase.privateModeEnabled = false
       registrationEnabled ? settingsDatabase.registrationEnabled = true : settingsDatabase.registrationEnabled = false
 

@@ -32,9 +32,12 @@
                     	<input class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
                       		placeholder="***************" name="password" type="password" />
                   	</label>
+					<% if(settingsDatabase.captchaEnabled) { %>
+						<div class="h-captcha mt-4" data-theme="dark" data-sitekey=<%= settingsDatabase.captchaSiteID %>></div>
+					<% } %>
                 	<button
-                    	class="<%= settingsDatabase.captchaEnabled ? 'h-captcha' : null %> block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-accentsecondary border border-transparent rounded-lg active:bg-accentsecondary hover:bg-accent focus:outline-none focus:shadow-outline-purple"
-                    	<%= settingsDatabase.captchaEnabled ? `data-sitekey="${settingsDatabase.captchaSiteID}" data-theme="dark" ` : null %> type="submit">
+                    	class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-accentsecondary border border-transparent rounded-lg active:bg-accentsecondary hover:bg-accent focus:outline-none focus:shadow-outline-purple"
+                    	type="submit">
                     	Sign In
                   	</button>
         		</form>

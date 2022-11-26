@@ -30,6 +30,7 @@ export const getSettingsDatabase = (): ISettingsDatabase => {
             loginText: "Sign in to easily manage your nudes.",
             captchaEnabled: false,
             captchaSiteID: null,
+            captchaSecretKey: null,
             registrationEnabled: false,
             privateModeEnabled: false,
             logo: "./images/logo.png",

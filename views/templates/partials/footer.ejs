@@ -1,7 +1,9 @@
 <% if(path=='/register' || path=='/login'){ %>
     <script src="/js/app.js"></script>
     <% if( settingsDatabase.captchaEnabled ){ %>
-        <script src="https://js.hcaptcha.com/1/api.js?hl=fr" async defer></script>
+        <script src="https://js.hcaptcha.com/1/api.js" async defer>
+            console.log('test')
+        </script>
     <% } %>
 <% } %>
 
@@ -9,6 +11,7 @@
     <script src="/js/app.js"></script>
     <script src="/js/dropdowns.js"></script>
     <script src="/js/change-color.js"></script>
+<!--    <script src="/js/show-password.js"></script>-->
     <script src="/js/tabs-user.js"></script>
     <script src="/js/theme/theme-switcher.js"></script>
 <% } %>
@@ -17,7 +20,7 @@
     <script src="/js/app.js"></script>
     <script src="/js/dropdowns.js"></script>
     <script src="/js/open-modal.js"></script>
-    <script src="/js/show-password.js"></script>
+<!--    <script src="/js/show-password.js"></script>-->
     <script src="/js/tabs-admin.js"></script>
     <script src="/js/theme/theme-switcher.js"></script>
 <% } %>

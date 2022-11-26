@@ -73,7 +73,7 @@ The back end is written in <a href="https://www.typescriptlang.org/">Typescript<
 ## Running The Dashboard
 
 Running DICK is very simple, though there is no docker container.<br/>
-You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
+You must have `Node >=v18.1.0`, which you should if you're running ASS.<br/>
 **NOTE:** DICK requires you to use JSON for ASS' data storage method.
 
 ### Config
@@ -132,7 +132,7 @@ When you approach the login screen, the login information is your ASS username, 
 The first user to login will be added to the instance admin list.
 
 :warning:```ASS and the dashboard will be under their own ports.```<br/>
-<sub> They will have entirely different routing. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
+<sub> They will have entirely different routing, and ports. ASS will be running under it's port of 40115 whereas the dashboard will be under the port 3000. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
 
 ### Customizing
 

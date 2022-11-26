@@ -144,7 +144,7 @@
                                 placeholder="<%= settingsDatabase.siteDescription ? settingsDatabase.siteDescription : "The frontend for your backend" %>" name="siteDescription" type="text" />
                             </div>
 
-                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                            <div class="col-span-2">
                                 <!-- Label with tooltip -->
                                 <label class="mb-2 block text-color-tertiary text-sm">
                                     <div class="relative w-max">
@@ -233,6 +233,36 @@
                                     </div>
                                 </div>
                                 <!-- End Input -->
+                            </div>
+
+                            
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Captcha Secret Key
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is found in your hCaptcha profile and used to verify captcha checks.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <input  
+                                class="form-input block w-full mt-1 rounded text-sm text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.captchaSecretKey ? settingsDatabase.captchaSecretKey : "No site ID entered. Defaulting to vanilla captcha." %>" name="captchaSecretKey" type="text" />
                             </div>
 
                             <div class="col-span-1">

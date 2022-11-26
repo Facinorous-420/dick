@@ -1,4 +1,5 @@
 import { Request, Response, Router } from "express"
+import { getSettingsDatabase } from "../utils/database"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 
@@ -17,7 +18,13 @@ export const publicRoutes = (app: Router) => {
     if (req.user) {
       return res.redirect('/')
     }
-
+    
+    const database = getSettingsDatabase()
+    if (!database.registrationEnabled){
+      req.flash('error_message', 'Registration is not enabled!')
+      return res.redirect("/login")
+    }
+    
     await Pager.render(res, req, TEMPLATE.PUBLIC, {})
   })
 }

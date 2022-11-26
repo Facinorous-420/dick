@@ -1,34 +1,4 @@
-import { Log } from "@callmekory/logger"
-import { Response, NextFunction } from "express"
 import { join, normalize } from "path"
-
-import { IExtendedRequest } from "../typings/express-ext"
-import { checkIfUserExistInDICK, createUserInDICK, getUserDatabaseObj } from "./database"
-
-// Express middleware to check if username/password match one of the users
-// in auth.json
-export const authCheck = (req: IExtendedRequest, res: Response, next: NextFunction) => {
-  if (!req.user) {
-    Log.info(`A user navigated to page ${req.path} and is not logged in, redirecting to login page`)
-    req.flash('error_message', 'Please log in to access the requested page')
-    res.redirect('/login')
-  } else next()
-}
-
-// Express middleware to check if username trying to access the page matches the users
-// in CONSTANTS
-export const adminCheck = (req: IExtendedRequest, res: Response, next: NextFunction) => {
-  const user = getUserDatabaseObj(req.user.username)
-  if(!user){
-    Log.info(`A user navigated to page ${req.path} and is not logged in, redirecting to login page`)
-    req.flash('error_message', 'Please log in to access the requested page')
-    res.redirect('/login')
-  }
-  if(user.role !== 'admin'){
-    Log.info(`${req.user.username} navigated to page ${req.path} and is not an admin, redirecting to users dashboard`)
-    res.redirect('/')
-  } else next()
-}
 
 /**
  * Generate the appropriate pathing for the a template to be rendered
@@ -37,25 +7,6 @@ export const templatePathBuilder = (templatePath: string) => {
   const templateDir = normalize(join(__dirname, "..", "..", "views"))
 
   return normalize(join(templateDir, "templates", templatePath))
-}
-
-/**
- * Wraps the express route in a function that passes the
- * `next` method from the route to the promise's catch
- * statement which allows the middleware to catch the
- * exception.
- */
-export const wrap = async (req: IExtendedRequest, res: Response, next: NextFunction) => {
-  if (req.user) {
-    // If the user does not exist in DICKs database yet, we add them
-    if (await checkIfUserExistInDICK(req.user.username) == false) {
-      createUserInDICK(req.user.username)
-    }
-    // Log the page the user navigated to
-    Log.info(`${req.user.username} navigated to page ${req.path}`)
-  }
-
-  return next()
 }
 
 /**

@@ -7,6 +7,7 @@ export interface ISettingsDatabase {
     appEmoji: string
     captchaEnabled: boolean
     captchaSiteID: string | null
+    captchaSecretKey: string | null
     defaultProfilePicture: string
     registrationEnabled: boolean
     privateModeEnabled: boolean

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, Router } from "express"
-import { authCheck } from "../utils/utils"
+import { authCheck, checkCaptcha } from "../utils/middleware"
 import { checkIfUserExistInASS, checkIfUserExistInDICK, createUserInASS, createUserInDICK } from "../utils/database"
 
 const { passport } = require("../utils/passport")
@@ -46,6 +46,7 @@ export const authRoutes = (app: Router) => {
   // Auth with local passport, send them to ricky boy to prevent brute forcing 'cause Im too lazy to add proper captcha rn
   app.post(
     "/auth/login",
+    checkCaptcha,
     passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
