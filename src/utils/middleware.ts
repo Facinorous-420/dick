@@ -30,8 +30,6 @@ export const checkCaptcha = async (req: IExtendedRequest, res: Response, next: N
   // If captcha is enabled, we verify the captcha
   if (database.captchaEnabled) {
 
-    console.log('body:', req.body['h-captcha-response'])
-
     // If there is no response for some reason
     if(!req.body['h-captcha-response']){
       Log.info(`A user submitted a form on the endpoint ${req.path} and failed captcha due to not being able to reach hCaptcha, redirecting back to login page`)
@@ -51,7 +49,6 @@ export const checkCaptcha = async (req: IExtendedRequest, res: Response, next: N
     // Parse JSON from response. Check for success or error codes.
     // If not correct, send back to login screen with error
     // A missing-input-response means its not getting info from hcaptcha
-    console.log(data.success)
     if (data.success == false){
       Log.info(`A user submitted a form on the endpoint ${req.path} and failed captcha due to: ${data['error-codes']}, redirecting back to login page`)
       req.flash('error_message', `You failed the captcha due to ${data['error-codes']}. Please try again.`)
