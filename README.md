@@ -146,7 +146,8 @@ App settings ware available through the admin page. This is where a user can whi
 | `Site Description` | This text is the description text on the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
 | `Login Text` | This text is the text on the login screen, above the form. |
 | `hCaptcha Enabled` | If enabled, your instance will use hCaptcha for the login and register pages, if disabled it will only send failed logins to a Rick Roll. |
-| `hCaptcha Site ID` | This is if you plan to use hCaptcha as captcha to protect your DICK instance. |
+| `hCaptcha Site ID` | This is the hcaptcha site id if you plan to use hCaptcha as captcha to protect your DICK instance. |
+| `hCaptcha Secret Key` | This is the hcaptcha secret key found in your hcaptcha account if you plan to use hCaptcha as captcha to protect your DICK instance. |
 | `Private Mode` | If set, this will hide the global instance stats shown on the login page. |
 | `Registrations Enabled` | If set, this will allow people to use the register page to create new accounts. |
 | `App Logo` | This is the app image shown various places in DICK. |
