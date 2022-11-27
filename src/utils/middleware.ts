@@ -1,5 +1,6 @@
 import { Response, NextFunction } from "express"
 import { Log } from "@callmekory/logger"
+import fetch from 'node-fetch'
 
 import { IExtendedRequest } from "../typings/express-ext"
 import { checkIfUserExistInDICK, createUserInDICK, getSettingsDatabase, getUserDatabaseObj } from "./database"

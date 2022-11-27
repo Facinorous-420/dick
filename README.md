@@ -73,12 +73,12 @@ The back end is written in <a href="https://www.typescriptlang.org/">Typescript<
 ## Running The Dashboard
 
 Running DICK is very simple, though there is no docker container.<br/>
-You must have `Node >=v18.1.0`, which you should if you're running ASS.<br/>
+You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
 **NOTE:** DICK requires you to use JSON for ASS' data storage method.
 
 ### Config
 
-Inside of your dick root folder, you will see `src/CONSTANTS.ts.example`. Copy this to `CONSTANTS.ts`<br/>
+Inside of your dick root folder, you will see `src/constants.ts.example`. Copy this to `constants.ts`<br/>
 Inside this file, is some basic configuration you can change for your set up. There are only 5 variables you need to worry about in this file:
 
 | Variable                                     |           Description           |
@@ -104,7 +104,7 @@ Inside this file, is some basic configuration you can change for your set up. Th
   2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
   3. Go back into the folder you created and clone this repo `git clone https://github.com/Facinorous-420/dick`
   4. Go into the newly created `dick` folder `cd dick`
-  5. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
+  5. Go into `/src` and copy `constants.ts.example` to `constants.ts` and edit it as needed
   6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
   7. Run `npm run build:dev` to compile the code base in watch mode
   8. In a new terminal, run `npm run serve:dev` to run DICK using nodemon
@@ -122,7 +122,7 @@ Inside this file, is some basic configuration you can change for your set up. Th
   2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
   3. Go back into the folder you created and clone this repo `git clone https://github.com/Facinorous-420/dick.git`
   4. Go into the newly created `dick` folder `cd dick`
-  5. Go into `/src` and copy `CONSTANTS.ts.example` to `CONSTANTS.ts` and edit it as needed
+  5. Go into `/src` and copy `constants.ts.example` to `constants.ts` and edit it as needed
   6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
   7. Run `npm start` to compile the code base and run DICK
 
