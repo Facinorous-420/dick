@@ -3,7 +3,9 @@ import { Log } from "@callmekory/logger"
 import fetch from 'node-fetch'
 
 import { IExtendedRequest } from "../typings/express-ext"
-import { checkIfUserExistInDICK, createUserInDICK, getSettingsDatabase, getUserDatabaseObj } from "./database"
+import { checkIfUserExistInDICK, createUserInDICK, getSettingsDatabase, getUserDatabase, getUserDatabaseObj } from "./database"
+import { parseAuthFile } from "./assJSONStructure"
+import { IUserSettings } from "typings/database"
 /**
  * Wraps the express route in a function that passes the
  * `next` method from the route to the promise's catch
@@ -16,6 +18,16 @@ export const wrap = async (req: IExtendedRequest, res: Response, next: NextFunct
     if (await checkIfUserExistInDICK(req.user.username) == false) {
       createUserInDICK(req.user.username)
     }
+    // Make sure ASS users stay synced with DICK database
+    const assUserDatabase = parseAuthFile()
+    const dickUserDatabase = getUserDatabase()
+    if(dickUserDatabase.length !== 0){
+      for (const user of assUserDatabase) {
+          if (!dickUserDatabase.find((e: IUserSettings) => e.username === user.username)) {
+              createUserInDICK(user.username)
+          }
+      }
+  }
     // Log the page the user navigated to
     Log.info(`${req.user.username} navigated to page ${req.path}`)
   }
