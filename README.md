@@ -89,7 +89,8 @@ Inside this file, is some basic configuration you can change for your set up. Th
 | `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
 | `PORT = "3000"` | Change this number to the port you wish DICK to run on |
 
-:warning:If you want to set a user as admin, currently you must do it via the database file generated at `/src/database/users.json` and change the users role from `user` to `admin`. By default, the first user to login to your dick instance will be admin.
+> **Note**
+> If you want to set a user as admin, currently you must do it via the database file generated at `/src/database/users.json` and change the users role from `user` to `admin`. By default, the first user to login to your dick instance will be admin.
 
 ### Running
 
@@ -133,7 +134,7 @@ When you approach the login screen, the login information is your ASS username, 
 The first user to login will be added to the instance admin list.
 
 > **Note**
-> :warning:```ASS and the dashboard will be under their own ports.```<br/>
+> ```ASS and the dashboard will be under their own ports.```<br/>
 > <sub> They will have entirely different routing, and ports. ASS will be running under it's port of 40115 whereas the dashboard will be under the port 3000. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
 
 ### Customizing
