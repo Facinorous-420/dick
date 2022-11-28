@@ -109,10 +109,6 @@ Inside this file, is some basic configuration you can change for your set up. Th
   6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
   7. Run `npm run build:dev` to compile the code base in watch mode
   8. In a new terminal, run `npm run serve:dev` to run DICK using nodemon
-
-> **Note**
-> ```ASS will be running under it's port of 40115 whereas the dashboard will be under the port 3000.```<br/>
-</details>
   
 #### Production
 <details>
@@ -135,7 +131,7 @@ The first user to login will be added to the instance admin list.
 
 > **Note**
 > ```ASS and the dashboard will be under their own ports.```<br/>
-> <sub> They will have entirely different routing, and ports. ASS will be running under it's port of 40115 whereas the dashboard will be under the port 3000. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
+> <sub> They will have entirely different routing, and ports. ASS will be running under it's port of `40115` whereas the dashboard will be under the port `3000`. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
 
 ### Customizing
 
