@@ -109,6 +109,7 @@ Inside this file, is some basic configuration you can change for your set up. Th
   6. Go back to the root of `dick` and install the dependancies for the frontend, `npm i`
   7. Run `npm run build:dev` to compile the code base in watch mode
   8. In a new terminal, run `npm run serve:dev` to run DICK using nodemon
+</details>
   
 #### Production
 <details>
