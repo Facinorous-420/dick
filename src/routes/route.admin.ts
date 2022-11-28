@@ -6,7 +6,7 @@ import { authCheck, adminCheck, wrap } from "../utils/middleware"
 import { checkIfUserExistInASS, checkIfUserExistInDICK, createUserInASS, createUserInDICK, getSettingsDatabase } from "../utils/database"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
-import { defaultPPStorage, imageFileFilter, logoStorage } from "../utils/uploads"
+import { defaultPPStorage, defaultPPStorageDist, imageFileFilter, logoStorage, logoStorageDist } from "../utils/uploads"
 
 const settingsDatabaseLocation = path.resolve(`./src/database/settings.json`)
 
@@ -94,7 +94,15 @@ export const adminRoutes = (app: Router) => {
     adminCheck,
     (req: Request, res: Response) => {
       const uploadLogo = multer({ storage: logoStorage, fileFilter: imageFileFilter }).fields([{ name: 'app-logo', maxCount: 1 }])
+      const uploadLogoDist = multer({ storage: logoStorageDist, fileFilter: imageFileFilter }).fields([{ name: 'app-logo', maxCount: 1 }])
       uploadLogo(req, res, (err) => {
+        if (err) {
+          console.log(err)
+          req.flash('error_message', 'Logo failed to upload')
+          return res.redirect('/admin')
+        }
+      })
+      uploadLogoDist(req, res, (err) => {
         if (err) {
           console.log(err)
           req.flash('error_message', 'Logo failed to upload')
@@ -114,6 +122,7 @@ export const adminRoutes = (app: Router) => {
     adminCheck,
     (req: Request, res: Response) => {
       const uploadDefaultPP = multer({ storage: defaultPPStorage, fileFilter: imageFileFilter }).fields([{ name: 'default-pp', maxCount: 1 }])
+      const uploadDefaultPPDist = multer({ storage: defaultPPStorageDist, fileFilter: imageFileFilter }).fields([{ name: 'default-pp', maxCount: 1 }])
       uploadDefaultPP(req, res, (err) => {
         if (err) {
           console.log(err)
@@ -121,6 +130,14 @@ export const adminRoutes = (app: Router) => {
           return res.redirect('/admin')
         }
       })
+      uploadDefaultPPDist(req, res, (err) => {
+        if (err) {
+          console.log(err)
+          req.flash('error_message', 'Logo failed to upload')
+          return res.redirect('/admin')
+        }
+      })
+
       req.flash('success_alert_message', 'Logo successfully uploaded and saved')
       return res.redirect('/admin')
     }

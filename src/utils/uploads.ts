@@ -12,10 +12,26 @@ export const logoStorage = multer.diskStorage({
         callback(null,'logo.png')
     }
 })
+export const logoStorageDist = multer.diskStorage({
+    destination: (request: Request, file: Express.Multer.File, callback: DestinationCallback): void => {
+        callback(null, 'dist/public/images')
+    },
+    filename: (req: Request, file: Express.Multer.File, callback: FileNameCallback): void => {
+        callback(null,'logo.png')
+    }
+})
 
 export const defaultPPStorage = multer.diskStorage({
     destination: (request: Request, file: Express.Multer.File, callback: DestinationCallback): void => {
         callback(null, 'src/public/images')
+    },
+    filename: (req: Request, file: Express.Multer.File, callback: FileNameCallback): void => {
+        callback(null,'profile.png')
+    }
+})
+export const defaultPPStorageDist = multer.diskStorage({
+    destination: (request: Request, file: Express.Multer.File, callback: DestinationCallback): void => {
+        callback(null, 'dist/public/images')
     },
     filename: (req: Request, file: Express.Multer.File, callback: FileNameCallback): void => {
         callback(null,'profile.png')
