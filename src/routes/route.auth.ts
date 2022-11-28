@@ -70,7 +70,7 @@ export const authRoutes = (app: Router) => {
   )
 
   // Register page post request on button submit
-  app.post('/auth/register', async (req, res) => {
+  app.post('/auth/register', checkCaptcha, async (req, res) => {
     // Check if the form is filled our properly
     if (!req.body.username) {
       req.flash('error_message', 'You did not include a username!')
