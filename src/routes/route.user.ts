@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express"
-import { adminCheck, authCheck, wrap } from "../utils/utils"
+import { adminCheck, authCheck, wrap } from "../utils/middleware"
 import { TEMPLATE } from "../constants"
 import { Pager } from "../Pager"
 import { parseAuthFile } from "../utils/assJSONStructure"

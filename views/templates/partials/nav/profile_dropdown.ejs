@@ -4,14 +4,14 @@
         <span class="w-44 flex-none truncate font-semibold text-color-primary">
             <%= user.username %>
         </span>
-        <div class="w-44 flex-none truncate text-xs text-gray-400">
+        <div class="w-44 flex-none truncate text-xs text-color-secondary">
             <% if(hasRole){ %> admin <% } else { %> user <% } %>
         </div>
     </div>
     <div class="grid grid-cols-1">
         <!-- This is if we ever decide to add more dropdown options here
                 <a href="#" class="hover:bg-tertiary-hover inline-flex items-center space-x-2 py-2 px-3">
-                    <svg class="flex-none text-gray-400" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    <svg class="flex-none text-color-secondary" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
@@ -24,11 +24,7 @@
     <div class="border-t border-gray-300/25">
         <a href="/auth/logout"
             class="hover:bg-tertiary-hover inline-flex w-full items-center space-x-2 rounded-b-lg px-3 pt-3 pb-1">
-            <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="1" y="5" width="22" height="14" rx="7" ry="7"></rect>
-                <circle cx="16" cy="12" r="3"></circle>
-            </svg>
+            <i data-lucide="log-out" class="text-color-secondary"></i>
             <div class="text-sm text-color-primary">Logout</div>
         </a>
     </div>

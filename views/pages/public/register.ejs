@@ -1,0 +1,54 @@
+<div class="bg-secondary max-h-1/2 max-w-md mx-auto overflow-hidden rounded-lg shadow-xl">
+	<div class="flex flex-col items-center justify-center overflow-y-auto md:flex-row">
+		<div class="flex items-center justify-center p-6 sm:p-12">
+      		<div class="w-full">
+        		<h3 class="text-color-tertiary font-bold text-2xl text-center">
+          			<%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %>
+        		</h3>
+        		<p class="text-color-accent text-xs pt-2 pb-5 text-center">
+          			Please enter a username and desired secret key.
+        		</p>
+
+        		<% if(success_alert_message !='' ){ %>
+          			<p class="text-green-600 pb-2 text-center">
+            			<%= success_alert_message %>
+          			</p>
+          		<% } %>
+
+            	<% if(error_message !='' ){ %>
+              		<p class="text-red-600 pb-2 text-center">
+                		<%= error_message %>
+              		</p>
+              	<% } %>
+
+                <form class="flex flex-col" method="post" action="/auth/register">
+                	<label class="block text-sm">
+                		<span class="text-color-tertiary">Username</span>
+                    	<input
+                      		class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                      		placeholder="Imposter" name="username" type="text" />
+                  	</label>
+                  	<label class="block mt-4 text-sm">
+                    	<span class="text-color-tertiary">Secret Key</span>
+                    	<input
+                      		class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                      		placeholder="***************" name="password" type="password" />
+                  	</label>
+					<% if(settingsDatabase.captchaEnabled) { %>
+						<div class="h-captcha mt-4" data-theme="dark" data-sitekey=<%= settingsDatabase.captchaSiteID %>></div>
+					<% } %>
+                	<button class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-accentsecondary border border-transparent rounded-lg active:bg-accentsecondary hover:bg-accent focus:outline-none focus:shadow-outline-purple"
+						type="submit">
+                    	Register
+                  	</button>
+                </form>
+
+                <p class="mt-4 text-center">
+                    <a class="text-sm font-medium text-color-accent hover:underline" href="/login">
+                    	Login
+                    </a>
+                </p>
+			</div>
+		</div>
+	</div>
+</div>

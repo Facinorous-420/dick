@@ -4,7 +4,7 @@
             <div class="flex flex-row flex-nowrap items-center space-x-6">
                 <!-- Theme Toggler -->
                 <button id="theme-toggle" data-tooltip-target="themeTogglerToolTip" type="button"
-                    class="relative text-gray-400 hover:bg-gray-800 dark:hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                    class="relative text-color-secondary hover:bg-gray-800 dark:hover:bg-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
@@ -17,7 +17,7 @@
                     </svg>
                 </button>
                 <div id="themeTogglerToolTip" role="tooltip"
-                    class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
+                    class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-color-primary bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip">
                     Toggle theme
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
@@ -25,7 +25,7 @@
 
                 <!-- Navbar Profile Image -->
                 <div class="dropdownProfileBtn relative z-[100] cursor-pointer hover:scale-110">
-                    <img class="relative h-10 w-10 rounded-full object-cover object-center" src="./images/profile.png"
+                    <img class="relative h-10 w-10 rounded-full object-cover object-center" src=<%= settingsDatabase.defaultProfilePicture ? settingsDatabase.defaultProfilePicture : "./images/profile.png" %>
                         alt="Profile" />
                 </div>
                 <!-- End Navbar Profile Image -->

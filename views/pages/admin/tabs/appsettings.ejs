@@ -1,0 +1,470 @@
+<div class="flex lg:flex-row lg:justify-center lg:items-center flex-col flex-wrap">
+    <div class="flex-none basis-1/2">
+        <div class="flex flex-col flex-wrap">
+            <div class="flex flex-col lg:gap-8 gap-3 ">
+
+                <% if(success_alert_message !='' ){ %>
+                    <div class="flex-1 bg-tertiary p-6 rounded-md">
+                        <p class="text-green-600 pb-2 text-center">
+                            <%= success_alert_message %>
+                        </p>
+                    </div>
+                <% } %>
+
+                <% if(error_message !='' ){ %>
+                    <div class="flex-1 bg-tertiary p-6 rounded-md">
+                        <p class="text-red-600 pb-2 text-center">
+                            <%= error_message %>
+                        </p>
+                    </div>
+                <% } %>
+
+                <form method="post" action="/admin/save/settings">
+                    <!-- Main Setting -->
+                    <div class="flex-1 bg-tertiary p-6 rounded-md">
+                        <div class="py-9">
+                            <div class="border-b w-full border-gray-300/10 pb-3">
+                                <span class="text-lg text-color-primary font-semibold">
+                                    Main Settings
+                                </span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-5 text-sm md:text-base">
+                            <div class="xl:col-span-1 lg:col-span-2 col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        App Name
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is the title shown in the top left of the app, as well as other various places.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <input
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.name ? settingsDatabase.name : "DICK" %>" name="name" type="text" />
+                            </div>
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        App Emoji
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is the emoji shown in the breadcrumps at the top of the screen, as well as on each file.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <input                     
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.appEmoji ? settingsDatabase.appEmoji : "🍆" %>" name="appEmoji" type="text" />
+                            </div>
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                    <label class="mb-2 block text-color-tertiary text-sm">
+                                        <div class="relative w-max">
+                                            Site Name
+                                            <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                                <div>
+                                                    <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                                </div>
+                                                <div class="flex justify-center items-center">
+
+                                                    <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                        <div class="break-words">
+                                                            This is the text shown on the browser tab, and title in the embed when directly linking the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> dashboard.
+                                                        </div>
+                                                        <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                            <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+                                <!-- End Label with tooltip -->
+                                <input
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.siteTitle ? settingsDatabase.siteTitle : "DICK (Directly Integrated Client for Keisters)" %>" name="siteTitle" type="text" />
+                            </div>
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Site Description
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is the description text shown in the embed when directly linking the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> dashboard.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <input                     
+                                class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.siteDescription ? settingsDatabase.siteDescription : "The frontend for your backend" %>" name="siteDescription" type="text" />
+                            </div>
+
+                            <div class="col-span-2">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Login Text
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is the text shown directly under the app title in the login and register pages!
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <input  
+                                class="form-input block w-full mt-1 rounded text-sm text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.loginText ? settingsDatabase.loginText : "Sign in to easily manage your nudes." %>" name="loginText" type="text" />
+                            </div>
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Captcha Site ID
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        If set, this will enable hCaptcha. If configured wrong, your users wont be able to log in. Proceed with caution. <a href="https://www.hcaptcha.com/">learn more here.</a>
+                                                    </div>
+
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+
+                                <!-- Input -->
+                                <div class="relative">
+                                    <input  
+                                        class="form-input block w-full mt-1 rounded text-sm text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                        placeholder="<%= settingsDatabase.captchaSiteID ? settingsDatabase.captchaSiteID : "No site ID entered. Defaulting to vanilla captcha." %>" name="captchaSiteID" type="text" />
+                                
+                                    <div class="absolute top-0 right-3 h-full">
+                                        <div class="flex items-center justify-center space-x-2 h-full">
+                                            <!-- Rounded Checkbox -->
+                                            <div class="relative">
+                                                <input id="captchaCheckbox" name="captchaCheckbox" class="hidden peer"
+                                                    <%= settingsDatabase.captchaEnabled ? 'checked' : null %> type="checkbox" />
+                                                <button type="button"
+                                                    class="peer border-2 focus:border-accent text-transparent peer-checked:text-color-primary border-[#354567] flex items-center justify-center peer-checked:bg-accent relative h-5 w-5 md:h-6 md:w-6 rounded-full">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="14" height="14" viewBox="0 0 24 24"
+                                                        fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <polyline points="20 6 9 17 4 12">
+                                                        </polyline>
+                                                    </svg>
+                                                    <label class="absolute inset-0 cursor-pointer"
+                                                        for="captchaCheckbox">
+                                                    </label>
+                                                </button>
+                                            </div>
+                                            <!-- End Rounded Checkbox -->
+
+                                            <small class="text-color-tertiary text-xs">
+                                                Enable
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            
+
+                            <div class="xl:col-span-1 lg:col-span-2  col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Captcha Secret Key
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is found in your hCaptcha profile and used to verify captcha checks.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <input  
+                                class="form-input block w-full mt-1 rounded text-sm text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
+                                placeholder="<%= settingsDatabase.captchaSecretKey ? settingsDatabase.captchaSecretKey : "No site ID entered. Defaulting to vanilla captcha." %>" name="captchaSecretKey" type="text" />
+                            </div>
+
+                            <div class="col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Private Mode
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This will remove the app statisics from the login page.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <!-- Switch  -->
+                                <label class="switch">
+                                    <!-- <span class="pr-2 text-color-secondary">
+                                        Off
+                                    </span> -->
+                                    <input type="checkbox" name="privateModeEnabled" value="privateModeEnabled" <%= settingsDatabase.privateModeEnabled ? 'checked' : null %>>
+                                    <span class="check"></span>
+                                    <!-- <span class="pl-2 text-color-secondary">
+                                        On
+                                    </span> -->
+                                </label>
+                                <!-- End Switch -->
+                            </div>
+
+                            <div class="col-span-1">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Registration Enabled
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This allows people to create accounts in your ASS instance.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+                                <label class="switch">
+                                    <!-- <span class="pr-2 text-color-primary">
+                                        Off
+                                    </span> -->
+                                    <input type="checkbox" name="registrationEnabled" value="registrationEnabled" <%= settingsDatabase.registrationEnabled ? 'checked' : null %>>
+                                    <span class="check"></span>
+                                    <!-- <span class="pl-2 text-color-primary">
+                                        On
+                                    </span> -->
+                                </label>
+                            </div>
+
+                            <div class="col-span-2">
+                                <div class="flex w-full justify-center items-center bg-tertiary p-6 rounded-md">
+                                    <button type="submit" class="bg-accentsecondary w-full hover:bg-accent rounded-md px-8 py-3 text-color-primary">
+                                        Save Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Main Setting -->
+                </form>
+
+                <!-- Image Setting -->
+                <div class="flex-1 bg-tertiary p-6 rounded-md">
+                    <div class="py-9">
+                        <div class="border-b w-full border-gray-300/10 pb-3">
+                            <span class="text-lg text-color-primary font-semibold">
+                                Image Settings
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-5 text-sm md:text-base">
+
+                        <div class="col-span-2">
+                            <form method="post" enctype="multipart/form-data" action="/admin/upload/logo">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        App Logo
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is the logo shown in various areas of the app!
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+
+                                <!-- Drag Drop File -->
+                                <label for="app-logo" class="cursor-pointer flex w-full h-40 border-2 border-form border-dashed rounded-md p-5">
+                                    <div class="w-full flex flex-col justify-center items-center h-ful">
+                                        <span class="font-semibold text-color-primary text-lg">
+                                            Drop files here or click to upload.
+                                        </span>
+                                        <p class="text-sm text-color-secondary text-center">
+                                            All files uploaded are stored directly in the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> app folder.
+                                        </p>
+                                    </div>
+                                    <input id="app-logo" name="app-logo" class="hidden" type="file" onchange="form.submit()" accept=".jpg, .jpeg, .png">
+                                </label>
+                                <!-- End Drag Drop File -->
+                            </form>
+                        </div>
+
+                        <div class="col-span-2">
+                            <form method="post" enctype="multipart/form-data" action="/admin/upload/default-pp">
+                                <!-- Label with tooltip -->
+                                <label class="mb-2 block text-color-tertiary text-sm">
+                                    <div class="relative w-max">
+                                        Default Profile Picture
+                                        <div class="group z-20 absolute -right-8 top-0 cursor-help">
+                                            <div>
+                                                <i data-lucide="help-circle" class="text-color-secondary"></i>
+                                            </div>
+                                            <div class="flex justify-center items-center">
+
+                                                <div class="lg:w-52 w-48 group-hover:block text-color-light text-sm hidden absolute bottom-10 bg-tooltip p-2 rounded-md">
+                                                    <div class="break-words">
+                                                        This is the default profile picture all new users have.
+                                                    </div>
+                                                    <div class="absolute -left-[0.10rem] flex justify-center items-center w-full">
+                                                        <div class="w-0 h-0 border-t-[20px] border-l-[10px] border-r-[10px] border-tooltip border-l-transparent border-r-transparent border-solid"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </label>
+                                <!-- End Label with tooltip -->
+
+                                <!-- Drag Drop File -->
+                                <label for="default-pp" class="cursor-pointer flex w-full h-40 border-2 border-form border-dashed rounded-md p-5">
+                                    <div class="w-full flex flex-col justify-center items-center h-ful">
+                                        <span class="font-semibold text-color-primary text-lg">
+                                            Drop files here or click to upload.
+                                        </span>
+                                        <p class="text-sm text-color-secondary text-center">
+                                            All files uploaded are stored directly in the <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> app folder.
+                                        </p>
+                                    </div>
+                                    <input id="default-pp" name="default-pp" class="hidden" type="file" onchange="form.submit()" accept=".jpg, .jpeg, .png">
+                                </label>
+                                <!-- End Drag Drop File -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Image Setting -->
+            </div>
+        </div>
+    </div>
+
+    <!-- EMPTY CARD ON THE RIGHT -->
+    <!-- <div class="flex-none lg:basis-1/2 basis-full self-auto lg:self-start lg:pl-3 pl-0 lg:mt-0 mt-3">
+        <div class="flex flex-col flex-wrap">
+            <div class="flex flex-col lg:gap-8 gap-3 ">
+
+                <div class="flex-1 bg-tertiary p-6 rounded-md">
+                    <div class="py-9">
+                        <div class="border-b w-full border-gray-300/10 pb-3">
+                            <span class="text-lg text-color-primary font-semibold">
+                                Title here
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

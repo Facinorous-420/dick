@@ -1,6 +1,6 @@
 import { templatePathBuilder } from "./utils/utils"
 
-/* ------------------- ASS HOST INFORMATION ---------------------------- */
+/* ------------------- ASS HOST INFORMATION ------------------------ */
 // Boolean variable if your ASS is secured with HTTPS
 // true = https | false = http
 export const ASS_SECURE = false
@@ -8,18 +8,10 @@ export const ASS_SECURE = false
 // This is the domain your ASS is hosted at: "127.0.0.1" | "cdn.domain.com"
 export const ASS_DOMAIN = "127.0.0.1:40115"
 
-// If running DICK in separate mode, it will need to know where your ASS is installed
-// do note that it must be a *relative* location.
+// DICK will need to know where your ASS is installed
+// Do note that it must be a *relative* location.
 // For example "../ass" means ass is installed in the parent directory.
-
-//NOTE: If you are using DICK as a submodule to ASS, you would simply use './' as ASS is running DICK and the folder structure starts in ASS' folder.
 export const ASS_LOCATION = "../ass"
-
-/* ------------------- STAFF ID CONSTANTS ---------------------------- */
-// this will eventually be moved away from constants
-// Array of all USERNAMES in your ASS auth.json file that will have admin access: ["ass", "dick", "frank"]
-export const STAFF_IDS = ["ass"]
-
 
 /* ------------------- SYSTEM CONSTANTS ------------------------ */
 // Port to run the server on, change if you have something else running on that port

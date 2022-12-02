@@ -1,10 +1,12 @@
 import { Response } from "express"
 import { parseAuthFile, parseDataFile } from "./utils/assJSONStructure"
 import { RenderOptions } from "./typings/Pager"
-import { ASS_DOMAIN, ASS_SECURE, STAFF_IDS } from "./constants"
-import { convertTimestamp, convertToPaginatedArray, formatSize } from "./utils/utils"
-import { ASSUser, ASSItem } from "./typings/ASSTypes"
+import { ASS_DOMAIN, ASS_SECURE } from "./constants"
+import { convertTimestamp, convertToPaginatedArray, formatSize, } from "./utils/utils"
+import { getSettingsDatabase, getUserDatabase, getUserDatabaseObj } from "./utils/database"
+import { ASSUser, ASSItem } from "./typings/ASS"
 import { IExtendedRequest } from "./typings/express-ext"
+import { ISettingsDatabase, IUsersDatabase, IUserSettings } from "./typings/database"
 
 export class Pager {
   /**
@@ -21,26 +23,29 @@ export class Pager {
 
     const data: Array<ASSItem> = parseDataFile()
     const users: Array<ASSUser> = parseAuthFile()
+    const dickUsers: IUsersDatabase = getUserDatabase()
+    const database: ISettingsDatabase = getSettingsDatabase()
 
     // If user is already authenticated load the authenticated data
     if (req.isAuthenticated()) {
-      return this.renderAuthenticatedData(res, req, template, options, data, users)
+      return this.renderAuthenticatedData(res, req, template, options, data, users, database, dickUsers)
     }
-    
+
     // If user is not authenticated only load guest data
-    return this.renderUnauthenticatedData(res, req, template, options, data, users)
+    return this.renderUnauthenticatedData(res, req, template, options, data, users, database)
   }
 
   /**
    * Renders templates for unauthenticated templates
    */
-   static async renderUnauthenticatedData(
+  static async renderUnauthenticatedData(
     res: Response,
     req: IExtendedRequest,
     template: string,
     options: RenderOptions,
     data: Array<ASSItem>,
-    users: Array<ASSUser>
+    users: Array<ASSUser>,
+    settingsDatabase: ISettingsDatabase
   ) {
     const totalUsers = users.length
     const totalData = data.length
@@ -49,6 +54,7 @@ export class Pager {
     const baseData = {
       params: options.params,
       path: req.path,
+      settingsDatabase,
       totalUsers,
       totalData,
       totalSize
@@ -68,38 +74,56 @@ export class Pager {
     template: string,
     options: RenderOptions,
     data: Array<ASSItem>,
-    users: Array<ASSUser>
+    users: Array<ASSUser>,
+    settingsDatabase: ISettingsDatabase,
+    dickUsers: IUsersDatabase
   ) {
     // * -------------------- BUILD DATA OBJECT FOR FRONTEND EJS VARIABLES ------------
     const totalUsers = users.length
+    const allUsers = []
+    for (const user of users) {
+      allUsers.push(`${user.username}`)
+    }
+    const user: IUserSettings = getUserDatabaseObj(req.user.username)
     const totalData = data.length
     const totalSize = formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0))
-    const hasRole = STAFF_IDS.indexOf(req.user.username) > -1
+    const hasRole = user.role == "admin" ? true : false
     // Get all the specific users file information, using secret key to match
     const usersData = data.filter(item => item.owner == req.user.password).map((item) => ({
-      ...item, 
+      ...item,
       timestamp: convertTimestamp(item.timestamp)
     })).sort((a, b) => {
       let da = new Date(a.timestamp),
-          db = new Date(b.timestamp)
-          return db.getTime() - da.getTime()
+        db = new Date(b.timestamp)
+      return db.getTime() - da.getTime()
     })
 
-    // I feel like this could be done better, but I created an object filled with useful variables for the user data to be rendered on the pages
-    const usersDataObj = {
-      data: convertToPaginatedArray(usersData,50),
-      totalFiles: usersData.length,
-      allImages: usersData.filter(item=> item.type.includes('image')),
-      allVideos: usersData.filter(item=> item.type.includes('video')),
-      allAudio: usersData.filter(item=> item.type.includes('audio')),
-      allOthers: usersData.filter(item=> item.type.includes('other')),
-      totalSize:formatSize(usersData.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalImageSize: formatSize(usersData.filter(item=> item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalVideosSize: formatSize(usersData.filter(item=> item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalAudioSize: formatSize(usersData.filter(item=> item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
-      totalOthersSize: formatSize(usersData.filter(item=> item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
+    const appDataObj = {
+      allImages: data.filter(item => item.type.includes('image')),
+      allVideos: data.filter(item => item.type.includes('video')),
+      allAudio: data.filter(item => item.type.includes('audio')),
+      allOthers: data.filter(item => item.type.includes('other')),
+      totalSize: formatSize(data.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalImageSize: formatSize(data.filter(item => item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalVideosSize: formatSize(data.filter(item => item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalAudioSize: formatSize(data.filter(item => item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalOthersSize: formatSize(data.filter(item => item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
     }
-    
+
+    const usersDataObj = {
+      data: convertToPaginatedArray(usersData, 50),
+      totalFiles: usersData.length,
+      allImages: usersData.filter(item => item.type.includes('image')),
+      allVideos: usersData.filter(item => item.type.includes('video')),
+      allAudio: usersData.filter(item => item.type.includes('audio')),
+      allOthers: usersData.filter(item => item.type.includes('other')),
+      totalSize: formatSize(usersData.map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalImageSize: formatSize(usersData.filter(item => item.type.includes('image')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalVideosSize: formatSize(usersData.filter(item => item.type.includes('video')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalAudioSize: formatSize(usersData.filter(item => item.type.includes('audio')).map(item => item.size).reduce((prev, curr) => prev + curr, 0)),
+      totalOthersSize: formatSize(usersData.filter(item => item.type.includes('other')).map(item => item.size).reduce((prev, curr) => prev + curr, 0))
+    }
+
     let targetDataObj = {}
     // If the user is staff and is trying to view another users information, we will grab it here to render that as well..
     /*
@@ -119,19 +143,23 @@ export class Pager {
       }
     }
     */
-   
+
     const baseData = {
-      assDomain: ASS_DOMAIN,
-      assSecure: ASS_SECURE,
-      user: req.user,
-      totalSize,
-      totalUsers,
-      totalData,
-      usersDataObj,
-      //targetDataObj: options.params.userID ? targetDataObj : null,
-      params: options.params,
-      path: req.path,
-      hasRole
+        assDomain: ASS_DOMAIN,
+        assSecure: ASS_SECURE,
+        user: req.user,
+        settingsDatabase,
+        totalSize,
+        totalUsers,
+        allUsers,
+        dickUsers,
+        totalData,
+        usersDataObj,
+        appDataObj,
+        //targetDataObj: options.params.userID ? targetDataObj : null,
+        params: options.params,
+        path: req.path,
+        hasRole
     }
 
     return res.render(template, Object.assign(baseData, options))

@@ -14,7 +14,8 @@ logs
 results
 tmp
 
-# Constants
+# Constants & Database
+src/constants
 src/constants.ts
 
 # Dependency directory
@@ -29,3 +30,4 @@ dist/**/*
 
 package-lock.json
 yarn.lock
+

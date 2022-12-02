@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction, Router } from "express"
-import { authCheck } from "../utils/utils"
+import { authCheck, checkCaptcha } from "../utils/middleware"
+import { checkIfUserExistInASS, checkIfUserExistInDICK, createUserInASS, createUserInDICK } from "../utils/database"
 
 const { passport } = require("../utils/passport")
 
@@ -36,29 +37,25 @@ export const authRoutes = (app: Router) => {
     })
   })
 
-  // When logout, redirect to client
   app.get("/auth/logout", (req: Request, res: Response) => {
-    const user = req.user
     req.logout({ keepSessionInfo: false }, null)
     req.flash('success_alert_message', 'You have been succesfully logged out')
     return res.redirect("/login")
   })
 
-  
-
   // Auth with local passport, send them to ricky boy to prevent brute forcing 'cause Im too lazy to add proper captcha rn
   app.post(
     "/auth/login",
+    checkCaptcha,
     passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       failureFlash: true
     }),
-    (req: Request, res: Response, next: NextFunction) => {
+    (next: NextFunction) => {
       next()
     }
   )
-
 
   // Redirect to home page after successfully login
   app.get(
@@ -68,8 +65,43 @@ export const authRoutes = (app: Router) => {
       if (req.user) {
         return res.redirect("/")
       }
-      console.log('we hit here')
       return res.redirect("/login")
     }
   )
+
+  // Register page post request on button submit
+  app.post('/auth/register', checkCaptcha, async (req, res) => {
+    // Check if the form is filled our properly
+    if (!req.body.username) {
+      req.flash('error_message', 'You did not include a username!')
+      return res.redirect("/register")
+    }
+    if (!req.body.password) {
+      req.flash('error_message', 'You did not include a password!')
+      return res.redirect("/register")
+    }
+    if (req.body.username > 20) {
+      req.flash('error_messge', 'Username can not be more than 20 characters!')
+      return res.redirect("/register")
+    }
+    if (req.body.password < 5) {
+      req.flash('error_messge', 'Secret key can not be less than 5 characters!')
+      return res.redirect("/register")
+    }
+
+    // Check if user exists in ass or dick, if it does then we throw error
+    if (await checkIfUserExistInASS(req.body.username, req.body.password) || await checkIfUserExistInDICK(req.body.username)) {
+      req.flash('error_message', 'User already exists!')
+      return res.redirect("/register")
+    }
+
+    // Create the user
+    await createUserInASS(req.body.username, req.body.password)
+    await createUserInDICK(req.body.username)
+
+    // Redirect them to the login screen
+    req.flash('success_alert_message', `You have sucesfully created a user with the name ${req.body.username}. You can now log in.`)
+    return res.redirect("/login")
+  })
+
 }

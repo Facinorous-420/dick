@@ -1,2 +1,146 @@
-<p class="text-orange-700 dark:text-orange-400">I already said this page was TBA, what more do you want from me? To
-    actually code it? 😜 </p>
+<!-- Content Title -->
+<span class="text-lg font-semibold text-color-secondary md:text-xl lg:text-xl">
+    Admin Settings
+</span>
+<!-- End Content Title -->
+
+<div class="bg-tertiary mt-6 h-auto w-full rounded-lg">
+    <div
+        class="flex w-full flex-row flex-wrap justify-center space-x-3 border-b border-purple-400/25 py-3 px-6 md:space-x-6 md:px-5 md:py-5 lg:space-x-6 lg:px-5 lg:py-5">
+        <!-- System Stat Cards -->
+        <div class="flex flex-wrap lg:flex-row gap-6 pb-5">
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
+                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
+                    <div class="flex">
+                        <i data-lucide="users" class="text-color-accent mr-2"></i>
+                    </div>
+                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
+                        <%= totalUsers %>
+                    </div>
+                    <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
+                        Total Users
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
+                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
+                    <div class="flex">
+                        <i data-lucide="files" class="text-color-accent mr-2"></i>
+                        <p class="ml-auto text-slate-500 text-sm">
+                            <%= totalSize %>
+                        </p>
+                    </div>
+                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
+                        <%= usersDataObj.totalFiles %>
+                    </div>
+                    <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
+                        Total Files
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="col-span-6 sm:col-span-3 xl:col-span-1 w-px h-40 border border-r border-accent border-dashed mx-4 xl:mx-6 hidden md:table-cell">
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
+                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover ">
+                    <div class="flex">
+                        <i data-lucide="image" class="text-blue-400 mr-2"></i>
+                        <p class="ml-auto text-slate-500 text-sm">
+                            <%= appDataObj.totalImageSize %>
+                        </p>
+                    </div>
+                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
+                        <%= appDataObj.allImages.length %>
+                    </div>
+                    <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
+                        <% if(appDataObj.allImages.length==1){ %> Image <% } else { %> Images <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
+                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
+                    <div class="flex">
+                        <i data-lucide="video" class="text-yellow-400 mr-2"></i>
+                        <p class="ml-auto text-slate-500 text-sm">
+                            <%= appDataObj.totalVideosSize %>
+                        </p>
+                    </div>
+                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
+                        <%= appDataObj.allVideos.length %>
+                    </div>
+                    <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
+                        <% if(appDataObj.allVideos.length==1){ %> Video <% } else { %> Videos <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-2">
+                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
+                    <div class="flex">
+                        <i data-lucide="headphones" class="text-orange-400 mr-2"></i>
+                        <p class="ml-auto text-slate-500 text-sm">
+                            <%= appDataObj.totalAudioSize %>
+                        </p>
+                    </div>
+                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
+                        <%= appDataObj.allAudio.length %>
+                    </div>
+                    <div class="sm:text-sm md:text-base text-base text-slate-500 mt-1">
+                        <% if(appDataObj.allAudio.length==1){ %> Audio File <% } else { %> Audio Files <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-2 min-w-30">
+                <div class="bg-secondary shadow-xl rounded-lg p-5 hover:bg-secondary-hover">
+                    <div class="flex">
+                        <i data-lucide="ghost" class="text-green-400 mr-2"></i>
+                        <p class="ml-auto text-slate-500 text-sm">
+                            <%= appDataObj.totalOthersSize %>
+                        </p>
+                    </div>
+                    <div class="text-color-primary sm:text-lg md:text-3xl font-medium leading-8 mt-6">
+                        <%= appDataObj.allOthers.length %>
+                    </div>
+                    <div class="sm:text-sm md:text-base text-slate-500 mt-1">
+                        <% if(appDataObj.allOthers.length==1){ %> Other File <% } else { %> Other Files <% } %>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End System Stat Cards -->
+    </div>
+
+    <!-- Admin Tabs -->
+
+    <div
+        class="flex flex-col flex-wrap items-center space-y-4 px-5 pt-5 md:flex-row md:space-y-0 lg:flex-row lg:space-y-0">
+        <button data-id="1"
+            class="tabAdmin inline-flex w-full items-center space-x-2 border-b-2 border-accent px-6 pb-5 text-sm font-semibold text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
+            <i data-lucide="Settings" class="text-color-secondary"></i>
+            <span class="truncate"> App Settings </span>
+        </button>
+
+        <button data-id="2"
+            class="tabAdmin inline-flex w-full items-center space-x-2 px-6 pb-5 text-sm text-color-primary md:w-auto md:text-base lg:w-auto lg:text-base">
+            <i data-lucide="Users" class="text-color-secondary"></i>
+            <span> Users </span>
+        </button>
+    </div>
+    <!-- End Admin Tabs -->
+</div>
+
+<div class="mt-10 flex flex-col flex-wrap">
+    <div class="changeTabAdmin flex-1 basis-full">
+        <%- include("./tabs/appsettings") %>
+    </div>
+    <div class="changeTabAdmin hidden basis-full">
+        <%- include("./tabs/users") %>
+    </div>
+</div>
