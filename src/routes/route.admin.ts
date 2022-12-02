@@ -110,7 +110,7 @@ export const adminRoutes = (app: Router) => {
         }
       })
 
-      req.flash('success_alert_message', 'Logo successfully uploaded and saved')
+      req.flash('success_alert_message', 'Logo successfully uploaded and saved. Please clear cache to see the new change!')
       return res.redirect('/admin')
     }
   )
@@ -126,7 +126,7 @@ export const adminRoutes = (app: Router) => {
       uploadDefaultPP(req, res, (err) => {
         if (err) {
           console.log(err)
-          req.flash('error_message', 'Logo failed to upload')
+          req.flash('error_message', 'Profile picture failed to upload. Please clear cache to see the new change!')
           return res.redirect('/admin')
         }
       })
