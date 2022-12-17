@@ -1,0 +1,14 @@
+version: "2.1"
+services:
+  dick:
+    container_name: dick
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: npm start
+    volumes:
+      - ./src/constants.ts:/app/dick/src/constants.ts # DICK constants file
+      - ../ass:/app/ass # Path to your ASS install
+    ports:
+      - 3000:3000
+    restart: unless-stopped
