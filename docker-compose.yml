@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     command: npm start
     volumes:
-      - ./constants.ts:/app/dick/src/constants.ts # DICK constants file
+      - ./src/constants.ts:/app/dick/src/constants.ts # DICK constants file
       - ../ass:/app/ass # Path to your ASS install
     ports:
       - 3000:3000
