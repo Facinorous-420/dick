@@ -86,17 +86,13 @@
                                     <%= user.username %>
                                 </span>
                                 <div class="text-color-tertiary text-xs">
-                                    <%= user.role %>
+                                    <%= if(user.role === "admin"){ %> Administrator <% } else { %> User <% } %>
                                 </div>
                             </td>
                             <!--
-                            <td class="p-4 bg-tertiary text-color-secondary text-center">
-                                66
-                            </td>
+                            <td class="p-4 bg-tertiary text-color-secondary text-center">66</td>
                             <td class="p-4 bg-tertiary text-color-secondary text-center ">
-                                <div class="sm:border-r border-slate-700  border-r-0">
-                                    65GB
-                                </div>
+                                <div class="sm:border-r border-slate-700  border-r-0">65GB</div>
                             </td>
                             -->
                             <!--
