@@ -1,13 +1,15 @@
-FROM     archlinux:latest
+FROM archlinux:latest
 
 # Update the repositories
-RUN     pacman -Sy
+RUN pacman -Sy
 
-# Install openssh
-RUN     pacman -S --noconfirm git nodejs npm
+# Install nodejs
+RUN pacman -S --noconfirm git nodejs npm
 
 # Generate directories and set up project
-RUN  mkdir /app && cd /app && mkdir ass && git clone https://github.com/Facinorous-420/dick.git && cd /app/dick
+RUN  mkdir /app && mkdir /app/dick && mkdir /app/ass
+COPY . /app/dick
+RUN  cd /app/dick
 
 #RUN nvm install node
 RUN npm install -g npm@latest
