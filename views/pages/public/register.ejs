@@ -10,16 +10,16 @@
         		</p>
 
         		<% if(success_alert_message !='' ){ %>
-          			<p class="text-green-600 pb-2 text-center">
-            			<%= success_alert_message %>
-          			</p>
-          		<% } %>
+					<div class="p-2 mb-4 text-sm text-green-600 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+						<span class="font-medium">Success!</span> <%= success_alert_message %>.
+					</div>
+        		<% } %>
 
-            	<% if(error_message !='' ){ %>
-              		<p class="text-red-600 pb-2 text-center">
-                		<%= error_message %>
-              		</p>
-              	<% } %>
+        		<% if(error_message !='' ){ %>
+					<div class="p-2 mb-4 text-sm text-red-600 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+						<span class="font-medium">Error!</span> <%= error_message %>.
+					</div>
+        		<% } %>
 
                 <form class="flex flex-col" method="post" action="/auth/register">
                 	<label class="block text-sm">

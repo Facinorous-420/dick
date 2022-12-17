@@ -3,21 +3,17 @@
         <div class="flex flex-col flex-wrap">
             <div class="flex flex-col lg:gap-8 gap-3 ">
 
-                <% if(success_alert_message !='' ){ %>
-                    <div class="flex-1 bg-tertiary p-6 rounded-md">
-                        <p class="text-green-600 pb-2 text-center">
-                            <%= success_alert_message %>
-                        </p>
-                    </div>
-                <% } %>
+        		<% if(success_alert_message !='' ){ %>
+					<div class="p-2 mb-4 text-sm text-green-600 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+						<span class="font-medium">Success!</span> <%= success_alert_message %>.
+					</div>
+        		<% } %>
 
-                <% if(error_message !='' ){ %>
-                    <div class="flex-1 bg-tertiary p-6 rounded-md">
-                        <p class="text-red-600 pb-2 text-center">
-                            <%= error_message %>
-                        </p>
-                    </div>
-                <% } %>
+        		<% if(error_message !='' ){ %>
+					<div class="p-2 mb-4 text-sm text-red-600 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+						<span class="font-medium">Error!</span> <%= error_message %>.
+					</div>
+        		<% } %>
 
                 <form method="post" action="/admin/save/settings">
                     <!-- Main Setting -->
