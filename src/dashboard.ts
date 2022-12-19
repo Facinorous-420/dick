@@ -65,9 +65,9 @@ app.use(async (req, res) => await Pager.render(res, req, TEMPLATE.ERRORS[404]))
 // Run DICK
 app.listen(app.get("port"), () => {
   console.log(
-    "  Dick is running at http://localhost:%d in %s mode",
+    "[DICK] Listening on Port: %d\n[DICK] Running in: %s mode",
     app.get("port"),
     app.get("env")
   )
-  console.log("  Press CTRL-C to stop\n")
+  console.log("[DICK] Press CTRL+C to stop")
 })

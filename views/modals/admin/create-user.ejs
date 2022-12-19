@@ -2,7 +2,7 @@
     <!-- Modal Outscreen -->
     <div class="buttonModal absolute inset-0 bg-gradient-to-tr opacity-90 from-gray-700 via-gray-900 to-gray-700">
     </div>
-    <!-- Modal Outscreen -->
+    <!-- End Modal Outscreen -->
 
     <form action="/admin/add/user" method="POST"
         class="rounded-2xl flex-col bg-tertiary flex shadow-lg max-h-modal w-11/12 md:w-3/5 lg:w-2/5 xl:w-4/12 z-50">
@@ -37,24 +37,19 @@
                 <div class="grid grid-cols-2 gap-5 text-sm md:text-base">
                     <div class="md:col-span-1 col-span-2">
                         <label class="mb-2 block text-color-tertiary text-sm">
-                            <div class="relative w-max">
-                                Username
-
-                            </div>
+                            <div class="relative w-max">Username</div>
                         </label>
                         <input
                             class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
-                            placeholder="Imposter" name="username" type="text" />
+                            name="username" type="text" />
                     </div>
                     <div class="md:col-span-1 col-span-2">
                         <label class="mb-2 block text-color-tertiary text-sm">
-                            <div class="relative w-max">
-                                Secret Key
-                            </div>
+                            <div class="relative w-max">Password</div>
                         </label>
                         <input
                             class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
-                            placeholder="***************" name="password" type="password" />
+                            name="password" type="password" />
                     </div>
                 </div>
             </div>
@@ -64,11 +59,9 @@
         <div class="p-6">
             <div class="flex items-center justify-end flex-wrap -mb-3">
                 <button type="submit"
-                    class="bg-accentsecondary w-auto hover:bg-accent rounded-md px-5 py-2 text-color-primary">
-                    Add User
-                </button>
+                    class="bg-accentsecondary w-auto hover:bg-accent rounded-md px-5 py-2 text-color-primary">Create User</button>
             </div>
             <div>
-                <!-- End Modal Footer  -->
+        <!-- End Modal Footer  -->
     </form>
 </div>

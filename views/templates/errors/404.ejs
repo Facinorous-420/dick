@@ -4,12 +4,10 @@
     <div class="flex flex-col items-center justify-center min-h-screen p-6">
         <div class="flex-col lg:flex-row items-center justify-center h-screen text-center lg:text-left">
             <div class="text-color-primary mt-10 lg:mt-0">
-                <div class="text-8xl font-medium">404</div>
-                <div class="text-xl lg:text-3xl font-medium mt-5">Oops. This page does not exist.</div>
-                <div class="text-lg mt-3">You may have mistyped the address or <%= settingsDatabase.name ? settingsDatabase.name.toUpperCase() : "DICK" %> seems to be malfunctioning</div>
-                <a href="/login" class="py-3 px-4 text-color-primary border-white dark:border-darkmode-400 dark:text-slate-200 mt-10">
-                    Back to Home
-                </a>
+                <div class="text-8xl font-medium">Error 404</div>
+                <div class="text-xl lg:text-3xl font-medium mt-5">Page Not Found</div>
+                <div class="text-lg mt-3">The page you were looking for does not exist. You may have mistyped the URL or the page may have moved.</div>
+                <a href="/" class="py-3 px-4 text-color-primary border-white dark:border-darkmode-400 dark:text-slate-200 mt-10">Return Home</a>
             </div>
         </div>
     </div>

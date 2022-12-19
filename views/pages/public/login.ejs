@@ -25,12 +25,12 @@
                 	<label class="block text-sm">
                     	<span class="text-color-tertiary">Username</span>
                     	<input class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
-                    		placeholder="Imposter" name="username" type="text" />
+                    		name="username" type="text" />
                   	</label>
                 	<label class="block mt-4 text-sm">
-                    	<span class="text-color-tertiary">Secret Key</span>
+                    	<span class="text-color-tertiary">Password</span>
                     	<input class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
-                      		placeholder="***************" name="password" type="password" />
+                      		name="password" type="password" />
                   	</label>
 					<% if(settingsDatabase.captchaEnabled) { %>
 						<div class="h-captcha mt-4" data-theme="dark" data-sitekey=<%= settingsDatabase.captchaSiteID %>></div>
