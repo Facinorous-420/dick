@@ -53,7 +53,7 @@
 
 Dick was created to be an easy to use front end for <a href="https://github.com/tycrek/ass">Ass</a> as there was no public option to allow users to view their saved images on their server. I decided to learn tailwind and also at the same time build this. I did this all in my spare time, and will keep updating as best as I can while I use it. I'm still learning all this so if anyone has suggestions on how to do things better, I am all ears! I love learning! :)
 
-**Current Feautres:**
+**Current Features:**
 1. General statistics on your file uploads
 2. File browser, allows you to see all your uploads on one webpage
 3. Deletion of items
@@ -62,12 +62,12 @@ Dick was created to be an easy to use front end for <a href="https://github.com/
 6. Register new ASS users
 7. hCaptcha on login and register pages <a href="https://www.hcaptcha.com/">You can learn more here</a>.
 
-**Planned Feautres:**
+**Planned Features:**
 1. There are a lot of good ideas out there, to keep track of what is currently planned see <a href="https://github.com/users/Facinorous-420/projects/2">the project board</a>
 
-The front end is built using <a href="https://tailwindcss.com">Tailwind CSS</a>, <a href="https://lucide.dev/">Lucide Icons,</a> as well as hand crafted components all templated using <a href="https://ejs.co/">EJS</a>. I plan to eventually rewrite this in React.
+The frontend is built using <a href="https://tailwindcss.com">Tailwind CSS</a>, <a href="https://lucide.dev/">Lucide Icons</a>, as well as hand crafted components all templated using <a href="https://ejs.co/">EJS</a>. I plan to eventually rewrite this in React.
 
-The back end is written in <a href="https://www.typescriptlang.org/">Typescript</a>, utilizing <a href="https://expressjs.com/">expressJS</a>.
+The backend is written in <a href="https://www.typescriptlang.org/">TypeScript</a>, utilizing <a href="https://expressjs.com/">ExpressJS</a>.
 
 
 ## Running The Dashboard
@@ -78,12 +78,12 @@ You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
 
 ### Config
 
-Inside of your dick root folder, you will see `src/constants.ts.example`. Copy this to `constants.ts`<br/>
+Inside of your DICK root folder, you will see `src/constants.ts.example`. Copy this to `constants.ts`<br/>
 Inside this file, is some basic configuration you can change for your set up. There are only 5 variables you need to worry about in this file:
 
-| Variable                                     |           Description           |
-| --------------------------------------------- | :---------------------: |
-| `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
+| Variable | Description |
+|:-:|:-:|
+| `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS. Keep at the default `false`, if you are using HTTP. |
 | `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
 | `ASS_LOCATION = "../ass"` | If running DICK seperately, DICK will use this to find your ASS install folder. Leave this alone if using Docker. |
 | `PORT = "3000"` | Change this number to the port you wish DICK to run on. Leave this alone if using Docker. |
@@ -150,8 +150,8 @@ The first user to login will be added to the instance admin list.
 
 App settings ware available through the admin page. This is where a user can whitelabel their DICK instance.
 
-|                   Variable                    |       Description       |
-| --------------------------------------------- | :---------------------: |
+| Variable | Description |
+|:-:|:-:|
 | `App Name` | This will replace all the **DICK** occurrences around the app |
 | `App Emoji` | This will allow you to change the emoji you see around the instance, by default its an eggplant. 🍆 |
 | `Site Title` | This is the text that shows up in browser tabs, as well as the title for the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
@@ -167,11 +167,10 @@ App settings ware available through the admin page. This is where a user can whi
 
 ## Contributing
 
-<sub> If using VSCode, I'd recommend using this extension: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</sub>
+<sub>If you are using Visual Studio Code, I'd recommend using this extension: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</sub>
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
