@@ -11,7 +11,7 @@ export const authRoutes = (app: Router) => {
   app.get("/auth/check", authCheck, (req: Request, res: Response) => {
     res.status(200).json({
       authenticated: true,
-      message: "user successfully authenticated",
+      message: "User has authenticated",
       user: req.user,
       cookies: req.cookies,
     })
@@ -22,7 +22,7 @@ export const authRoutes = (app: Router) => {
     if (req.user) {
       res.json({
         success: true,
-        message: "User has successfully authenticated",
+        message: "User has authenticated",
         user: req.user,
         cookies: req.cookies,
       })
@@ -33,7 +33,7 @@ export const authRoutes = (app: Router) => {
   app.get("/auth/login/failed", (req: Request, res: Response) => {
     res.status(401).json({
       success: false,
-      message: "Username or password is incorrect.",
+      message: "Username or password is incorrect!",
     })
   })
 
