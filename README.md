@@ -1,4 +1,4 @@
-<br />
+<br>
 <p align="center">
   <a href="assets/dick_example_2.png">
     <img src="assets/dick_example_2.png" alt="Login">
@@ -10,19 +10,21 @@
   </a>
   </details>
 
-  <h3 align="center">DICK (Directly Integrated Client for Keisters)</h3>
+  <h1 align="center">DICK</h1>
+
+  <h2 align="center">Directly Integrated Client for Keisters</h2>
 
   <p align="center">
-    The main repository for DICK, an <a href="https://github.com/tycrek/ass">ASS</a> front end
-    <br />
-    <br />
+    The main repository for DICK, a frontend for <a href="https://github.com/tycrek/ass">ass</a>.
+    <br>
+    <br>
     <a href="https://github.com/facinorous-420/dick/issues">Report Bug</a>
-    ·
+    &bull;
     <a href="https://github.com/facinorous-420/dick/issues">Request Feature</a>
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
+<!-- Table of Contents -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
@@ -39,21 +41,15 @@
     <li>
       <a href="#contributing">Contributing</a>
     </li>
-    <li>
-      <a href="#contact">Contact</a>
-    </li>
-    <li>
-      <a href="#acknowledgements">Acknowledgements</a>
-    </li>
   </ol>
 </details>
 
 
 ## About The Project
 
-Dick was created to be an easy to use front end for <a href="https://github.com/tycrek/ass">Ass</a> as there was no public option to allow users to view their saved images on their server. I decided to learn tailwind and also at the same time build this. I did this all in my spare time, and will keep updating as best as I can while I use it. I'm still learning all this so if anyone has suggestions on how to do things better, I am all ears! I love learning! :)
+DICK was created to be an easy to use frontend for [ass](https://github.com/tycrek/ass) as there was no public option to allow users to view their saved images on their server. I decided to learn tailwind and also at the same time build this. I did this all in my spare time, and will keep updating as best as I can while I use it. I'm still learning all this so if anyone has suggestions on how to do things better, I am all ears!
 
-**Current Feautres:**
+**Current Features:**
 1. General statistics on your file uploads
 2. File browser, allows you to see all your uploads on one webpage
 3. Deletion of items
@@ -62,13 +58,12 @@ Dick was created to be an easy to use front end for <a href="https://github.com/
 6. Register new ASS users
 7. hCaptcha on login and register pages <a href="https://www.hcaptcha.com/">You can learn more here</a>.
 
-**Planned Feautres:**
+**Planned Features:**
 1. There are a lot of good ideas out there, to keep track of what is currently planned see <a href="https://github.com/users/Facinorous-420/projects/2">the project board</a>
 
-The front end is built using <a href="https://tailwindcss.com">Tailwind CSS</a>, <a href="https://lucide.dev/">Lucide Icons,</a> as well as hand crafted components all templated using <a href="https://ejs.co/">EJS</a>. I plan to eventually rewrite this in React.
+The frontend is built using <a href="https://tailwindcss.com">Tailwind CSS</a>, <a href="https://lucide.dev/">Lucide Icons</a>, as well as hand crafted components all templated using <a href="https://ejs.co/">EJS</a>. I plan to eventually rewrite this in React.
 
-The back end is written in <a href="https://www.typescriptlang.org/">Typescript</a>, utilizing <a href="https://expressjs.com/">expressJS</a>.
-
+The backend is written in <a href="https://www.typescriptlang.org/">TypeScript</a>, utilizing <a href="https://expressjs.com/">ExpressJS</a>.
 
 ## Running The Dashboard
 
@@ -78,14 +73,14 @@ You must have `Node >=v16.14.0`, which you should if you're running ASS.<br/>
 
 ### Config
 
-Inside of your dick root folder, you will see `src/constants.ts.example`. Copy this to `constants.ts`<br/>
+Inside of your DICK root folder, you will see `src/constants.ts.example`. Copy this to `constants.ts`<br/>
 Inside this file, is some basic configuration you can change for your set up. There are only 5 variables you need to worry about in this file:
 
-| Variable                                     |           Description           |
-| --------------------------------------------- | :---------------------: |
-| `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS,. false if HTTP                  |
-| `ASSDOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
+| Variable | Description |
+|:-:|:-:|
+| `ASS_DOMAIN = "127.0.0.1:40115"` | Put this to your ASS domain. Can be an ip, or domain for example `https://cdn.mydomain.com` |
 | `ASS_LOCATION = "../ass"` | If running DICK seperately, DICK will use this to find your ASS install folder. Leave this alone if using Docker. |
+| `ASS_SECURE = false` | Put this to true if you are running ASS behind a domain with HTTPS. Keep at the default `false`, if you are using HTTP. |
 | `PORT = "3000"` | Change this number to the port you wish DICK to run on. Leave this alone if using Docker. |
 
 > **Note**
@@ -114,7 +109,7 @@ Inside this file, is some basic configuration you can change for your set up. Th
 <details>
     <summary>
       <sub>Open to view the docker production set up steps</sub>
-    </summary><br/>
+    </summary><br>
 
   1. Create a folder, call it whatever you wish
   2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
@@ -128,7 +123,7 @@ Inside this file, is some basic configuration you can change for your set up. Th
 <details>
     <summary>
       <sub>Open to view the source production set up steps</sub>
-    </summary><br/>
+    </summary><br>
 
   1. Create a folder, call it whatever you wish
   2. Install, and run ASS https://github.com/tycrek/ass#installation (This will create an `ass` folder) 
@@ -143,35 +138,34 @@ When you approach the login screen, the login information is your ASS username, 
 The first user to login will be added to the instance admin list.
 
 > **Note**
-> ```ASS and the dashboard will be under their own ports.```<br/>
-> <sub> They will have entirely different routing, and ports. ASS will be running under it's port of `40115` whereas the dashboard will be under the port `3000`. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK. </sub>
+> ```ASS and the dashboard will be under their own ports.```<br>
+> <sub> They will have entirely different routing, and ports. ASS will be running under it's port of `40115` whereas the dashboard will be under the port `3000`. This means you can use two different domains for each, such as `cdn.yourdomain.com` for ASS and `dashboard.yourdomain.com` for DICK.</sub>
 
 ### Customizing
 
 App settings ware available through the admin page. This is where a user can whitelabel their DICK instance.
 
-|                   Variable                    |       Description       |
-| --------------------------------------------- | :---------------------: |
-| `App Name` | This will replace all the **DICK** occurrences around the app |
-| `App Emoji` | This will allow you to change the emoji you see around the instance, by default its an eggplant. 🍆 |
-| `Site Title` | This is the text that shows up in browser tabs, as well as the title for the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
-| `Site Description` | This text is the description text on the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
-| `Login Text` | This text is the text on the login screen, above the form. |
+| Variable | Description |
+|:-:|:-:|
+| `App Emoji` | This will allow you to change the emoji you see around the instance, by default it is an eggplant. 🍆 |
+| `App Logo` | This is the app image shown various places in DICK. |
+| `App Name` | This will replace all the **DICK** occurrences around the app. |
+| `Default Profile Picture` | This is the default image set as users profile pictures. |
 | `hCaptcha Enabled` | If enabled, your instance will use hCaptcha for the login and register pages, if disabled it will only send failed logins to a Rick Roll. |
-| `hCaptcha Site ID` | This is the hcaptcha site id if you plan to use hCaptcha as captcha to protect your DICK instance. |
-| `hCaptcha Secret Key` | This is the hcaptcha secret key found in your hcaptcha account if you plan to use hCaptcha as captcha to protect your DICK instance. |
+| `hCaptcha Secret Key` | This is the hCaptcha secret key found in your hCaptcha account if you plan to use hCaptcha as captcha to protect your DICK instance. |
+| `hCaptcha Site ID` | This is the hCaptcha site id if you plan to use hCaptcha as captcha to protect your DICK instance. |
+| `Login Text` | This text is the text on the login screen, above the form. |
 | `Private Mode` | If set, this will hide the global instance stats shown on the login page. |
 | `Registrations Enabled` | If set, this will allow people to use the register page to create new accounts. |
-| `App Logo` | This is the app image shown various places in DICK. |
-| `Default Profile Picture` | This is the default image set as users profile pictures. |
+| `Site Description` | This text is the description text on the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
+| `Site Title` | This is the text that shows up in browser tabs, as well as the title for the embed when you link the DICK dashboard **NOT** to be confused with ASS' picture embeds. |
 
 ## Contributing
 
-<sub> If using VSCode, I'd recommend using this extension: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</sub>
+<sub>If you are using Visual Studio Code, I'd recommend using this extension: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github</sub>
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
+1. [Fork](https://github.com/facinorous-420/dick/fork) the project
+2. Create your feature branch (`git checkout -b feature/amazing`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing`)
+5. Open a pull request
