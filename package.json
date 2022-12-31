@@ -1,13 +1,13 @@
 {
   "name": "dick",
   "version": "1.1.1",
-  "description": "A frontend for ASS",
-  "main": "./dist/dashboard.js",
+  "description": "A frontend for ass",
+  "main": "dist/dashboard.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Facinorous-420/dick"
   },
-  "author": "facinorous-420",
+  "author": "Facinorous-420",
   "license": "AGPL-3.0",
   "scripts": {
     "start": "npm run build && npm run serve",

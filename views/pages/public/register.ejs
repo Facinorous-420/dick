@@ -11,13 +11,13 @@
 
         		<% if(success_alert_message !='' ){ %>
 					<div class="p-2 mb-4 text-sm text-green-600 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-						<span class="font-medium">Success!</span> <%= success_alert_message %>.
+						<span class="font-medium">Success:</span> <%= success_alert_message %>.
 					</div>
         		<% } %>
 
         		<% if(error_message !='' ){ %>
 					<div class="p-2 mb-4 text-sm text-red-600 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-						<span class="font-medium">Error!</span> <%= error_message %>.
+						<span class="font-medium">Error:</span> <%= error_message %>.
 					</div>
         		<% } %>
 
@@ -26,27 +26,22 @@
                 		<span class="text-color-tertiary">Username</span>
                     	<input
                       		class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
-                      		placeholder="Imposter" name="username" type="text" />
+                      		name="username" type="text" />
                   	</label>
                   	<label class="block mt-4 text-sm">
                     	<span class="text-color-tertiary">Secret Key</span>
                     	<input
                       		class="form-input block w-full mt-1 rounded text-sm  text-color-tertiary border-form bg-forminput transition duration-500 focus:border-transparent border-transparent focus:ring-0 focus:border-formaccent focus:text-color-accent"
-                      		placeholder="***************" name="password" type="password" />
+                      		name="password" type="password" />
                   	</label>
 					<% if(settingsDatabase.captchaEnabled) { %>
 						<div class="h-captcha mt-4" data-theme="dark" data-sitekey=<%= settingsDatabase.captchaSiteID %>></div>
 					<% } %>
-                	<button class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-accentsecondary border border-transparent rounded-lg active:bg-accentsecondary hover:bg-accent focus:outline-none focus:shadow-outline-purple"
-						type="submit">
-                    	Register
-                  	</button>
+                	<button class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-color-primary transition-colors duration-150 bg-accentsecondary border border-transparent rounded-lg active:bg-accentsecondary hover:bg-accent focus:outline-none focus:shadow-outline-purple" type="submit">Register</button>
                 </form>
 
                 <p class="mt-4 text-center">
-                    <a class="text-sm font-medium text-color-accent hover:underline" href="/login">
-                    	Login
-                    </a>
+                    <a class="text-sm font-medium text-color-accent hover:underline" href="/login">Login</a>
                 </p>
 			</div>
 		</div>
