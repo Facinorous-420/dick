@@ -22,7 +22,7 @@ export const authRoutes = (app: Router) => {
     if (req.user) {
       res.json({
         success: true,
-        message: "user has successfully authenticated",
+        message: "User has successfully authenticated",
         user: req.user,
         cookies: req.cookies,
       })
@@ -39,7 +39,7 @@ export const authRoutes = (app: Router) => {
 
   app.get("/auth/logout", (req: Request, res: Response) => {
     req.logout({ keepSessionInfo: false }, null)
-    req.flash('success_alert_message', 'You have been succesfully logged out')
+    req.flash('success_alert_message', 'You have been logged out!')
     return res.redirect("/login")
   })
 
@@ -85,7 +85,7 @@ export const authRoutes = (app: Router) => {
       return res.redirect("/register")
     }
     if (req.body.password < 5) {
-      req.flash('error_messge', 'Secret key can not be less than 5 characters!')
+      req.flash('error_messge', 'Password can not be less than 5 characters!')
       return res.redirect("/register")
     }
 
