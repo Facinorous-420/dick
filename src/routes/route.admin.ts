@@ -82,7 +82,7 @@ export const adminRoutes = (app: Router) => {
 
       fs.writeJsonSync(settingsDatabaseLocation, settingsDatabase, { spaces: 4 })
 
-      req.flash('success_alert_message', 'Settings successfully saved')
+      req.flash('success_alert_message', 'Settings successfully saved!')
       return res.redirect('/admin')
     }
   )
@@ -98,19 +98,19 @@ export const adminRoutes = (app: Router) => {
       uploadLogo(req, res, (err) => {
         if (err) {
           console.log(err)
-          req.flash('error_message', 'Logo failed to upload')
+          req.flash('error_message', 'Logo failed to upload!')
           return res.redirect('/admin')
         }
       })
       uploadLogoDist(req, res, (err) => {
         if (err) {
           console.log(err)
-          req.flash('error_message', 'Logo failed to upload')
+          req.flash('error_message', 'Logo failed to upload!')
           return res.redirect('/admin')
         }
       })
 
-      req.flash('success_alert_message', 'Logo successfully uploaded and saved. Please clear cache to see the new change!')
+      req.flash('success_alert_message', 'Logo has been uploaded!')
       return res.redirect('/admin')
     }
   )
@@ -126,19 +126,19 @@ export const adminRoutes = (app: Router) => {
       uploadDefaultPP(req, res, (err) => {
         if (err) {
           console.log(err)
-          req.flash('error_message', 'Profile picture failed to upload. Please clear cache to see the new change!')
+          req.flash('error_message', 'Profile picture failed to upload!')
           return res.redirect('/admin')
         }
       })
       uploadDefaultPPDist(req, res, (err) => {
         if (err) {
           console.log(err)
-          req.flash('error_message', 'Logo failed to upload')
+          req.flash('error_message', 'Logo failed to upload!')
           return res.redirect('/admin')
         }
       })
 
-      req.flash('success_alert_message', 'Logo successfully uploaded and saved')
+      req.flash('success_alert_message', 'Logo has been uploaded!')
       return res.redirect('/admin')
     }
   )
@@ -159,7 +159,7 @@ export const adminRoutes = (app: Router) => {
         return res.redirect("/admin")
       }
       if (req.body.password < 5) {
-        req.flash('error_messge', 'Secret key can not be less than 5 characters!')
+        req.flash('error_messge', 'Password can not be less than 5 characters!')
         return res.redirect("/admin")
       }
   
